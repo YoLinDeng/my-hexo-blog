@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/favicon.png">
+  <link rel="icon" type="image/png" href="/myblog/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>前端日常开发常用技巧与方法 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myblog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端日常开发常用技巧与方法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-09 18:10" pubdate>
+        2020年6月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端日常开发常用技巧与方法</h1>
+            
+            <div class="markdown-body">
+              <h2 id="CSS部分"><a href="#CSS部分" class="headerlink" title="CSS部分"></a>CSS部分</h2><h4 id="盒子边倾斜"><a href="#盒子边倾斜" class="headerlink" title="盒子边倾斜"></a>盒子边倾斜</h4><p>clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);</p>
+<h4 id="禁止点击事件-鼠标事件“穿透”"><a href="#禁止点击事件-鼠标事件“穿透”" class="headerlink" title="禁止点击事件/鼠标事件“穿透”"></a>禁止点击事件/鼠标事件“穿透”</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> * &#123;<br>    <span class="hljs-attribute">pointer-events</span>: none;   <span class="hljs-comment">/*链接啊，点击事件啊，都没有效果了*/</span> <br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="用来控制元素在移动设备上使用滚动回弹效果"><a href="#用来控制元素在移动设备上使用滚动回弹效果" class="headerlink" title="用来控制元素在移动设备上使用滚动回弹效果"></a>用来控制元素在移动设备上使用滚动回弹效果</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.main</span>&#123;<br>    <span class="hljs-attribute">-webkit-overflow-scrolling</span>: touch;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可解决在IOS中使用overflow:auto 形成的滚动条，滚动不流畅的情况</p>
+<h4 id="文字渐变效果"><a href="#文字渐变效果" class="headerlink" title="文字渐变效果"></a>文字渐变效果</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.text-gradient</span>&#123;<br>    <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, deeppink, deepskyblue);<br>    <span class="hljs-attribute">-webkit-background-clip</span>: text;<br>    <span class="hljs-attribute">color</span>: transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="css三角形"><a href="#css三角形" class="headerlink" title="css三角形"></a>css三角形</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#triangle-up</span> &#123;<br><br> <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br><br> <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br><br> <span class="hljs-attribute">border-left</span>: <span class="hljs-number">50px</span> solid transparent;<br><br> <span class="hljs-attribute">border-right</span>: <span class="hljs-number">50px</span> solid transparent;<br><br> <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">100px</span> solid red;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="JS部分"><a href="#JS部分" class="headerlink" title="JS部分"></a>JS部分</h2><h4 id="JavaScript中检测数组的方法"><a href="#JavaScript中检测数组的方法" class="headerlink" title="JavaScript中检测数组的方法"></a>JavaScript中检测数组的方法</h4><p>(1)、typeof操作符</p>
+<p>这种方法对一些常用的类型检查没有问题，但对array和null 都判断为object<br>(2)、instanceof操作符</p>
+<p>这个操作符是检测对象的原型链是否指向构造函数的prototype对象的<br>(3)、对象的constructor属性</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> arr = []<br><br>console.log(arr<span class="hljs-function">.<span class="hljs-keyword">constructor</span> === <span class="hljs-title">Array</span>) <span class="hljs-comment">// true</span></span><br></code></pre></td></tr></table></figure>
+<p>(4)、Object.prototype.toString</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">const</span> arr = []<br><br>console.<span class="hljs-built_in">log</span>(Object.prototype.toString.<span class="hljs-built_in">call</span>(arr) === <span class="hljs-string">'[object Array]'</span>) // <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<p>(5)、Array.isArray()</p>
+<h4 id="常用的字符串操作"><a href="#常用的字符串操作" class="headerlink" title="常用的字符串操作"></a>常用的字符串操作</h4><ol>
+<li>字符串转化toString()</li>
+<li>字符串分隔split()</li>
+<li>字符串替换replace()</li>
+<li>获取长度length</li>
+<li>查询子字符串 indexOf</li>
+<li>返回指定位置的字符串或字符串编码 charAt charCodeAt</li>
+<li>字符串匹配 match</li>
+<li>字符串拼接concat</li>
+<li>字符串的切割或提取slice() substring() substr()</li>
+<li>字符串大小写转化 toLowerCase toUpperCase</li>
+<li>字符串去空格 trim() 用来删除字符串前后的空格</li>
+</ol>
+<p>其中第9中三者的区别如下：<br>（1）slice(), 参数可以是负数，负数表示从字符串最后一个位置开始切割到对应结束位置<br>（2）substring()，参数不可为负数，切割第一个位置到第二个位置的字符串<br>（3）substr()， 参数不可为负数，第一个参数是开始位置，第二个参数为切割的长度<br>字符串去重<br>const str = ‘11122223333’<br>const arr = str.split(‘’)<br>const uniqueStr = […new Set(arr)].join(‘’)</p>
+<h4 id="常用的数组操作"><a href="#常用的数组操作" class="headerlink" title="常用的数组操作"></a>常用的数组操作</h4><p>1、Array.map()<br>此方法是将数组中的每个元素调用一个提供的函数，结果作为一个新的数组返回，并没有改变原来的数组<br>2、Array.forEach()<br>此方法是将数组中的每个元素执行传进提供的函数，没有返回值，注意和map方法区分<br>3、Array.filter()<br>此方法是将满足条件的元素作为一个新数组返回<br>4、Array.every()<br>此方法将数组所有元素进行判断返回一个布尔值，如果所有元素都符合判断条件，则返回true，否则返回false<br>5、Array.some()<br>此方法将数组所有元素进行判断返回一个布尔值,如果有一个元素满足判断条件，则返回true，所有元素都不满足则返回false<br>6、Array.reduce()<br>此方法为所有元素调用返回函数<br>7、Array.push()<br>在数组最后面添加新元素<br>8、Array.shift()<br>删除数组第一个元素<br>9、Array.pop()<br>删除数组最后一个元素<br>10、Array.unshift()<br>在数组最前面增加元素<br>11、Array.isArray()<br>判断是否为一个数组<br>12、Array.concat()<br>数组拼接<br>13、Array.toString()<br>数组转化为字符串<br>14、Array.join()<br>数组转化为字符串，并用第一个参数作为连接符<br>15、Array.splice(开始位置，删除个数，元素)<br>####常用对象方法<br>1、Object.assign()<br>用于克隆，两个参数，将第二个对象分配到第一个中<br>2、Object.is()<br>用于判断两个值是否相同<br>//注意，该函数与==运算符不同，不会强制转换任何类型， 应该更加类似于===，但值得注意的是它会将+0和-0视作不同值<br>3、Object.keys()<br>用于返回对象可枚举的属性和方法的名称，返回一个属性或方法名称的字符串数组。<br>4、Object.defineProperty()<br>劫持变量的set和get方法,将属性添加到对象，或修改现有属性的特性</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cs"><span class="hljs-keyword">var</span> a = &#123;&#125;;<br>Object.defineProperty(a, <span class="hljs-string">'name'</span>, &#123;<br>    <span class="hljs-keyword">value</span> : <span class="hljs-string">'kong'</span>,<br>    enumerable : <span class="hljs-literal">true</span> <span class="hljs-comment">//该属性是否可枚举</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>5、Object.defineProperties()<br>可添加多个属性,与Object.defineProperty()对应,<br>6、isPrototypeOf</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>)</span>&#123;&#125; <br><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> a();<br><span class="hljs-built_in">console</span>.log(a.prototype.isPrototypeOf(b));<span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
+<h4 id="安卓监听可视区域变化，让输入框移动至可视区域"><a href="#安卓监听可视区域变化，让输入框移动至可视区域" class="headerlink" title="安卓监听可视区域变化，让输入框移动至可视区域"></a>安卓监听可视区域变化，让输入框移动至可视区域</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Android/gi</span>.test(navigator.userAgent)) &#123;<br>          <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'resize'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.activeElement.tagName === <span class="hljs-string">'INPUT'</span> || <span class="hljs-built_in">document</span>.activeElement.tagName === <span class="hljs-string">'TEXTAREA'</span>) &#123;<br>              <span class="hljs-built_in">window</span>.setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>                <span class="hljs-built_in">document</span>.activeElement.scrollIntoViewIfNeeded();<br>              &#125;, <span class="hljs-number">0</span>);<br>            &#125;<br>          &#125;);<br>        &#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="vue中平滑滚动到某个位置"><a href="#vue中平滑滚动到某个位置" class="headerlink" title="vue中平滑滚动到某个位置"></a>vue中平滑滚动到某个位置</h4><p>this.$refs.rule.scrollIntoView({ block: ‘start’, behavior: ‘smooth’ })</p>
+<h4 id="好用的JavaSrcipt库与模块（包）"><a href="#好用的JavaSrcipt库与模块（包）" class="headerlink" title="好用的JavaSrcipt库与模块（包）"></a>好用的JavaSrcipt库与模块（包）</h4><h5 id="日期时间处理库"><a href="#日期时间处理库" class="headerlink" title="日期时间处理库"></a>日期时间处理库</h5><p>1、<a href="http://momentjs.cn/" target="_blank" rel="noopener">monent.js</a><br>2、<a href="https://github.com/iamkun/dayjs" target="_blank" rel="noopener">day.js</a><br>day相对于monent要轻量许多</p>
+<h5 id="高精度数学运算"><a href="#高精度数学运算" class="headerlink" title="高精度数学运算"></a>高精度数学运算</h5><p><a href="https://developer.aliyun.com/mirror/npm/package/number-precision" target="_blank" rel="noopener">number-precision</a></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NP</span>.</span></span>strip(num)         <span class="hljs-comment">// strip a number to nearest right number</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NP</span>.</span></span>plus(num1, num2, num3, ...)   <span class="hljs-comment">// addition, num + num2 + num3, two numbers is required at least.</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NP</span>.</span></span>minus(num1, num2, num3, ...)  <span class="hljs-comment">// subtraction, num1 - num2 - num3</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NP</span>.</span></span>times(num1, num2, num3, ...)  <span class="hljs-comment">// multiplication, num1 * num2 * num3</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NP</span>.</span></span>divide(num1, num2, num3, ...) <span class="hljs-comment">// division, num1 / num2 / num3</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">NP</span>.</span></span>round(num, ratio)  <span class="hljs-comment">// round a number based on ratio</span><br></code></pre></td></tr></table></figure>
+<h5 id="实用工具库"><a href="#实用工具库" class="headerlink" title="实用工具库"></a>实用工具库</h5><p><a href="https://www.lodashjs.com/" target="_blank" rel="noopener">Lodash</a><br>lodash 是一个 JavaScript 实用工具库，提供一致性，及模块化、性能和配件等功能。<br>Lodash 消除了处理数组的麻烦，从而简化了 JavaScript、 数字、对象、字符串等</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2020/06/09/JS%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%BB%8B%E7%BB%8D/">
+                        <span class="hidden-mobile">JS的数据类型及深浅拷贝介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>
