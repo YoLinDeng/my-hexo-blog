@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/myblog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>sass常用方法 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myblog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="sass常用方法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-21 15:37" pubdate>
+        2021年5月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      639 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">sass常用方法</h1>
+            
+            <div class="markdown-body">
+              <h3 id="一、什么是sass"><a href="#一、什么是sass" class="headerlink" title="一、什么是sass"></a>一、什么是sass</h3><p>Sass 是一款强化 CSS 的辅助工具，它在 CSS 语法的基础上增加了变量 (variables)、嵌套 (nested rules)、混合 (mixins)、导入 (inline imports) 等高级功能，提供了许多便利的写法，大大提高的开发效率。下面总结了SASS的主要用法，想要了解更多可以查阅<a href="https://www.sass.hk/docs/" target="_blank" rel="noopener">文档</a></p>
+<h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><p>1、由于sass依赖于Ruby，因此需要先<a href="http://www.ruby-lang.org/zh_cn/downloads/" target="_blank" rel="noopener">安装Ruby</a>，然后执行<code>gem install sass</code><br>2、若在vue-cli或react-create-app中使用，在项目中安装依赖：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">npm install <span class="hljs-keyword">node</span><span class="hljs-title">-sass</span> --save-dev<br>npm install sass-loader --save-dev<br></code></pre></td></tr></table></figure>
+<h3 id="三、基础用法"><a href="#三、基础用法" class="headerlink" title="三、基础用法"></a>三、基础用法</h3><h4 id="3-1-变量"><a href="#3-1-变量" class="headerlink" title="3.1 变量"></a>3.1 变量</h4><p>SASS允许使用变量，所有变量以$开头</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-variable">$color</span>: <span class="hljs-number">#ccc</span>;<br><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-variable">$color</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果变量需要镶嵌在属性中之中，就必须需要写在#{}之中</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-variable">$side</span>: right;<br><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">border</span>-#&#123;<span class="hljs-variable">$side</span>&#125;-radius: <span class="hljs-number">10px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="3-2-计算能力"><a href="#3-2-计算能力" class="headerlink" title="3.2 计算能力"></a>3.2 计算能力</h4><p>SASS允许在代码中使用算式</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">$var: <span class="hljs-number">10</span>px;<br>div &#123;<br>  width：(<span class="hljs-number">20</span>px/<span class="hljs-number">2</span>);<br>  top: <span class="hljs-number">10</span>px + <span class="hljs-number">20</span>px;<br>  left: $var * <span class="hljs-number">2</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="3-3-嵌套能力"><a href="#3-3-嵌套能力" class="headerlink" title="3.3 嵌套能力"></a>3.3 嵌套能力</h4><p>一般我们写多个选择器时，一般这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">h2</span> &#123;<br>  <span class="hljs-attribute">border</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用sass可以写成：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-class">div </span>&#123;<br>  <span class="hljs-class">h2 </span>&#123;<br><span class="hljs-symbol">    border:</span><span class="hljs-number">1</span>px solid <span class="hljs-meta">#ccc;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>属性也可以嵌套,比如font-size属性，可以写成</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">div</span> &#123;<br>  font：&#123;<br>    <span class="hljs-keyword">size</span>：<span class="hljs-number">18</span>px;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以使用&amp;引用父元素</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">div</span> &#123;<br> &amp;::<span class="hljs-keyword">after</span> &#123;<br> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="四、代码重用"><a href="#四、代码重用" class="headerlink" title="四、代码重用"></a>四、代码重用</h3><h4 id="4-1-继承"><a href="#4-1-继承" class="headerlink" title="4.1 继承"></a>4.1 继承</h4><p>SASS允许一个选择器，继承另一个选择器</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.class1</span> &#123;<br>   <span class="hljs-attribute">color</span>: <span class="hljs-number">#ccc</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果要继承class1，需要使用@extend命令</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.class2</span> &#123;<br>  <span class="hljs-keyword">@extend</span> .class1;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="4-2-Mixin-混合"><a href="#4-2-Mixin-混合" class="headerlink" title="4.2 Mixin(混合)"></a>4.2 Mixin(混合)</h4><p>使用@mixin声明代码块，达到重用代码块的作用，在需要用的地方使用@include调用</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">@<span class="hljs-keyword">mixin</span> right &#123;<br> margin-right: <span class="hljs-number">20</span>px;<br>&#125;<br>div &#123;<br>  @include right;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>@minxin可以设置参数以及参数默认值</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">@<span class="hljs-keyword">mixin</span> left($value: <span class="hljs-number">20</span>px) &#123;<br>  margin-left: $value;<br>&#125;<br>div &#123;<br>  @include left(<span class="hljs-number">10</span>px)<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="4-3-颜色函数"><a href="#4-3-颜色函数" class="headerlink" title="4.3 颜色函数"></a>4.3 颜色函数</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">lighten</span><span class="hljs-params">(<span class="hljs-number">#cc3</span>, <span class="hljs-number">10%</span>)</span></span> <span class="hljs-comment">// #d6d65c  </span><br><span class="hljs-function"><span class="hljs-title">darken</span><span class="hljs-params">(<span class="hljs-number">#cc3</span>, <span class="hljs-number">10%</span>)</span></span> <span class="hljs-comment">// #a3a329  </span><br><span class="hljs-function"><span class="hljs-title">grayscale</span><span class="hljs-params">(<span class="hljs-number">#cc3</span>)</span></span> <span class="hljs-comment">// #808080  </span><br><span class="hljs-function"><span class="hljs-title">complement</span><span class="hljs-params">(<span class="hljs-number">#cc3</span>)</span></span> <span class="hljs-comment">// #33c</span><br></code></pre></td></tr></table></figure>
+<h4 id="4-4-引入文件"><a href="#4-4-引入文件" class="headerlink" title="4.4 引入文件"></a>4.4 引入文件</h4><p>使用@import命令，用来引入外部文件<br>@import 文件路径</p>
+<h3 id="五、进阶用法"><a href="#五、进阶用法" class="headerlink" title="五、进阶用法"></a>五、进阶用法</h3><h4 id="5-1-条件语句"><a href="#5-1-条件语句" class="headerlink" title="5.1 条件语句"></a>5.1 条件语句</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-variable">@if</span> computed($width) &gt; <span class="hljs-number">10</span> &#123; <span class="hljs-attribute">width</span>: <span class="hljs-number">10%</span> &#125;<br>  <span class="hljs-variable">@if</span> computed($height) &gt; <span class="hljs-number">10</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">10px</span>;<br>  &#125; <span class="hljs-variable">@else</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="5-2-循环语句"><a href="#5-2-循环语句" class="headerlink" title="5.2 循环语句"></a>5.2 循环语句</h4><p>for循环:</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-keyword">@for</span> <span class="hljs-variable">$i</span> from <span class="hljs-number">1</span> to <span class="hljs-number">10</span> &#123;  <br> <span class="hljs-selector-class">.content-</span>#&#123;<span class="hljs-variable">$i</span>&#125; &#123;  <br>    <span class="hljs-attribute">width</span>: #&#123;<span class="hljs-variable">$i</span>&#125;px;  <br> &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>while循环:</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss">　<span class="hljs-variable">$x</span>: <span class="hljs-number">6</span>;<br>　　<span class="hljs-keyword">@while</span> <span class="hljs-variable">$x</span> &gt; <span class="hljs-number">0</span> &#123;  <br>　　　　<span class="hljs-selector-class">.item-</span>#&#123;<span class="hljs-variable">$x</span>&#125; &#123; <span class="hljs-attribute">width</span>: <span class="hljs-variable">$x</span> + <span class="hljs-number">10px</span>; &#125;  <br>　　　　<span class="hljs-variable">$x</span>: <span class="hljs-variable">$x</span> - <span class="hljs-number">1</span>;  <br>　　&#125;z<br></code></pre></td></tr></table></figure>
+<p>each:</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-keyword">@each</span> <span class="hljs-variable">$member</span> in a, b, c, d &#123;  <br> .#&#123;<span class="hljs-variable">$member</span>&#125; &#123;  <br>    <span class="hljs-attribute">background-image</span>: url(<span class="hljs-string">"/image/#&#123;$member&#125;.jpg"</span>);  <br> &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css">　<span class="hljs-keyword">@function</span> count($n) &#123;  <br>　　　　<span class="hljs-keyword">@return</span> $n + <span class="hljs-number">1</span>;  <br>　　&#125;<br><br>　　<span class="hljs-selector-tag">div</span> &#123;  <br>　　　　<span class="hljs-attribute">width</span>: <span class="hljs-built_in">count</span>(<span class="hljs-number">5px</span>);  <br>　　&#125;<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/scss/">scss</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">手写防抖与节流函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/vue-cli%E4%B8%AD%E4%BD%BF%E7%94%A8svgIcon/">
+                        <span class="hidden-mobile">vue-cli中使用svgIcon</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/myblog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>vue中实现倒计时组件与毫秒效果 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/myblog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="vue中实现倒计时组件与毫秒效果">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-21 11:10" pubdate>
+        2021年5月21日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      974 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue中实现倒计时组件与毫秒效果</h1>
+            
+            <div class="markdown-body">
+              <h3 id="时分秒倒计时组件"><a href="#时分秒倒计时组件" class="headerlink" title="时分秒倒计时组件"></a>时分秒倒计时组件</h3><h4 id="template"><a href="#template" class="headerlink" title="template"></a>template</h4><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs django"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml">  <span class="hljs-comment">&lt;!-- 倒计时组件 --&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"downTime-wrapper"</span>&gt;</span></span><br><span class="xml">    <span class="hljs-comment">&lt;!-- 这里是显示还未结束时的内容，这里只是我这得布局，你可以随意。 --&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"time"</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">"!isShow"</span>&gt;</span></span><br><span class="xml">      <span class="hljs-comment">&lt;!-- &lt;span class="hour"&gt;</span></span><span class="hljs-template-variable">&#123;&#123;myDay&#125;&#125;</span><span class="xml"><span class="hljs-comment">&lt;/span&gt; : --&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hour"</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; getHours1 &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; getHours2 &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"dian"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"minute"</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; getMinutes1 &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; getMinutes2 &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"dian"</span>&gt;</span>:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"second"</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; getSeconds1 &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; getSeconds2 &#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-comment">&lt;!-- 这里是显示结束后的内容 --&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"second"</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">"isShow"</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;clocker&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<h4 id="script"><a href="#script" class="headerlink" title="script"></a>script</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">&lt;script&gt;<br>export <span class="hljs-keyword">default</span> &#123;<br>  name: <span class="hljs-string">'downTime'</span>,<br><br>  props: &#123; <span class="hljs-comment">// 接收父组件传递过来的参数,这里传了  结束时间 - 开始时间 - 结束后显示的内容</span><br>    endTime: &#123;<br>      type: Number<br>    &#125;,<br>    startTime: &#123;<br>      type: Number<br>    &#125;,<br>    endMsg: &#123;<br>      type: String<br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-keyword">data</span> () &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      isShow: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 控制显示结束或还未结束显示的内容</span><br>      clocker: <span class="hljs-string">''</span>, <span class="hljs-comment">// 结束后显示的内容</span><br>      timeObj: <span class="hljs-literal">null</span>, <span class="hljs-comment">// 时间对象,下方会用到</span><br>      myDay: <span class="hljs-number">0</span>, <span class="hljs-comment">// 我定义来接收计算出来的 天 的</span><br>      myHours: <span class="hljs-number">0</span>, <span class="hljs-comment">// 我定义来接收计算出来的 小时 的</span><br>      myMinutes: <span class="hljs-number">0</span>, <span class="hljs-comment">// 我定义来接收计算出来的 分钟 的</span><br>      mySeconds: <span class="hljs-number">0</span><span class="hljs-comment">// 我定义来接收计算出来的 秒钟 的</span><br>    &#125;<br>  &#125;,<br>  computed: &#123;<br>    getHours1 () &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.myHours &lt; <span class="hljs-number">10</span> ? <span class="hljs-number">0</span> : parseInt((<span class="hljs-keyword">this</span>.myHours % <span class="hljs-number">100</span>) / <span class="hljs-number">10</span>)<br>    &#125;,<br>    getHours2 () &#123;<br>      <span class="hljs-keyword">return</span> parseInt(<span class="hljs-keyword">this</span>.myHours % <span class="hljs-number">10</span>)<br>    &#125;,<br>    getMinutes1 () &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.myMinutes &lt; <span class="hljs-number">10</span> ? <span class="hljs-number">0</span> : parseInt((<span class="hljs-keyword">this</span>.myMinutes % <span class="hljs-number">100</span>) / <span class="hljs-number">10</span>)<br>    &#125;,<br>    getMinutes2 () &#123;<br>      <span class="hljs-keyword">return</span> parseInt(<span class="hljs-keyword">this</span>.myMinutes % <span class="hljs-number">10</span>)<br>    &#125;,<br>    getSeconds1 () &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mySeconds &lt; <span class="hljs-number">10</span> ? <span class="hljs-number">0</span> : parseInt((<span class="hljs-keyword">this</span>.mySeconds % <span class="hljs-number">100</span>) / <span class="hljs-number">10</span>)<br>    &#125;,<br>    getSeconds2 () &#123;<br>      <span class="hljs-keyword">return</span> parseInt(<span class="hljs-keyword">this</span>.mySeconds % <span class="hljs-number">10</span>)<br>    &#125;<br>  &#125;,<br>  mounted () &#123;<br>  &#125;,<br>  methods: &#123;<br>    option () &#123;<br>      <span class="hljs-comment">// 计算时间差</span><br>      let timeLag = (<span class="hljs-keyword">this</span>.endTime - <span class="hljs-keyword">this</span>.startTime) / <span class="hljs-number">1000</span><br>      <span class="hljs-comment">// 判断当前是否时分秒的值是否大于10</span><br>      <span class="hljs-keyword">const</span> add = num =&gt; &#123;<br>        <span class="hljs-keyword">return</span> num &lt; <span class="hljs-number">10</span> ? <span class="hljs-string">'0'</span> + num : num<br>      &#125;<br>      <span class="hljs-comment">// 时间倒计时运算的方法</span><br>      <span class="hljs-keyword">const</span> timeFunction = () =&gt; &#123;<br>        <span class="hljs-keyword">const</span> time = timeLag--<br>        <span class="hljs-keyword">this</span>.timeObj = &#123; <span class="hljs-comment">// 时间对象</span><br>          seconds: Math.floor(time % <span class="hljs-number">60</span>),<br>          minutes: Math.floor(time / <span class="hljs-number">60</span>) % <span class="hljs-number">60</span>,<br>          hours: Math.floor(time / <span class="hljs-number">60</span> / <span class="hljs-number">60</span>) % <span class="hljs-number">24</span>,<br>          days: Math.floor(time / <span class="hljs-number">60</span> / <span class="hljs-number">60</span> / <span class="hljs-number">24</span>)<br>        &#125;<br>        <span class="hljs-comment">// 计算出时分秒</span><br>        <span class="hljs-keyword">this</span>.myDay = `$&#123;add(<span class="hljs-keyword">this</span>.timeObj.days)&#125;`<br>        <span class="hljs-keyword">this</span>.myHours = `$&#123;add(<span class="hljs-keyword">this</span>.timeObj.hours)&#125;`<br>        <span class="hljs-keyword">this</span>.myMinutes = `$&#123;add(<span class="hljs-keyword">this</span>.timeObj.minutes)&#125;`<br>        <span class="hljs-keyword">this</span>.mySeconds = `$&#123;add(<span class="hljs-keyword">this</span>.timeObj.seconds)&#125;`<br>        <span class="hljs-comment">// 当时间差小于等于0时,停止倒计时</span><br>        <span class="hljs-keyword">if</span> (time &lt;= <span class="hljs-number">0</span>) &#123;<br>          <span class="hljs-keyword">this</span>.isShow = <span class="hljs-literal">true</span><br>          <span class="hljs-keyword">this</span>.clocker = <span class="hljs-keyword">this</span>.endMsg<br>          clearInterval(go)<br>        &#125;<br>      &#125;<br>      <span class="hljs-comment">// 开始执行倒计时</span><br>      timeFunction()<br>      <span class="hljs-comment">// 每一秒执行一次</span><br>      <span class="hljs-keyword">const</span> go = setInterval(() =&gt; &#123;<br>        timeFunction()<br>      &#125;, <span class="hljs-number">1000</span>)<br>    &#125;<br>  &#125;,<br>    watch: &#123;<br>        endTime: &#123;<br>          handler (newName, oldName) &#123;<br>            <span class="hljs-keyword">this</span>.option()<br>          &#125;,<br>          immediate: <span class="hljs-literal">true</span>,<br>          deep: <span class="hljs-literal">true</span><br>        &#125;<br>     &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<p>备注：我将时分秒使用计算属性分成了个位和十位两部分展示，在watch中深度监听endTime属性的变化并重新调用定时器</p>
+<h4 id="style"><a href="#style" class="headerlink" title="style"></a>style</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs stylus">&lt;style lang=<span class="hljs-string">"scss"</span> scoped&gt;<br>.downTime-wrapper&#123;<br>  <span class="hljs-attribute">display</span>: inline-block;<br>  <span class="hljs-selector-class">.dian</span> &#123;<br>    <span class="hljs-attribute">font-weight</span>: bold;<br>    <span class="hljs-attribute">position</span>: relative;<br>    <span class="hljs-attribute">top</span>: -<span class="hljs-number">5px</span>;<br>  &#125;<br>  .hour&#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">36px</span>;<br>    <span class="hljs-selector-tag">span</span> &#123;<br>      <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">6px</span>;<br>      <span class="hljs-attribute">color</span>: <span class="hljs-number">#FFFFFF</span>;<br>      <span class="hljs-attribute">background</span>:rgba(<span class="hljs-number">27</span>,<span class="hljs-number">23</span>,<span class="hljs-number">22</span>,<span class="hljs-number">1</span>);<br>      <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">10px</span>;<br>      <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span>;<br>    &#125;<br>  &#125;<br>  .minute&#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">36px</span>;<br>    <span class="hljs-selector-tag">span</span> &#123;<br>      <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">6px</span>;<br>      <span class="hljs-attribute">color</span>: <span class="hljs-number">#FFFFFF</span>;<br>      <span class="hljs-attribute">background</span>:rgba(<span class="hljs-number">27</span>,<span class="hljs-number">23</span>,<span class="hljs-number">22</span>,<span class="hljs-number">1</span>);<br>      <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">10px</span>;<br>      <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-selector-class">.second</span> &#123;<br>    <span class="hljs-attribute">display</span>: inline-block;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">36px</span>;<br>    <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">5px</span>;<br>    <span class="hljs-selector-tag">span</span> &#123;<br>      <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">6px</span>;<br>      <span class="hljs-attribute">color</span>: <span class="hljs-number">#FFFFFF</span>;<br>      <span class="hljs-attribute">background</span>:rgba(<span class="hljs-number">27</span>,<span class="hljs-number">23</span>,<span class="hljs-number">22</span>,<span class="hljs-number">1</span>);<br>      <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">10px</span>;<br>      <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span>;<br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>在页面中引入并注册后即可使用</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir">&lt;timer<br>  <span class="hljs-symbol">:endTime=<span class="hljs-string">"item.endTime"</span></span><br>  <span class="hljs-symbol">:startTime=<span class="hljs-string">"new Date().getTime()"</span></span><br>  <span class="hljs-symbol">:endMsg=<span class="hljs-string">"item.endMsg"</span>&gt;</span><br>&lt;<span class="hljs-regexp">/timer&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="毫秒倒计时效果"><a href="#毫秒倒计时效果" class="headerlink" title="毫秒倒计时效果"></a>毫秒倒计时效果</h3><p>在template中加入<br><code>&lt;b id=&quot;timehs&quot;&gt;:00&lt;/b&gt;</code></p>
+<p>声明timeDt方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript">methods: &#123;<br>    timeDt () &#123;<br>      <span class="hljs-keyword">this</span>.timer1 = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">var</span> haomiao = <span class="hljs-number">99</span><br>        <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'timehs'</span>).innerHTML = <span class="hljs-string">':'</span> + haomiao<br>        <span class="hljs-keyword">this</span>.timer2 = setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>          <span class="hljs-keyword">const</span> timehs = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'timehs'</span>)<br>          <span class="hljs-keyword">if</span> (timehs) &#123;<br>            timehs.innerHTML = <span class="hljs-string">`:<span class="hljs-subst">$&#123;haomiao &lt; <span class="hljs-number">10</span> ? <span class="hljs-string">`0<span class="hljs-subst">$&#123;haomiao&#125;</span>`</span> : haomiao&#125;</span>`</span><br>          &#125;<br>          haomiao--<br>          <span class="hljs-keyword">if</span> (haomiao &lt; <span class="hljs-number">0</span>) &#123;<br>            haomiao = <span class="hljs-number">99</span><br>          &#125;<br>        &#125;, <span class="hljs-number">10</span>)<br>      &#125;, <span class="hljs-number">1000</span>)<br>    &#125;<br>  &#125;<br></code></pre></td></tr></table></figure>
+<p>在create生命周期函数中调用timeDt方法</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">created () &#123;<br>    <span class="hljs-keyword">this</span>.$nextTick(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>      <span class="hljs-keyword">this</span>.timeDt()<br>    &#125;)<br>  &#125;,<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/%E7%BB%84%E4%BB%B6%E5%8C%96/">组件化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用的git命令操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/Mongoose%E5%9C%A8egg%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8/">
+                        <span class="hidden-mobile">Mongoose在egg中的运用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>
