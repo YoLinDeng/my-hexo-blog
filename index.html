@@ -181,6 +181,221 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/myblog/2021/06/17/this%E3%80%81call%E3%80%81apply%E3%80%81bind/">this、call、apply、bind</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/06/17/this%E3%80%81call%E3%80%81apply%E3%80%81bind/">
+          
+          
+            
+          
+          this在JavaScript中，this的指向是调用时决定的，而不是创建时决定的，this永远指向最后调用它的那个对象。
+全局上下文在全局上下文中，this指全局对象
+
+this等价于window对象
+var === this. === window.在浏览器里面this等价于window对象，如果你声明一些全局变量，这些变量都会作为this的属性。
+
+函数上下文在函数内部，this的值取决于函
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-17 18:05" pubdate>
+              2021-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/06/17/instanceof%E3%80%81typeof/">instanceof、typeof</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/06/17/instanceof%E3%80%81typeof/">
+          
+          
+            
+          
+          typeof实现原理typeof用于判断变量的类型，可以判断number、string、object、undefined、function、boolean、symbol 这7种类型，判断不是object类型的时候可以比较清楚的告诉我们具体是哪一类，但不能明确告诉我们object是哪一种。由于js底层存储变量的时候，会在变量的机器码的低位1-3位存储其类型信息。
+
+000：对象
+010：浮点数
+10
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-17 18:00" pubdate>
+              2021-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/06/17/%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/">原型、继承</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/06/17/%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/">
+          
+          
+            
+          
+          原型在规范里，prototype 被定义为：给其它对象提供共享属性的对象。 
+JS是通过函数来模拟类，当我们创建一个函数的时候，js会给这个函数自动添加prototype属性，值是一个包含constructor属性的对象，不是空对象。当我们把函数当成构造函数通过new关键词调用的时候，js会帮我们创建该构造函数的实例，实例继承构造函数prototype的所以属性和方法（实例通过设置自己的__pro
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-17 17:31" pubdate>
+              2021-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/25/js%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E3%80%81%E9%97%AD%E5%8C%85/">js执行上下文、作用域链、闭包</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/25/js%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E3%80%81%E9%97%AD%E5%8C%85/">
+          
+          
+            
+          
+          执行上下文是评估和执行 JavaScript 代码的环境的抽象概念，每当 Javascript 代码在运行的时候，它都是在执行上下文中运行。执行上下文包括：
+
+1、全局执行上下文  
+2、函数执行上下文  
+3、Eval函数执行上下文  
+
+三个重要属性
+
+变量对象
+作用域链
+this
+
+执行栈用来存储代码运行时创建的所有上下文（先进后出）但javascript引擎第一次遇到你的脚本时，它会创建一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-25 10:36" pubdate>
+              2021-05-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/myblog/2021/05/24/%E5%B8%B8%E7%94%A8%E7%9A%84ES6%E4%BC%98%E5%8C%96%E5%8D%87%E7%BA%A7%E5%86%85%E5%AE%B9/">常用的ES6优化升级内容</a>
       </h1>
 
@@ -481,208 +696,6 @@ target被 Proxy 代理虚拟化的对象。语法const p = new Proxy(tar
               <a href="/myblog/tags/javaScript/">javaScript</a>
             
               <a href="/myblog/tags/vue/">vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/scss%E5%AE%9E%E7%8E%B0retina%E5%B1%8F1px%E8%BE%B9%E6%A1%86/">scss实现retina屏1px边框</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/scss%E5%AE%9E%E7%8E%B0retina%E5%B1%8F1px%E8%BE%B9%E6%A1%86/">
-          
-          
-            
-          
-          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455// =======================//  用法：  //  @include retina-border(1,1,1,1);//  数值 代表 各 边框的宽度  上右下左// ==
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:25" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/scss/">scss</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/">常用的git命令操作</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/">
-          
-          
-            
-          
-          安装在使用git之前需要先安装它下载git
-以windows系统为例子，安装完成后，鼠标右键点击桌面，出现Git Bash Here和 Git GUI Here 说明安装成功。
-命令设置用户名和邮箱12git config --global user.name ""  git config --global user.email ""
-克隆远程仓库与代码提交1、在github上新建项目new re
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:21" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/git/">git</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/vue%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%AF%AB%E7%A7%92%E6%95%88%E6%9E%9C/">vue中实现倒计时组件与毫秒效果</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/vue%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%AF%AB%E7%A7%92%E6%95%88%E6%9E%9C/">
-          
-          
-            
-          
-          时分秒倒计时组件template12345678910111213141516171819202122232425&lt;template&gt;  &lt;!-- 倒计时组件 --&gt;  &lt;div class="downTime-wrapper"&gt;    &lt;!-- 这里是显示还未结束时的内容，这里只是我这得布局，你可以随意。 --&gt;    &lt;div class=
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:10" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/vue/">vue</a>
-            
-              <a href="/myblog/tags/%E7%BB%84%E4%BB%B6%E5%8C%96/">组件化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/Mongoose%E5%9C%A8egg%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8/">Mongoose在egg中的运用</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/Mongoose%E5%9C%A8egg%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8/">
-          
-          
-            
-          
-          Mongoose是什么？Mongoose是MongoDB的一个对象模型工具，封装了许多MongoDB对文档的的增删改查等常用方法，让NodeJS操作Mongodb数据库变得更加灵活简单。###在egg项目中如何使用？
-1、安装npm i egg-mongoose --save
-2、配置在根目录下的/config/plugin.js中配置插件
-1234exports.mongoose = &#123
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:04" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/node-js/">node.js</a>
-            
-              <a href="/myblog/tags/mongoDB/">mongoDB</a>
             
           </div>
         
