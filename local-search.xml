@@ -4,6 +4,131 @@
   
   
   <entry>
+    <title>div局中</title>
+    <link href="/myblog/2021/06/23/div%E5%B1%80%E4%B8%AD/"/>
+    <url>/myblog/2021/06/23/div%E5%B1%80%E4%B8%AD/</url>
+    
+    <content type="html"><![CDATA[<h3 id="div居中的几种方法"><a href="#div居中的几种方法" class="headerlink" title="div居中的几种方法"></a>div居中的几种方法</h3><h4 id="使div水平垂直居中"><a href="#使div水平垂直居中" class="headerlink" title="使div水平垂直居中"></a>使div水平垂直居中</h4><h5 id="1、flex布局实现（已知元素宽度）"><a href="#1、flex布局实现（已知元素宽度）" class="headerlink" title="1、flex布局实现（已知元素宽度）"></a>1、flex布局实现（已知元素宽度）</h5><p>给父盒子设置：<br>display: flex;<br>justify-content: center;<br>align-items: center;</p><h5 id="2、position（已知元素宽度）"><a href="#2、position（已知元素宽度）" class="headerlink" title="2、position（已知元素宽度）"></a>2、position（已知元素宽度）</h5><p>父元素设置为：position: relative;<br>子元素设置为：position: absolute;<br>距上50%，据左50%，然后减去元素自身宽度的一半距离就可以实现</p><h5 id="3、position-transform-（未知宽度）"><a href="#3、position-transform-（未知宽度）" class="headerlink" title="3、position + transform （未知宽度）"></a>3、position + transform （未知宽度）</h5><p>父元素设置为：position: relative;<br>子元素设置为：position: absolute;<br>距上50%，据左50%，然后使用transform: translate(-50%,-50%);</p><h5 id="4、position（元素已知宽度）"><a href="#4、position（元素已知宽度）" class="headerlink" title="4、position（元素已知宽度）"></a>4、position（元素已知宽度）</h5><p>父元素设置为：position: relative;<br>子元素设置为：position: absolute;<br>left、right、bottom、top都为0，margin: auto;</p><p>如果子元素不设置宽度和高度，将会铺满整个父级(模态框)</p><h5 id="5-table-cell-布局实现"><a href="#5-table-cell-布局实现" class="headerlink" title="5. table-cell 布局实现"></a>5. table-cell 布局实现</h5><p>table 实现垂直居中，子集元素可以是块元素，也可以不是块元素</p><h4 id="使内容（文字，图片）水平垂直居中（table-cell-布局）"><a href="#使内容（文字，图片）水平垂直居中（table-cell-布局）" class="headerlink" title="使内容（文字，图片）水平垂直居中（table-cell 布局）"></a>使内容（文字，图片）水平垂直居中（table-cell 布局）</h4><p>行元素 text-align ：center；</p><p>块元素 ：margin ：0 auto；<br>text-align : center  给元素的父级加，可以使文本或者行级元素(例如：图片)水平居中<br>line-height : 值为元素的高度，可以使元素的文本内容垂直居中<br>margin: 0 auto 使用条件：父级元素宽度可有可无，子级元素必须使块元素，而且要有宽度（否则继承父级）</p><p>display：table-cell 会使元素表现的类似一个表格中的单元格td，利用这个特性可以实现文字的垂直居中效果。同时它也会破坏一些 CSS 属性，使用 table-cell 时最好不要与 float 以及 position: absolute 一起使用，设置了 table-cell 的元素对高度和宽度高度敏感，对margin值无反应，可以响 padding 的设置，表现几乎类似一个 td 元素。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>css</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>css性能优化</title>
+    <link href="/myblog/2021/06/23/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <url>/myblog/2021/06/23/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<ol><li>合并css文件，如果页面加载10个css文件,每个文件1k，那么也要比只加载一个100k的css文件慢。</li><li>减少css嵌套，最好不要嵌套三层以上。</li><li>不要在ID选择器前面进行嵌套，ID本来就是唯一的而且权限值大，嵌套完全是浪费性能。</li><li>建立公共样式类，把相同样式提取出来作为公共类使用。</li><li>减少通配符*或者类似[hidden=”true”]这类选择器的使用，挨个查找所有…这性能能好吗？</li><li>巧妙运用css的继承机制，如果父节点定义了，子节点就无需定义。</li><li>拆分出公共css文件，对于比较大的项目可以将大部分页面的公共结构样式提取出来放到单独css文件里，这样一次下载 后就放到缓存里，当然这种做法会增加请求，具体做法应以实际情况而定。</li><li>不用css表达式，表达式只是让你的代码显得更加酷炫，但是对性能的浪费可能是超乎你想象的。</li><li>少用css rest，可能会觉得重置样式是规范，但是其实其中有很多操作是不必要不友好的，有需求有兴趣，可以选择normolize.css。</li><li>cssSprite，合成所有icon图片，用宽高加上background-position的背景图方式显现icon图，这样很实用，减少了http请求。</li><li>善后工作，css压缩(在线压缩工具 YUI Compressor)</li><li>GZIP压缩，是一种流行的文件压缩算法</li></ol><h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><h4 id="避免使用-import，外部的css文件中使用-import会使得页面在加载时增加额外的延迟。"><a href="#避免使用-import，外部的css文件中使用-import会使得页面在加载时增加额外的延迟。" class="headerlink" title="避免使用@import，外部的css文件中使用@import会使得页面在加载时增加额外的延迟。"></a>避免使用@import，外部的css文件中使用@import会使得页面在加载时增加额外的延迟。</h4><h4 id="避免过分重排"><a href="#避免过分重排" class="headerlink" title="避免过分重排"></a>避免过分重排</h4><p>浏览器为了重新渲染部分或整个页面，重新计算页面元素位置和几何结构的进程叫做reflow</p><p>导致reflow发生的情况</p><ol><li>改变窗口的大小  </li><li>改变文字的大小</li><li>添加 删除样式表</li><li>内容的改变 输入框输入内容也会</li><li>伪类的激活</li><li>操作class属性</li><li>脚本操作dom js改变css类</li><li>计算offsetWidth和offsetHeight</li><li>设置style属性</li><li>改变元素的内外边距 </li></ol><p>常见重排元素</p><ol><li>大小有关的 width,height,padding,margin,border-width,border,min-height</li><li>布局有关的 display,top,position,float,left,right,bottom</li><li>字体有关的 font-size,text-align,font-weight,font-family,line-height,white-space,vertical-align</li><li>隐藏有关的 overflow,overflow-x,overflow-y<h4 id="repaint-重绘"><a href="#repaint-重绘" class="headerlink" title="repaint 重绘"></a>repaint 重绘</h4></li></ol><p>当一个元素的外观被改变，但是布局没有改变的情况<br>当元素改变的时候，不影响元素在页面中的位置，浏览器仅仅会用新的样式重绘此元素<br>常见的重绘元素</p><ul><li>颜色 color,background</li><li>边框样式 border-style,outline-color,outline,outline-style,border-radius,box-shadow,outline-width</li><li>背景有关 background,backgound-image,background-position,background-repeat,background-size</li></ul><h4 id="文件压缩"><a href="#文件压缩" class="headerlink" title="文件压缩"></a>文件压缩</h4><p>性能优化时最容易想到的，也是最常见的方法，就是文件压缩，这一方案往往效果显著<br>文件的大小会直接影响浏览器的加载速度，这一点在网络较差时表现尤为明显，构建工具webpack，gulp/grunt，rollup，压缩之后能够明显减少，可以大大降低浏览器的加载时间。</p><h4 id="去除无用CSS"><a href="#去除无用CSS" class="headerlink" title="去除无用CSS"></a>去除无用CSS</h4><ul><li>不同元素或者其他情况下的重复代码，</li><li>整个页面内没有生效的CSS代码</li></ul><h4 id="有选择地使用选择器"><a href="#有选择地使用选择器" class="headerlink" title="有选择地使用选择器"></a>有选择地使用选择器</h4><ol><li>保持简单，不要使用嵌套过多过于复杂的选择器</li><li>通配符和属性选择器效率最低，需要匹配的元素最多，尽量避免使用。</li><li>不要使用类选择器和ID选择器修饰元素标签，如：h3#markdown-content，这一多此一举，还会降低效率</li><li>不要为了追求速度而放弃可读性和可维护性</li></ol><h4 id="减少使用昂贵的属性"><a href="#减少使用昂贵的属性" class="headerlink" title="减少使用昂贵的属性"></a>减少使用昂贵的属性</h4><h4 id="硬件加速的好坏"><a href="#硬件加速的好坏" class="headerlink" title="硬件加速的好坏"></a>硬件加速的好坏</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>css</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>圣杯布局和双飞翼布局</title>
+    <link href="/myblog/2021/06/23/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/"/>
+    <url>/myblog/2021/06/23/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
+    
+    <content type="html"><![CDATA[<p>通俗的来说就是左右两栏固定宽度，中间部分自适应的三栏布局。</p><h3 id="两者本质"><a href="#两者本质" class="headerlink" title="两者本质"></a>两者本质</h3><h4 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h4><ul><li>首先把left、middle、right都放出来</li><li>给它们三个设置上float: left, 脱离文档流；</li><li>一定记得给container设置上overflow: hidden; 可以形成BFC撑开文档</li><li>left、right设置上各自的宽度<br>middle设置width: 100%;</li></ul><p>接下来比较重要了：</p><ul><li>给left、middle、right设置position: relative;</li><li>left设置 left: -leftWidth, right设置 right: -rightWidth;</li><li>container设置padding: 0, rightWidth, 0, leftWidth;</li></ul><p>因为不这样设置 会遮挡middle的内容</p><h4 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h4><p>双飞翼布局和圣杯布局很类似，不过是在middle的div里又插入一个div，通过调整内部div的margin值，实现中间栏自适应，内容写到内部div中。</p><ul><li>首先把left、middle、right都放出来, middle中增加inner</li><li>给它们三个设置上float: left, 脱离文档流；</li><li>一定记得给container设置上overflow: hidden; 可以形成BFC撑开文档</li><li>left、right设置上各自的宽度</li><li>middle设置width: 100%;<br>接下来与圣杯布局不一样的地方：</li><li>left设置 margin-left: -100%, right设置 right: -rightWidth;</li><li>container设置padding: 0, rightWidth, 0, leftWidth;</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>css</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>js时间循环机制</title>
+    <link href="/myblog/2021/06/23/js%E6%97%B6%E9%97%B4%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/"/>
+    <url>/myblog/2021/06/23/js%E6%97%B6%E9%97%B4%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h4 id="浏览器环境下js引擎的事件循环机制"><a href="#浏览器环境下js引擎的事件循环机制" class="headerlink" title="浏览器环境下js引擎的事件循环机制"></a>浏览器环境下js引擎的事件循环机制</h4><h5 id="1-执行栈与事件队列"><a href="#1-执行栈与事件队列" class="headerlink" title="1.执行栈与事件队列"></a>1.执行栈与事件队列</h5><p>基本类型以及对象的指针存放在栈中，对象的值存放在堆内存中。<br><strong>执行栈</strong>：js引擎在解析一段代码的时候，将其中的同步代码按照执行顺序加入到执行栈中，然后从头开始执行。当执行完毕后，当前函数的执行上下文会从栈顶弹层出，随之函数及其执行上下文会被销毁，其中的变量会被浏览器回收。<br><strong>事件队列</strong>：<br>js引擎遇到异步事件后并不会一直等待其返回结果，而会将这个事件挂起，继续执行执行栈中的其他任务。当一个异步事件返回结果后，js会将这个事件加入与当前执行栈不同的另一个队列中，被放入的事件不会立刻执行其回调，而是等待当前执行栈中的所有任务都执行完毕，主线程处于空闲时，主线程会取查找事件队列是否又任务，如果有，那么主线程会取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，然后执行其中的同步代码。如此反复，这样就形成一个无限循环。这个过程被称为事件循环（event loop）</p><h4 id="2-macro-task与micro-task"><a href="#2-macro-task与micro-task" class="headerlink" title="2.macro task与micro task"></a>2.macro task与micro task</h4><p>不同的异步任务被分为两类：微任务（micro task）和宏任务（macro task）。</p><p>以下事件属于宏任务：</p><ul><li>setInterval()</li><li>setTimeout()  </li></ul><p>以下事件属于微任务:  </p><ul><li>new Promise()</li><li>new MutaionObserver()</li></ul><p>当当前执行栈执行完毕时会立刻先处理所有微任务队列中的事件，然后再去宏任务队列中取出一个事件。同一次事件循环中，微任务永远在宏任务之前执行。</p><h4 id="node环境下的事件循环机制"><a href="#node环境下的事件循环机制" class="headerlink" title="node环境下的事件循环机制"></a>node环境下的事件循环机制</h4><p>node中事件循环的实现是依靠的libuv引擎。我们知道node选择chrome v8引擎作为js解释器，v8引擎将js代码分析后去调用对应的node api，而这些api最后则由libuv引擎驱动，执行对应的任务，并把不同的事件放在不同的队列中等待主线程执行。 因此实际上node中的事件循环存在于libuv引擎中。</p><h5 id="事件循环各阶段详解"><a href="#事件循环各阶段详解" class="headerlink" title="事件循环各阶段详解"></a>事件循环各阶段详解</h5><p>node中的事件循环的顺序：<br>外部输入数据–&gt;轮询阶段(poll)–&gt;检查阶段(check)–&gt;关闭事件回调阶段(close callback)–&gt;定时器检测阶段(timer)–&gt;I/O事件回调阶段(I/O callbacks)–&gt;闲置阶段(idle, prepare)–&gt;轮询阶段…</p><ul><li>timers: 这个阶段执行定时器队列中的回调如 setTimeout() 和 setInterval()。</li><li>I/O callbacks: 这个阶段执行几乎所有的回调。但是不包括close事件，定时器和setImmediate()的回调。</li><li>idle, prepare: 这个阶段仅在内部使用，可以不必理会。</li><li>poll: 等待新的I/O事件，node在一些特殊情况下会阻塞在这里。</li><li>check: setImmediate()的回调会在这个阶段执行。</li><li>close callbacks: 例如socket.on(‘close’, …)这种close事件的回调。</li></ul><h5 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h5><p>先查看poll queue中是否有事件，有任务就按先进先出的顺序依次执行回调。 当queue为空时，会检查是否有setImmediate()的callback，如果有就进入check阶段执行这些callback。但同时也会检查是否有到期的timer，如果有，就把这些到期的timer的callback按照调用顺序放到timer queue中，之后循环会进入timer阶段执行queue中的 callback。 这两者的顺序是不固定的，收到代码运行的环境的影响。如果两者的queue都是空的，那么loop会在poll阶段停留，直到有一个i/o事件返回，循环会进入i/o callback阶段并立即执行这个事件的callback。  </p><p>有两种情况poll阶段会终止执行poll queue中的下一个回调：1.所有回调执行完毕。2.执行数超过了node的限制。</p><h5 id="check阶段"><a href="#check阶段" class="headerlink" title="check阶段"></a>check阶段</h5><p>check阶段专门用来执行setImmediate()方法的回调，当poll阶段进入空闲状态，并且setImmediate queue中有callback时，事件循环进入这个阶段。</p><h5 id="close阶段"><a href="#close阶段" class="headerlink" title="close阶段"></a>close阶段</h5><p>当一个socket连接或者一个handle被突然关闭时（例如调用了socket.destroy()方法），close事件会被发送到这个阶段执行回调。否则事件会用process.nextTick（）方法发送出去。</p><h5 id="timer阶段"><a href="#timer阶段" class="headerlink" title="timer阶段"></a>timer阶段</h5><p>这个阶段以先进先出的方式执行所有到期的timer加入timer队列里的callback，一个timer callback指得是一个通过setTimeout或者setInterval函数设置的回调函数。</p><h5 id="I-O-callback阶段"><a href="#I-O-callback阶段" class="headerlink" title="I/O callback阶段"></a>I/O callback阶段</h5><p>这个阶段主要执行大部分I/O事件的回调，包括一些为操作系统执行的回调。例如一个TCP连接生错误时，系统需要执行回调来获得这个错误的报告。</p><h4 id="process-nextTick-setTimeout与setImmediate的区别与使用场景"><a href="#process-nextTick-setTimeout与setImmediate的区别与使用场景" class="headerlink" title="process.nextTick,setTimeout与setImmediate的区别与使用场景"></a>process.nextTick,setTimeout与setImmediate的区别与使用场景</h4><p>在node中有三个常用的用来推迟任务执行的方法：process.nextTick,setTimeout（setInterval与之相同）与setImmediate</p><h5 id="process-nextTick"><a href="#process-nextTick" class="headerlink" title="process.nextTick()"></a>process.nextTick()</h5><p>node中存在着一个特殊的队列，即nextTick queue。这个队列中的回调执行虽然没有被表示为一个阶段，当时这些事件却会在每一个阶段执行完毕准备进入下一个阶段时优先执行。当事件循环准备进入下一个阶段之前，会先检查nextTick queue中是否有任务，如果有，那么会先清空这个队列。与执行poll queue中的任务不同的是，这个操作在队列清空前是不会停止的。这也就意味着，错误的使用process.nextTick()方法会导致node进入一个死循环。。直到内存泄漏。</p><h5 id="setTimeout-和setImmediate"><a href="#setTimeout-和setImmediate" class="headerlink" title="setTimeout()和setImmediate()"></a>setTimeout()和setImmediate()</h5><p>setTimeout()方法是定义一个回调，并且希望这个回调在我们所指定的时间间隔后第一时间去执行。注意这个“第一时间执行”，这意味着，受到操作系统和当前执行任务的诸多影响，该回调并不会在我们预期的时间间隔后精准的执行。执行的时间存在一定的延迟和误差，这是不可避免的。node会在可以执行timer回调的第一时间去执行你所设定的任务。</p><p>setImmediate()方法从意义上将是立刻执行的意思，但是实际上它却是在一个固定的阶段才会执行回调，即poll阶段之后。有趣的是，这个名字的意义和之前提到过的process.nextTick()方法才是最匹配的。node的开发者们也清楚这两个方法的命名上存在一定的混淆，他们表示不会把这两个方法的名字调换过来—因为有大量的node程序使用着这两个方法，调换命名所带来的好处与它的影响相比不值一提。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>javaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>v8垃圾回收机制</title>
+    <link href="/myblog/2021/06/23/v8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"/>
+    <url>/myblog/2021/06/23/v8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、为何需要垃圾回收"><a href="#1、为何需要垃圾回收" class="headerlink" title="1、为何需要垃圾回收"></a>1、为何需要垃圾回收</h3><p>在v8引擎执行js代码的过程中，当遇到函数的情况时，会为其创建一个函数执行的上下文，并添加到调用堆栈的栈顶，函数的作用域中包含了该函数中声明的所以变量，当函数执行完毕后，对面的执行上下文会从栈顶弹出，函数的作用域随之销毁，其包括的所以变量也会统一释放并自动回收。如果不回收，必然导致内存暴增，引发内存泄漏。</p><h3 id="2、v8引擎的内存限制"><a href="#2、v8引擎的内存限制" class="headerlink" title="2、v8引擎的内存限制"></a>2、v8引擎的内存限制</h3><p>由于js的单线程机制和垃圾回收机制，<br>V8引擎为了减少对应用的性能造成的影响，采用了一种比较粗暴的手段，那就是直接限制堆内存的大小，毕竟在浏览器端一般也不会遇到需要操作几个G内存这样的场景</p><h3 id="3、v8的垃圾回收策略"><a href="#3、v8的垃圾回收策略" class="headerlink" title="3、v8的垃圾回收策略"></a>3、v8的垃圾回收策略</h3><p>V8的垃圾回收策略主要是基于<strong>分代式垃圾回收机制</strong>，其根据<strong>对象的存活时间</strong>将内存的垃圾回收进行不同的分代，然后对不同的分代采用不同的垃圾回收算法。</p><h4 id="v8的内存结构"><a href="#v8的内存结构" class="headerlink" title="v8的内存结构"></a>v8的内存结构</h4><p>主要了解新生代和老生代</p><ul><li>新生代(new_space)：大多数的对象开始都会被分配在这里，这个区域相对较小但是垃圾回收特别频繁，该区域被分为两半，一半用来分配内存，另一半用于在垃圾回收时将需要保留的对象复制过来。（Scavenge算法）</li><li>老生代(old_space)：新生代中的对象在存活一段时间后就会被转移到老生代内存区，相对于新生代该内存区域的垃圾回收频率较低。老生代又分为老生代指针区和老生代数据区，前者包含大多数可能存在指向其他对象的指针的对象，后者只保存原始数据对象，这些对象没有指向其他对象的指针。Mark-Sweep(标记清除)和Mark-Compact(标记整理)</li></ul><h3 id="4、如何避免内存泄漏"><a href="#4、如何避免内存泄漏" class="headerlink" title="4、如何避免内存泄漏"></a>4、如何避免内存泄漏</h3><ul><li>尽可能少地创建全局变量</li><li>手动清除定时器</li><li>少用闭包</li><li>清除DOM引用</li><li>弱引用<br>在ES6中为我们新增了两个有效的数据结构WeakMap和WeakSet，就是为了解决内存泄漏的问题而诞生的。其表示弱引用</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>javaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>this、call、apply、bind</title>
     <link href="/myblog/2021/06/17/this%E3%80%81call%E3%80%81apply%E3%80%81bind/"/>
     <url>/myblog/2021/06/17/this%E3%80%81call%E3%80%81apply%E3%80%81bind/</url>
@@ -463,11 +588,11 @@
     
     <tags>
       
+      <tag>css</tag>
+      
       <tag>基础知识</tag>
       
       <tag>javaScript</tag>
-      
-      <tag>css</tag>
       
     </tags>
     
