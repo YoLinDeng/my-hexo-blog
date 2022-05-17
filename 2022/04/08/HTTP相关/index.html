@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/myblog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>HTTP相关 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HTTP相关">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-08 21:20" pubdate>
+        2022年4月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HTTP相关</h1>
+            
+            <div class="markdown-body">
+              <h3 id="HTTP-与HTTPS的区别"><a href="#HTTP-与HTTPS的区别" class="headerlink" title="HTTP 与HTTPS的区别"></a>HTTP 与HTTPS的区别</h3><ul>
+<li>HTTPS是HTTP协议的安全版本，HTTP协议的数据传输是明文的，是不安全的，HTTPS使用了SSL/TLS协议进行了加密处理，相对更安全</li>
+<li>HTTP 和 HTTPS 使用连接方式不同，默认端口也不一样，HTTP是80，HTTPS是443</li>
+<li>HTTPS 由于需要加密以及多次握手，性能方面不如 HTTP</li>
+<li>HTTPS需要SSL，SSL 证书需要钱，功能越强大的证书费用越高</li>
+</ul>
+<h3 id="UDP和TCP的区别"><a href="#UDP和TCP的区别" class="headerlink" title="UDP和TCP的区别"></a>UDP和TCP的区别</h3><p>UDP（用户数据包协议）的特点：</p>
+<ul>
+<li>UDP不提供复杂的控制机制，利用ip提供面向无连接的通信服务</li>
+<li>传输途中出现丢包，UDP也不负责重发</li>
+<li>当包到达的顺序出现混乱时，UDP也没有纠正的功能</li>
+<li>并且它是将应用程序发来的数据在收到的那一刻，立即按照原样发送到网络上的一种机制。即使是出现网络拥堵的情况，UDP 也无法进行流量控制等避免网络拥塞行为</li>
+</ul>
+<p>TCP（传输控制协议）的特点：</p>
+<ul>
+<li>TCP充分地实现了数据传输时各种控制功能，可以进行丢包时的重发控制，还可以对次序乱掉的分包进行顺序控制。而这些在 UDP 中都没有。</li>
+<li>此外，TCP 作为一种面向有连接的协议，只有在确认通信对端存在时才会发送数据，从而可以控制通信流量的浪费。</li>
+<li>根据 TCP 的这些机制，在 IP 这种无连接的网络上也能够实现高可靠性的通信（ 主要通过检验和、序列号、确认应答、重发控制、连接管理以及窗口控制等机制实现）</li>
+<li>TCP 提供可靠的服务，传输过程采用流量控制、编号与确认、计时器等手段确保数据无差错，不丢失。UDP 则尽可能传递数据，但不保证传递交付给对方</li>
+<li>TCP 面向字节流，将应用层报文看成一串无结构的字节流，分解为多个TCP报文段传输后，在目的站重新装配。UDP协议面向报文，不拆分应用层报文，只保留报文边界，一次发送一个报文，接收方去除报文首部后，原封不动将报文交给上层应用</li>
+<li>TCP 只能点对点全双工通信。UDP 支持一对一、一对多、多对一和多对多的交互通信</li>
+</ul>
+<h3 id="如何理解TCP-IP协议"><a href="#如何理解TCP-IP协议" class="headerlink" title="如何理解TCP/IP协议"></a>如何理解TCP/IP协议</h3><p>TCP/IP，传输控制协议/网际协议，是指能够在多个不同网络实现信息传输的协议簇</p>
+<ul>
+<li><p>TCP</p>
+<p>一种面向连接、可靠、基于字节流的传输层通信协议</p>
+</li>
+<li><p>IP</p>
+<p>用于封包交换数据网络的协议</p>
+</li>
+</ul>
+<p>TCP/IP协议不仅仅指的是<code>TCP</code>和<code>IP</code>两个协议，而是指一个由<code>FTP</code>、<code>SMTP</code>、<code>TCP</code>、<code>UDP</code>、<code>IP</code>等协议构成的协议簇</p>
+<p>TCP/IP协议族按层次分别了五层体系或者四层体系</p>
+<p>五层体系的协议结构是综合了 OSI 和 TCP/IP 优点的一种协议，包括应用层、传输层、网络层、数据链路层和物理层</p>
+<p>五层协议的体系结构只是为介绍网络原理而设计的，实际应用还是 TCP/IP 四层体系结构，包括应用层、传输层、网络层（网际互联层）、网络接口层</p>
+<h3 id="DNS协议-是什么？说说DNS-完整的查询过程"><a href="#DNS协议-是什么？说说DNS-完整的查询过程" class="headerlink" title="DNS协议 是什么？说说DNS 完整的查询过程?"></a>DNS协议 是什么？说说DNS 完整的查询过程?</h3><p>DNS（Domain Names System），域名系统，是互联网一项服务，是进行域名和与之相对应的 IP 地址进行转换的服务器</p>
+<p>过程：</p>
+<ul>
+<li><p>首先搜索浏览器的 DNS 缓存，缓存中维护一张域名与 IP 地址的对应表</p>
+</li>
+<li><p>若没有命中，则继续搜索操作系统的 DNS 缓存</p>
+</li>
+<li><p>若仍然没有命中，则操作系统将域名发送至本地域名服务器，本地域名服务器采用递归查询自己的 DNS 缓存，查找成功则返回结果</p>
+</li>
+<li><p>若本地域名服务器的 DNS 缓存没有命中，则本地域名服务器向上级域名服务器进行迭代查询。</p>
+<p>1、本地服务器向根域名服务器发送请求，获取顶级域名的地址给本地服务器</p>
+<p>2、本地服务器根据顶级域名地址发送请求，获取权限域名的地址</p>
+<p>3、根据权限域名地址发送请求，最终得到该域名对应的ip</p>
+</li>
+</ul>
+<ul>
+<li>本地域名服务器将得到的 IP 地址返回给操作系统，同时自己将 IP 地址缓存起来</li>
+<li>操作系统将 IP 地址返回给浏览器，同时自己也将 IP 地址缓存起</li>
+<li>至此，浏览器就得到了域名对应的 IP 地址，并将 IP 地址缓存起</li>
+</ul>
+<h3 id="如何理解CDN，说说实现原理？"><a href="#如何理解CDN，说说实现原理？" class="headerlink" title="如何理解CDN，说说实现原理？"></a>如何理解CDN，说说实现原理？</h3><p><code>CDN</code> 目的是为了改善互联网的服务质量，通俗一点说其实就是提高访问速度</p>
+<p><code>CDN</code> 构建了全国、全球级别的专网，让用户就近访问专网里的边缘节点，降低了传输延迟，实现了网站加速</p>
+<p>通过<code>CDN</code>的负载均衡系统，智能调度边缘节点提供服务，相当于<code>CDN</code>服务的大脑，而缓存系统相当于<code>CDN</code>的心脏，缓存命中直接返回给用户，否则回源</p>
+<h3 id="HTTP1-0-1-1-2-0的区别"><a href="#HTTP1-0-1-1-2-0的区别" class="headerlink" title="HTTP1.0/1.1/2.0的区别"></a>HTTP1.0/1.1/2.0的区别</h3><p>HTTP1.0:</p>
+<p>浏览器和服务器只是短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接</p>
+<p>HTTP1.1</p>
+<ul>
+<li>引入了持久连接，即TCP连接默认不关闭，可以被多个请求复用</li>
+<li>在同一个TCP连接里面，客户端可以同时发送多个请求</li>
+<li>虽然允许复用TCP连接，但是同一个TCP连接里面，所有的数据通信是按次序进行的，服务器只有处理完一个请求，才会接着处理下一个请求。如果前面的处理特别慢，后面就会有许多请求排队等着</li>
+<li>新增了一些请求方法</li>
+<li>新增了一些请求头和响应头</li>
+</ul>
+<p>HTTP2.0</p>
+<ul>
+<li>采用二进制格式而非文本格式</li>
+<li>完全多路复用，而非有序并阻塞的、只需一个连接即可实现并行</li>
+<li>使用报头压缩，降低开销</li>
+<li>服务器推送</li>
+</ul>
+<h3 id="HTTP常见的状态码有哪些，适用的场景？"><a href="#HTTP常见的状态码有哪些，适用的场景？" class="headerlink" title="HTTP常见的状态码有哪些，适用的场景？"></a>HTTP常见的状态码有哪些，适用的场景？</h3><p>分类：</p>
+<ul>
+<li><p>1 表示消息</p>
+<ul>
+<li>100（客户端继续发送请求，这是临时响应）：这个临时响应是用来通知客户端它的部分请求已经被服务器接收，且仍未被拒绝。客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。服务器必须在请求完成后向客户端发送一个最终响应</li>
+<li>101：服务器根据客户端的请求切换协议，主要用于websocket或http2升级</li>
+</ul>
+</li>
+<li><p>2 表示成功</p>
+<ul>
+<li>200（成功）：请求已成功，请求所希望的响应头或数据体将随此响应返回</li>
+<li>201（已创建）：请求成功并且服务器创建了新的资源</li>
+<li>202（已创建）：服务器已经接收请求，但尚未处理</li>
+<li>203（非授权信息）：服务器已成功处理请求，但返回的信息可能来自另一来源</li>
+<li>204（无内容）：服务器成功处理请求，但没有返回任何内容</li>
+<li>205（重置内容）：服务器成功处理请求，但没有返回任何内容</li>
+<li>206（部分内容）：服务器成功处理了部分请求</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>3 表示重定向</p>
+<ul>
+<li>300（多种选择）：针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择</li>
+<li>301（永久移动）：请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置</li>
+<li>302（临时移动）： 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求</li>
+<li>303（查看其他位置）：请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码</li>
+<li>305 （使用代理）： 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理</li>
+<li>307 （临时重定向）： 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求</li>
+</ul>
+</li>
+<li><p>4 表示请求错误</p>
+<ul>
+<li>400（错误请求）： 服务器不理解请求的语法</li>
+<li>401（未授权）： 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</li>
+<li>403（禁止）： 服务器拒绝请求</li>
+<li>404（未找到）： 服务器找不到请求的网页</li>
+<li>405（方法禁用）： 禁用请求中指定的方法</li>
+<li>406（不接受）： 无法使用请求的内容特性响应请求的网页</li>
+<li>407（需要代理授权）： 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理</li>
+<li>408（请求超时）： 服务器等候请求时发生超时</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>5 表示服务器错误</p>
+<ul>
+<li>500（服务器内部错误）：服务器遇到错误，无法完成请求</li>
+<li>501（尚未实施）：服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码</li>
+<li>502（错误网关）： 服务器作为网关或代理，从上游服务器收到无效响应</li>
+<li>503（服务不可用）： 服务器目前无法使用（由于超载或停机维护）</li>
+<li>504（网关超时）： 服务器作为网关或代理，但是没有及时从上游服务器收到请求</li>
+<li>505（HTTP 版本不受支持）： 服务器不支持请求中所用的 HTTP 协议版本</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/HTTP/">HTTP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myblog/2022/05/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端性能优化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2022/03/18/vue%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">vue相关问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>

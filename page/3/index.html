@@ -181,6 +181,420 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/myblog/2021/05/21/%E4%BD%BF%E7%94%A8Proxy%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%9A%84vue%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">使用Proxy实现简易的vue双向数据绑定</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/%E4%BD%BF%E7%94%A8Proxy%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%9A%84vue%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+          
+          
+            
+          
+          在实现vue双向数据绑定之前，先了解Proxy相关的概念和用法
+proxy概念Proxy 对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）。
+一些术语
+handle包含捕捉器（trap）的占位符对象，可译为处理器对象
+traps提供属性访问的方法。这类似于操作系统中捕获器的概念。
+target被 Proxy 代理虚拟化的对象。语法const p = new Proxy(tar
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 15:52" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86/">框架原理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+              <a href="/myblog/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">手写防抖与节流函数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">
+          
+          
+            
+          
+          我们经常会绑定一些持续触发的事件，比如resize、scroll、mousemove等等，如果事件调用无限制，会加重浏览器负担，导致用户体验差，我们可以使用debounce(防抖)和throttle(节流)的方式来减少频繁的调用，同时也不会影响实际的效果。
+防抖的概念触发事件后n秒后才执行函数，如果在n秒内触发了事件，则会重新计算函数执行时间防抖函数可以分为立即执行，和非立即执行两个版本
+
+非立即
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 15:51" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/react%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%88%AA%E6%A0%8F%E7%8A%B6%E6%80%81%E4%B8%8E%E5%9C%B0%E5%9D%80%E7%BB%91%E5%AE%9A/">react中实现导航栏状态与地址绑定</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/react%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%88%AA%E6%A0%8F%E7%8A%B6%E6%80%81%E4%B8%8E%E5%9C%B0%E5%9D%80%E7%BB%91%E5%AE%9A/">
+          
+          
+            
+          
+          一、项目初始化1. 安装与运行构建项目：yarn create react-app my-app启动：yarn start当然也可以使用npm：
+
+全局安装：npm install -g create-react-app
+构建项目：npx create-react-app my-app
+启动：npm start
+
+2.安装路由依赖在项目中执行：npm install react-router-do
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 15:39" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/react/">react</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/sass%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">sass常用方法</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/sass%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+          
+          
+            
+          
+          一、什么是sassSass 是一款强化 CSS 的辅助工具，它在 CSS 语法的基础上增加了变量 (variables)、嵌套 (nested rules)、混合 (mixins)、导入 (inline imports) 等高级功能，提供了许多便利的写法，大大提高的开发效率。下面总结了SASS的主要用法，想要了解更多可以查阅文档
+二、安装1、由于sass依赖于Ruby，因此需要先安装Ruby，然后
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 15:37" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/scss/">scss</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/vue-cli%E4%B8%AD%E4%BD%BF%E7%94%A8svgIcon/">vue-cli中使用svgIcon</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/vue-cli%E4%B8%AD%E4%BD%BF%E7%94%A8svgIcon/">
+          
+          
+            
+          
+          一、安装依赖包123npm install svg-sprite-loader -D或者yarn add svg-sprite-loader -D
+二、配置vue.config.js文件在顶部写入
+1234const path = require('path')function resolve (dir) &#123;  return path.join(__dirname, dir)&#125;
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 11:28" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
+            
+              <a href="/myblog/tags/vue/">vue</a>
+            
+              <a href="/myblog/tags/%E7%BB%84%E4%BB%B6%E5%8C%96/">组件化</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/vue%E4%B8%AD%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E4%B9%8BfindComponents/">vue中组件通信之findComponents</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/vue%E4%B8%AD%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E4%B9%8BfindComponents/">
+          
+          
+            
+          
+          123456789101112131415161718192021222324252627282930313233343536373839// 向上查找组件 context为当前组件上下文对象，componentName为组件名const findUpwardComponent = (context, componentName) =&gt; &#123;    let parent = cont
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 11:27" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/javaScript/">javaScript</a>
+            
+              <a href="/myblog/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/scss%E5%AE%9E%E7%8E%B0retina%E5%B1%8F1px%E8%BE%B9%E6%A1%86/">scss实现retina屏1px边框</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/scss%E5%AE%9E%E7%8E%B0retina%E5%B1%8F1px%E8%BE%B9%E6%A1%86/">
+          
+          
+            
+          
+          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455// =======================//  用法：  //  @include retina-border(1,1,1,1);//  数值 代表 各 边框的宽度  上右下左// ==
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 11:25" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/scss/">scss</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/myblog/2021/05/21/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/">常用的git命令操作</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/myblog/2021/05/21/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/">
+          
+          
+            
+          
+          安装在使用git之前需要先安装它下载git
+以windows系统为例子，安装完成后，鼠标右键点击桌面，出现Git Bash Here和 Git GUI Here 说明安装成功。
+命令设置用户名和邮箱12git config --global user.name ""  git config --global user.email ""
+克隆远程仓库与代码提交1、在github上新建项目new re
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-21 11:21" pubdate>
+              2021-05-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/myblog/tags/git/">git</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/myblog/2021/05/21/vue%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%80%92%E8%AE%A1%E6%97%B6%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%AF%AB%E7%A7%92%E6%95%88%E6%9E%9C/">vue中实现倒计时组件与毫秒效果</a>
       </h1>
 
@@ -278,268 +692,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/egg-js-mongoose%E5%AE%9E%E7%8E%B0%E4%BA%8C%E7%BA%A7%E8%AF%84%E8%AE%BA/">egg.js+mongoose实现二级评论</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/egg-js-mongoose%E5%AE%9E%E7%8E%B0%E4%BA%8C%E7%BA%A7%E8%AF%84%E8%AE%BA/">
-          
-          
-            
-          
-          1、首先我们先在model目录下新建comment.js文件，这里使用egg-mongoose进行配置表以及字段，这里关键需要parent_id作为父级字段，若默认为0则是第一级评论，如果为id，则是二级评论。
-12345678910111213141516171819202122232425262728'use strict';/** * @description: Mongoose comme
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 10:57" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">后端开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/node-js/">node.js</a>
-            
-              <a href="/myblog/tags/mongoDB/">mongoDB</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8axios%E6%8B%A6%E6%88%AA%E5%99%A8%E5%B0%81%E8%A3%85api/">项目使用axios拦截器封装api</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8axios%E6%8B%A6%E6%88%AA%E5%99%A8%E5%B0%81%E8%A3%85api/">
-          
-          
-            
-          
-          在api目录下新建一个http.js，实现代码如下：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485import Qs fr
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 10:55" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/javaScript/">javaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2021/05/21/web%E7%AB%AF%E7%9A%84%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%8F%AF%E5%88%86%E4%B8%BAJSAPI%E4%B8%8EH5/">web端的微信支付可分为JSAPI与H5</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2021/05/21/web%E7%AB%AF%E7%9A%84%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%8F%AF%E5%88%86%E4%B8%BAJSAPI%E4%B8%8EH5/">
-          
-          
-            
-          
-          web端的微信支付可分为JSAPI与H5JSAPI使用场景为微信内部，而H5支付则是使用在非微信下的外部浏览器。
-1.JSAPI在微信内部可以直接唤起微信浏览器的内置对象WeixinJSBridge废话不多说直接上代码：
-123456789101112131415161718192021222324252627282930313233343536373839404142434445// 调用后端接
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 10:44" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/javaScript/">javaScript</a>
-            
-              <a href="/myblog/tags/%E5%BE%AE%E4%BF%A1%E4%BD%93%E7%B3%BB/">微信体系</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2020/06/09/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%96%B9%E6%B3%95/">前端日常开发常用技巧与方法</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2020/06/09/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%96%B9%E6%B3%95/">
-          
-          
-            
-          
-          CSS部分盒子边倾斜clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
-禁止点击事件/鼠标事件“穿透”123div * &#123;    pointer-events: none;   /*链接啊，点击事件啊，都没有效果了*/ &#125;
-用来控制元素在移动设备上使用滚动回弹效果123.main&#123;    -webkit-over
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-09 18:10" pubdate>
-              2020-06-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
-            
-              <a href="/myblog/tags/javaScript/">javaScript</a>
-            
-              <a href="/myblog/tags/css/">css</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/myblog/2020/06/09/JS%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%BB%8B%E7%BB%8D/">JS的数据类型及深浅拷贝介绍</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/myblog/2020/06/09/JS%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%BB%8B%E7%BB%8D/">
-          
-          
-            
-          
-          1、数据类型JS分为两种数据类型：基本数组类型： Number、String、Boolean、Null、Undefined、Symbol引用数组类型：Object(JS中除了基本数据类型，其他都是对象。例如数组、函数、正则表达式等)
-（1）基本数据类型（存放在栈中）基本数据类型是指直接存放在栈中的简单数据段，数据大小确定，内存k空间可分配，按值存放和访问注：栈(stack)和堆（heap）stac
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-09 18:06" pubdate>
-              2020-06-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/myblog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
-            
-              <a href="/myblog/tags/javaScript/">javaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/myblog/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/myblog/">1</a><a class="page-number" href="/myblog/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/myblog/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/myblog/">1</a><a class="page-number" href="/myblog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/myblog/page/4/">4</a><a class="extend next" rel="next" href="/myblog/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

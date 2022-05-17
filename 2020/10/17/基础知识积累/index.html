@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/myblog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>基础知识积累 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="基础知识积累">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-17 16:54" pubdate>
+        2020年10月17日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      78
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">基础知识积累</h1>
+            
+            <div class="markdown-body">
+              <h3 id="一、从输入url地址栏到所有内容显示在界面上发生了什么？"><a href="#一、从输入url地址栏到所有内容显示在界面上发生了什么？" class="headerlink" title="一、从输入url地址栏到所有内容显示在界面上发生了什么？"></a>一、从输入url地址栏到所有内容显示在界面上发生了什么？</h3><ul>
+<li>1、浏览器向dns服务器请求解析该URL中的域名所对应的IP地址</li>
+<li>2、建立TCP链接（三次握手）</li>
+<li>3、浏览器发出读取文件（URL中域名后面部分对应的文件）的HTTP请求，该请求报文作为TCP三次握手的第三个报文的数据发送给服务器</li>
+<li>4、服务器对浏览器请求作出响应，并把对应的html文本发送给浏览器</li>
+<li>5、浏览器将该html文本显示内容</li>
+<li>6、释放TCP连接（四次挥手）</li>
+</ul>
+<h3 id="二、TCP的三次握手和四次挥手"><a href="#二、TCP的三次握手和四次挥手" class="headerlink" title="二、TCP的三次握手和四次挥手"></a>二、TCP的三次握手和四次挥手</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ada">ack <span class="hljs-comment">--- 确认号码</span><br>seq <span class="hljs-comment">--- 顺序号码</span><br>ISN <span class="hljs-comment">--- 初始序列号</span><br>ACK <span class="hljs-comment">--- 确认，使得确认号有效（握手使用）</span><br>SYN <span class="hljs-comment">--- 用于初始化一个连接的序列号，建立联机(同步序列编号)</span><br>FIN <span class="hljs-comment">--- 该报文的发送方已经结束向对方发送数据</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><ul>
+<li>第一次握手（SYN=1，ACK=0，seq=x）</li>
+</ul>
+<p>Client将标志位SYN置为1，随机产生一个值seq=x，并将该数据包发送给Server，Client进入SYN_SENT状态，等 待Server确认。</p>
+<ul>
+<li>第二次握手（SYN=1, ACK=1, seq=y, ack=x+1）</li>
+</ul>
+<p>Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=x+1，随机产生一个值seq=y，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</p>
+<ul>
+<li>第三次握手：(ACK=1，seq=x+1，ack=y+1)</li>
+</ul>
+<p>Client收到确认后，检查ack是否为x+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=y+1，并将该数据包发送给Server，Server检查ack是否为y+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+<h4 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h4><ul>
+<li>第一次挥手(FIN=1，seq=u)</li>
+</ul>
+<p>Client 想要关闭连接，Client 会发送一个FIN标志位置为1，当前序列号为u的包，表示需要关闭连接了。Client进入 FIN_WAIT_1 状态。</p>
+<ul>
+<li>第二次挥手(ACK=1，seq=v，ack=u+1)</li>
+</ul>
+<p>Server收到Client的FIN包之后，会发送一个确认序号为收到的序列号u+1的包，表明自己接受到了Client关闭连接的请求，但还未准备好关闭连接。Server进入 CLOSE_WAIT 状态，Client进入 FIN_WAIT_2 状态。</p>
+<ul>
+<li>第三次挥手(FIN=1，ACK=1，seq=w，ack=u+1)</li>
+</ul>
+<p>当Server将剩余数据发送完之后，会发送一个自己的FIN包，序列号为u+1。Server进入 LAST_ACK 状态，等待来自Client的最后一个ACK。</p>
+<ul>
+<li>第四次挥手(ACK=1，seq=u+1，ack=w+1)</li>
+</ul>
+<p>Client接收到来自Server端的关闭请求之后，发送最后一个ACK确认包，确认序号设置为收到序号加1。Client进入 TIME_WAIT状态，等待可能出现的要求重传的 ACK 包。Server接收到这个确认包之后，关闭连接，进入CLOSED状态。(Client会等待2MSL之后，没有收到Server的ACK ，就确认Server进入CLOSED状态，自己也关闭进入CLOSED状态。)</p>
+<h3 id="三、for-in-与-for-of-的区别"><a href="#三、for-in-与-for-of-的区别" class="headerlink" title="三、for in 与 for of 的区别"></a>三、for in 与 for of 的区别</h3><ul>
+<li>for..of适用遍历数/数组对象/字符串/map/set等拥有迭代器对象的集合，得到的是value值，<strong>for of不能对象用</strong></li>
+<li>for in遍历对象得到key值，遍历数组得到下标</li>
+</ul>
+<h3 id="四、九种跨域方式实现原理"><a href="#四、九种跨域方式实现原理" class="headerlink" title="四、九种跨域方式实现原理"></a>四、九种跨域方式实现原理</h3><p>严格的说，浏览器并不是拒绝所有的跨域请求，实际上拒绝的是跨域的读操作。</p>
+<h4 id="同源策略："><a href="#同源策略：" class="headerlink" title="同源策略："></a>同源策略：</h4><p>所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<p><strong>同源策略限制内容有：</strong></p>
+<ul>
+<li>Cookie、LocalStorage、IndexedDB 等存储性内容</li>
+<li>DOM 节点</li>
+<li>AJAX 请求发送后，结果被浏览器拦截了</li>
+</ul>
+<p><strong>跨域并不是请求发不出去，请求能发出去，服务端能收到请求并正常返回结果，只是结果被浏览器拦截了</strong></p>
+<h4 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h4><p><strong>1.jsonp</strong>（<strong>优点是简单兼容性好，缺点是仅支持get方法具有局限性,不安全可能会遭受XSS攻击</strong>）</p>
+<p>原理：利用<code>&lt;script&gt;</code>标签没有跨域限制的漏洞，网页可以得到从其他来源动态产生的JSON数据，JSONP请求一定需要对方的服务器做支持才可以。</p>
+<p>实现jsonp函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jsonp</span>(<span class="hljs-params">&#123; url, params, callback &#125;</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>)<br>    params = &#123; ...params, callback &#125;<br>    <span class="hljs-keyword">let</span> arrs = []<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> params) &#123;<br>      arrs.push(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=<span class="hljs-subst">$&#123;params[key]&#125;</span>`</span>)<br>    &#125;<br>    script.src = <span class="hljs-string">`<span class="hljs-subst">$&#123;url&#125;</span>?<span class="hljs-subst">$&#123;arrs.join(<span class="hljs-string">'&amp;'</span>)&#125;</span>`</span><br>    <span class="hljs-built_in">document</span>.body.appendChild(script)<br>    <span class="hljs-built_in">window</span>[callback] = <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>      resolve(data)<br>      <span class="hljs-built_in">document</span>.body.removeChild(script)<br>    &#125;<br>  &#125;)<br>&#125;<br><br>jsonp(&#123;<br>  url: <span class="hljs-string">'http://localhost:3000/say'</span>,<br>  params: &#123; <span class="hljs-attr">wd</span>: <span class="hljs-string">'ILoveYou'</span> &#125;,<br>  callback: <span class="hljs-string">'show'</span><br>&#125;).then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(data)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>服务端实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)<br><span class="hljs-keyword">let</span> app = express()<br>app.get(<span class="hljs-string">'/say'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> &#123; wd, callback &#125; = req.query<br>  <span class="hljs-built_in">console</span>.log(wd) <span class="hljs-comment">// Iloveyou</span><br>  <span class="hljs-built_in">console</span>.log(callback) <span class="hljs-comment">// show</span><br>  res.end(<span class="hljs-string">`<span class="hljs-subst">$&#123;callback&#125;</span>('我不爱你')`</span>)<br>&#125;)<br>app.listen(<span class="hljs-number">3000</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>Jquery 的jsonp形式</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">$.ajax(&#123;<br>url:<span class="hljs-string">"http://crossdomain.com/jsonServerResponse"</span>,<br>dataType:<span class="hljs-string">"jsonp"</span>,<br>type:<span class="hljs-string">"get"</span>,<span class="hljs-comment">//可以省略</span><br>jsonpCallback:<span class="hljs-string">"show"</span>,<span class="hljs-comment">//-&gt;自定义传递给服务器的函数名，而不是使用jQuery自动生成的，可省略</span><br>jsonp:<span class="hljs-string">"callback"</span>,<span class="hljs-comment">//-&gt;把传递函数名的那个形参callback，可省略</span><br>success:<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>)</span>&#123;<br><span class="hljs-built_in">console</span>.log(data);&#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>2.cors</strong></p>
+<p>CORS 需要浏览器和后端同时支持。IE 8 和 9 需要通过 XDomainRequest 来实现</p>
+<p>浏览器如果支持会自动进行CORS通信，实现的关键在于后端</p>
+<p>服务端设置<strong>Access-Control-Allow-Origin</strong>就开启了CORS,该属性表示哪些域名可以访问资源，设置通配符表示所有都可以访问。</p>
+<p>虽然设置 CORS 和前端没什么关系，但是通过这种方式解决跨域问题的话，会在发送请求时出现两种情况，分别为<strong>简单请求</strong>和<strong>复杂请求</strong>。</p>
+<p><strong>简单请求</strong>:</p>
+<p>条件1：使用下列方法之一：GET/HEAD/POST</p>
+<p>条件2：Content-Type 的值仅限于下列三者之一：</p>
+<ul>
+<li>text/plain</li>
+<li>multipart/form-data</li>
+<li>application/x-www-form-urlencoded</li>
+</ul>
+<p><strong>复杂请求</strong>:</p>
+<p>不符合以上条件的请求就肯定是复杂请求了。 复杂请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为”预检”请求,该请求是 option 方法的，通过该请求来知道服务端是否允许跨域请求。</p>
+<p><strong>3.postMessage</strong></p>
+<p>postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：</p>
+<ul>
+<li><p>页面和其打开的新窗口的数据传递</p>
+</li>
+<li><p>多窗口之间消息传递</p>
+</li>
+<li><p>页面与嵌套的iframe消息传递</p>
+</li>
+<li><p>上面三个场景的跨域数据传递</p>
+<p><strong>postMessage()方法允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递</strong>。</p>
+</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">otherWindow.post<span class="hljs-constructor">Message(<span class="hljs-params">message</span>, <span class="hljs-params">targetOrigin</span>, [<span class="hljs-params">transfer</span>])</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html">// a.html<br>  <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://localhost:4000/b.html"</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame"</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">"load()"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span> //等它加载完触发一个事件<br>  //内嵌在http://localhost:3000/a.html<br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="actionscript">      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="javascript">        <span class="hljs-keyword">let</span> frame = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'frame'</span>)</span><br><span class="actionscript">        frame.contentWindow.postMessage(<span class="hljs-string">'我爱你'</span>, <span class="hljs-string">'http://localhost:4000'</span>) <span class="hljs-comment">//发送数据</span></span><br><span class="javascript">        <span class="hljs-built_in">window</span>.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123; <span class="hljs-comment">//接受返回数据</span></span><br><span class="javascript">          <span class="hljs-built_in">console</span>.log(e.data) <span class="hljs-comment">//我不爱你</span></span><br>        &#125;<br>      &#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// b.html</span><br>  <span class="hljs-built_in">window</span>.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(e.data) <span class="hljs-comment">//我爱你</span><br>    e.source.postMessage(<span class="hljs-string">'我不爱你'</span>, e.origin)<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>4.websocket</strong></p>
+<p>Websocket是HTML5的一个持久化的协议，它实现了浏览器与服务器的全双工通信，同时也是跨域的一种解决方案。WebSocket和HTTP都是应用层协议，都基于 TCP 协议。但是 <strong>WebSocket 是一种双向通信协议，在建立连接之后，WebSocket 的 server 与 client 都能主动向对方发送或接收数据</strong>。同时，WebSocket 在建立连接时需要借助 HTTP 协议，连接建立好了之后 client 与 server 之间的双向通信就与 HTTP 无关了。</p>
+<p>使用Socket.io</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html">// socket.html<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="javascript">    <span class="hljs-keyword">let</span> socket = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">'ws://localhost:3000'</span>);</span><br><span class="actionscript">    socket.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>&#123;</span><br><span class="actionscript">      socket.send(<span class="hljs-string">'我爱你'</span>);<span class="hljs-comment">//向服务器发送数据</span></span><br>    &#125;<br><span class="actionscript">    socket.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>&#123;</span><br><span class="javascript">      <span class="hljs-built_in">console</span>.log(e.data);<span class="hljs-comment">//接收服务器返回的数据</span></span><br>    &#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// server.js</span><br><span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);<br><span class="hljs-keyword">let</span> app = express();<br><span class="hljs-keyword">let</span> WebSocket = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);<span class="hljs-comment">//记得安装ws</span><br><span class="hljs-keyword">let</span> wss = <span class="hljs-keyword">new</span> WebSocket.Server(&#123;<span class="hljs-attr">port</span>:<span class="hljs-number">3000</span>&#125;);<br>wss.on(<span class="hljs-string">'connection'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ws</span>) </span>&#123;<br>  ws.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(data);<br>    ws.send(<span class="hljs-string">'我不爱你'</span>)<br>  &#125;);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>5.Node中间件代理(两次跨域)</strong></p>
+<p>实现原理：<strong>同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就无需遵循同源策略。</strong></p>
+<p>实现一个node服务作为中间件，浏览器访问node 代理服务器，node代理服务器转发请求给目标服务器，目标服务器返回响应给node服务，node服务再转发响应给浏览器</p>
+<p><strong>6.nginx反向代理</strong></p>
+<p>实现原理类似于Node中间件代理，需要你搭建一个中转nginx服务器，用于转发请求。</p>
+<p>使用nginx反向代理实现跨域，是最简单的跨域方式。只需要修改nginx的配置即可解决跨域问题，支持所有浏览器，支持session，不需要修改任何代码，并且不会影响服务器性能。</p>
+<p>实现思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。</p>
+<p><strong>7.window.name + iframe</strong></p>
+<p>通过iframe的src属性由外域转向本地域，跨域数据即由iframe的window.name从外域传递到本地域。这个就巧妙地绕过了浏览器的跨域访问限制，但同时它又是安全操作。</p>
+<p><strong>8.location.hash + iframe</strong></p>
+<p>a.html欲与c.html跨域相互通信，通过中间页b.html来实现。 三个页面，不同域之间利用iframe的location.hash传值，相同域之间直接js访问来通信。</p>
+<p><strong>9.document.domain + iframe</strong></p>
+<p><strong>该方式只能用于二级域名相同的情况下，比如 <code>a.test.com</code> 和 <code>b.test.com</code> 适用于该方式</strong>。 只需要给页面添加 <code>document.domain =&#39;test.com&#39;</code> 表示二级域名都相同就可以实现跨域。</p>
+<h3 id="五、http和https的区别及优缺点"><a href="#五、http和https的区别及优缺点" class="headerlink" title="五、http和https的区别及优缺点"></a>五、http和https的区别及优缺点</h3><ul>
+<li>http 是超文本传输协议，信息是明文传输，HTTPS 协议要比 http 协议安全，https 是具有安全性的 ssl 加密传输协议，可防止数据在传输过程中被窃取、改变，确保数据的完整性。</li>
+<li>http 协议的默认端口为 80，https 的默认端口为 443。</li>
+<li>http 的连接很简单，是无状态的。https 握手阶段比较费时，会使页面加载时间延长 50%，增加 10%~20%的耗电。</li>
+<li>https 缓存不如 http 高效，会增加数据开销。</li>
+<li>Https 协议需要 ca 证书，费用较高，功能越强大的证书费用越高。</li>
+<li>SSL 证书需要绑定 IP，不能再同一个 IP 上绑定多个域名，IPV4 资源支持不了这种消耗。</li>
+</ul>
+<h3 id="六、Cookie、sessionStorage、localStorage-的区别"><a href="#六、Cookie、sessionStorage、localStorage-的区别" class="headerlink" title="六、Cookie、sessionStorage、localStorage 的区别"></a>六、Cookie、sessionStorage、localStorage 的区别</h3><p><strong>相同点：</strong> </p>
+<ul>
+<li>都是客户端缓存</li>
+</ul>
+<p><strong>不同点</strong></p>
+<ul>
+<li>cookie数据大小不能超过4k；sessionStorage和localStorage的存储比cookie大得多，可以达到5M+</li>
+<li>cookie设置的过期时间之前一直有效；localStorage永久存储，浏览器关闭后数据不丢失除非主动删除数据；sessionStorage数据在当前浏览器窗口关闭后自动删除</li>
+<li>cookie的数据会自动的传递到服务器；sessionStorage和localStorage数据保存在本地</li>
+</ul>
+<h3 id="七、浏览器重绘和重排的区别？"><a href="#七、浏览器重绘和重排的区别？" class="headerlink" title="七、浏览器重绘和重排的区别？"></a>七、浏览器重绘和重排的区别？</h3><ul>
+<li>重排/回流（Reflow）：当DOM的变化影响了元素的几何信息，浏览器需要重新计算元素的几何属性，将其安放在界面中的正确位置，这个过程叫做重排。表现为重新生成布局，重新排列元素。</li>
+<li>重绘(Repaint): 当一个元素的外观发生改变，但没有改变布局,重新把元素外观绘制出来的过程，叫做重绘。表现为某些元素的外观被改变</li>
+</ul>
+<p><strong>『重绘』不一定会出现『重排』，『重排』必然会出现『重绘』。</strong></p>
+<h3 id="浏览器缓存原理"><a href="#浏览器缓存原理" class="headerlink" title="浏览器缓存原理"></a>浏览器缓存原理</h3><p>强缓存：Cache-Control优先于Expires, 协商缓存：ETag优先于Last-Modified<br><strong>总结：</strong><br>强制缓存优先于协商缓存进行，若强制缓存(Expires和Cache-Control)生效则直接使用缓存，若不生效则进行协商缓存(Last-Modified / If-Modified-Since和Etag / If-None-Match)，协商缓存由服务器决定是否使用缓存，若协商缓存失效，那么代表该请求的缓存失效，重新获取请求结果，再存入浏览器缓存中；生效则返回304，继续使用缓存</p>
+<h3 id="八、进程、线程和协程"><a href="#八、进程、线程和协程" class="headerlink" title="八、进程、线程和协程"></a>八、进程、线程和协程</h3><p>进程: 是一个具有一定独立功能的程序在一个数据集上的一次动态执行的过程，是操作系统进行资源分配和调度的一个独立单位，是应用程序运行的载体。<br>线程: 是程序执行中一个单一的顺序控制流程，是程序执行流的最小单元，是处理器调度和分派的基本单位。一个进程可以有一个或多个线程，各个线程之间共享程序的内存空间(也就是所在进程的内存空间)。一个标准的线程由线程ID、当前指令指针(PC)、寄存器和堆栈组成。而进程由内存空间(代码、数据、进程空间、打开的文件)和一个或多个线程组成<br>协程: 是一种基于线程之上，但又比线程更加轻量级的存在，这种由程序员自己写程序来管理的轻量级线程叫做『用户空间线程』，具有对内核来说不可见的特性。</p>
+<h3 id="九、HTML5-新特性、语义化"><a href="#九、HTML5-新特性、语义化" class="headerlink" title="九、HTML5 新特性、语义化"></a>九、HTML5 新特性、语义化</h3><p>HTML5的语义化指的是合理正确的使用语义化的标签来创建页面结构</p>
+<p><strong>语义化标签</strong><br>header nav section main article aside footer<br><strong>语义化的优点</strong></p>
+<ul>
+<li>在没CSS样式的情况下，页面整体也会呈现很好的结构效果</li>
+<li>代码结构清晰，易于阅读</li>
+<li>利于开发和维护</li>
+<li>有利于搜索引擎优化（SEO）</li>
+</ul>
+<h3 id="十、盒子模型"><a href="#十、盒子模型" class="headerlink" title="十、盒子模型"></a>十、盒子模型</h3><ul>
+<li>标准盒子模型：width是指content部分的高度</li>
+<li>ie盒子模型：width表示 content + padding + border 三个部分组成</li>
+</ul>
+<h3 id="十一、BFC（块级格式化上下文）"><a href="#十一、BFC（块级格式化上下文）" class="headerlink" title="十一、BFC（块级格式化上下文）"></a>十一、BFC（块级格式化上下文）</h3><p>BFC是CSS布局的一个概念，是一个独立的渲染区域，规定了内部box如何布局， 并且这个区域的子元素不会影响到外面的元素，其中比较重要的布局规则有内部 box 垂直放置，计算 BFC 的高度的时候，浮动元素也参与计算。</p>
+<p><strong>如何创建bfc</strong></p>
+<ul>
+<li>根元素，即HTML元素</li>
+<li>float的值不为none</li>
+<li>position 为absolute或fixed</li>
+<li>display的值为inline-block、table-cell、table-caption</li>
+<li>overflow的值不为visible</li>
+</ul>
+<h3 id="十二、JS中数据类型及区别"><a href="#十二、JS中数据类型及区别" class="headerlink" title="十二、JS中数据类型及区别"></a>十二、JS中数据类型及区别</h3><ul>
+<li>基本数据类型: Number、String、Boolean、 undefined、null、 Symbol, 在内存中占据固定大小，保存在栈内存中</li>
+<li>引用数据类型： Object(对象)、Function(函数)，其他还有Array(数组)、Date(日期)、RegExp(正则表达式)、特殊的基本包装类型(String、Number、Boolean) 以及单体内置对象(Global、Math)等 引用类型的值是对象 保存在堆内存中，栈内存存储的是对象的变量标识符以及对象在堆内存中的存储地址。</li>
+</ul>
+<h3 id="十三、JS中的数据类型检测方案"><a href="#十三、JS中的数据类型检测方案" class="headerlink" title="十三、JS中的数据类型检测方案"></a>十三、JS中的数据类型检测方案</h3><ul>
+<li>1、typeof<br>能快速区分基本数据类型，不能区分Object、Array、Null，都返回object</li>
+<li>2、instanceof<br>能够区分Array、Object和Function，适合用于判断自定义的类实例对象，Number，Boolean，String基本数据类型不能判断</li>
+<li>3、Object.prototype.toString.call()<br>精准判断数据类型</li>
+</ul>
+<h3 id="十四、var-amp-amp-let-amp-amp-const"><a href="#十四、var-amp-amp-let-amp-amp-const" class="headerlink" title="十四、var &amp;&amp; let &amp;&amp; const"></a>十四、var &amp;&amp; let &amp;&amp; const</h3><p><strong>三者的区别</strong></p>
+<ul>
+<li>1、var定义变量，没有块的概念，可以跨块访问，但不能跨函数访问。let定义变量，只能在块作用域中访问，不能跨块访问，也不能跨函数访问。const用于定义常量，使用时候必须初始化（必须赋值），只能在块作用域中访问，且不能修改</li>
+<li>2、var可以先试用后声明，因为存在变量提升；let必须先声明后使用</li>
+<li>3、var是允许在相同作用域内重复声明同一个变量的，而let与const不允许这一现象。</li>
+<li>4、在全局上下文中，基于let声明的全局变量和全局对象globel（window）没有任何关系 ; var声明的变量会和globel有映射关系；</li>
+<li>5、会产生暂时性死区</li>
+<li>6、let /const/function会把当前所在的大括号(除函数之外)作为一个全新的块级上下文，应用这个机制，在开发项目的时候，遇到循环事件绑定等类似的需求，无需再自己构建闭包来存储，只要基于let的块作用特征即可解决</li>
+</ul>
+<h3 id="十五、JS垃圾回收机制"><a href="#十五、JS垃圾回收机制" class="headerlink" title="十五、JS垃圾回收机制"></a>十五、JS垃圾回收机制</h3><p>1、项目中，如果存在大量不被释放的内存（堆/栈/上下文），页面性能会变得很慢。当某些代码操作不能被合理释放，就会造成内存泄漏。我们尽可能减少使用闭包，因为它会消耗内存。<br>浏览器垃圾回收机制/内存回收机制:<br>浏览器的Javascript具有自动垃圾回收机制(GC:Garbage Collecation)，垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。    </p>
+<ul>
+<li>标记清除: </li>
+<li>谷歌浏览器：“查找引用”，浏览器不定时去查找当前内存的引用，如果没有被占用了，浏览器会回收它；如果被占用，就不能回收。</li>
+<li>IE浏览器：“引用计数法”，当前内存被占用一次，计数累加1次，移除占用就减1，减到0时，浏览器就回收它。<br>2、内存泄漏<br>在 JS 中，常见的内存泄露主要有 4 种,全局变量、闭包、DOM 元素的引用、定时器</li>
+</ul>
+<h3 id="十六、作用域和作用域链"><a href="#十六、作用域和作用域链" class="headerlink" title="十六、作用域和作用域链"></a>十六、作用域和作用域链</h3><p>定义：简单来说作用域就是变量与函数的可访问范围，由当前环境与上层环境的一系列变量对象组成  </p>
+<ul>
+<li>1、全局作用域：代码在程序的任何地方都能被访问，window 对象的内置属性都拥有全局作用域。</li>
+<li>2、函数作用域：在固定的代码片段才能被访问<br>作用：作用域最大的用处就是隔离变量，不同作用域下同名变量不会有冲突<br>一般情况下，变量到 创建该变量 的函数的作用域中取值。但是如果在当前作用域中没有查到，就会向上级作用域去查，直到查到全局作用域，这么一个查找过程形成的链条就叫做作用域链。</li>
+</ul>
+<h3 id="十七、闭包的两大作用：保存-保护"><a href="#十七、闭包的两大作用：保存-保护" class="headerlink" title="十七、闭包的两大作用：保存/保护"></a>十七、闭包的两大作用：保存/保护</h3><ul>
+<li>闭包是一个可以访问外部作用域中变量的内部函数。</li>
+<li>这些被引用的变量直到闭包被销毁时才会被销毁。</li>
+<li>闭包使得 timer 定时器，事件处理，AJAX 请求等异步任务更加容易。</li>
+<li>可以通过闭包来达到封装性。</li>
+</ul>
+<p>（1）保护：划分一个独立的代码执行区域，在这个区域中有自己私有变量存储的空间，保护自己的私有变量不受外界干扰（操作自己的私有变量和外界没有关系）；<br>（2）保存：如果当前上下文不被释放【只要上下文中的某个东西被外部占用即可】，则存储的这些私有变量也不会被释放，可以供其下级上下文中调取使用，相当于把一些值保存起来了；  </p>
+<p>闭包形成的条件：</p>
+<ul>
+<li>1、函数的嵌套</li>
+<li>2、内部函数引用外部函数的局部变量，延长外部函数的变量生命周期</li>
+</ul>
+<p>闭包的用途：</p>
+<ul>
+<li>1、模仿块级作用域</li>
+<li>保护外部函数的变量 能够访问函数定义时所在的词法作用域(阻止其被回收)</li>
+<li>封装私有化变量</li>
+<li>创建模块</li>
+</ul>
+<p>闭包的优点：延长局部变量的生命周期<br>闭包缺点：会导致函数的变量一直保存在内存中，过多的闭包可能会导致内存泄漏</p>
+<h3 id="十八、JS-中-this-的五种情况"><a href="#十八、JS-中-this-的五种情况" class="headerlink" title="十八、JS 中 this 的五种情况"></a>十八、JS 中 this 的五种情况</h3><ul>
+<li>1、作为普通函数执行时，非严格模式（window）、严格模式（undefined）</li>
+<li>2、当函数作为对象的方法被调用时，this就会指向这个对象</li>
+<li>3、构造器调用，this指向返回的这个对象</li>
+<li>4、箭头函数的this绑定看的是this所在函数定义在哪个对象下，就绑定哪个对象。如果有嵌套的情况，则this绑定到最近的一层对象上。</li>
+<li>5、基于Function.prototype上的 apply 、 call 和 bind 调用模式，这三个方法都可以显示的指定调用函数的 this 指向。apply接收参数的是数组，call接受参数列表， bind方法通过传入一个对象，返回一个 this 绑定了传入对象的新函数。这个函数的 this指向除了使用new 时会被改变，其他情况下都不会改变。若为空默认是指向全局对象window。</li>
+</ul>
+<h3 id="十九、原型-amp-amp-原型链"><a href="#十九、原型-amp-amp-原型链" class="headerlink" title="十九、原型 &amp;&amp; 原型链"></a>十九、原型 &amp;&amp; 原型链</h3><p>在规范里，prototype 被定义为：给其它对象提供共享属性的对象。  </p>
+<p>JS是通过函数来模拟类，当我们创建一个函数的时候，js会给这个函数自动添加prototype属性，值是一个包含constructor属性的对象，不是空对象。当我们把函数当成构造函数通过new关键词调用的时候，js会帮我们创建该构造函数的实例，实例继承构造函数prototype的所以属性和方法（实例通过设置自己的<strong>proto</strong>指向构造函数的prototype来实现继承）</p>
+<p>原型链的概念，仅仅是在原型这个概念基础上所作的直接推论。<br>既然 prototype 只是恰好作为另一个对象的隐式引用的普通对象。那么，它也是对象，也符合一个对象的基本特征。 也就是说，prototype 对象也有自己的隐式引用，有自己的 prototype 对象。<br>如此，构成了对象的原型的原型的原型的链条，直到某个对象的隐式引用为 null，整个链条终止。  </p>
+<h3 id="二十、new运算符的实现机制"><a href="#二十、new运算符的实现机制" class="headerlink" title="二十、new运算符的实现机制"></a>二十、new运算符的实现机制</h3><p>1、创建一个新的空对象<br>2、设置新对象的隐式原型（<strong>proto</strong>）为构造函数的显式原型（prototype）<br>3、使用apply改变构造函数this指向新的对象<br>4、根据函数apply的返回值，判断返回值，如果值是一个对象，则返回这个对象，若不是，则返回这个新创建的对象。</p>
+<p><strong>手写实现new</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">objectFactory</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>()<br>  Constructor = [].shift.call(<span class="hljs-built_in">arguments</span>)<br>  obj.__proto__ = Constructor.prototype<br>  <span class="hljs-keyword">const</span> result = Constructor.apply(obj, <span class="hljs-built_in">arguments</span>)<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> result === <span class="hljs-string">'object'</span> ? result : obj<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="二一、EventLoop-事件循环"><a href="#二一、EventLoop-事件循环" class="headerlink" title="二一、EventLoop 事件循环"></a>二一、EventLoop 事件循环</h3><p>js是单线程的，为了防止一个函数执行时间过长阻塞后面的代码，所以将同步代码压入执行栈中，依次执行，将异步代码推入异步队列中，异步队列分为宏任务和微任务队列。微任务队列优先于宏任务队列，微任务的代表：Promise.then，MutationObserver，宏任务的代表：setImmediate setTimeout setInterval。  </p>
+<p><strong>浏览器的事件循环</strong><br>事件环的运行机制是：先会执行执行栈中的内容，然后执行当前上下文的微任务队列，微任务队列执行完毕后，再执行宏任务，然后执行其中的同步代码。如此反复，这样就形成一个循环。这个过程被称为事件循环（event loop）</p>
+<p>事件循环可以简单的描述为以下四个步骤:</p>
+<ul>
+<li>1、函数入栈，当Stack中执行到异步任务的时候，就将他丢给WebAPIs,接着执行同步任务,直到Stack为空；</li>
+<li>2、此期间WebAPIs完成这个事件，把回调函数放入队列中等待执行（微任务放到微任务队列，宏任务放到宏任务队列）</li>
+<li>3、执行栈为空时，Event Loop把微任务队列执行清空；</li>
+<li>4、微任务队列清空后，进入宏任务队列，取队列的第一项任务放入Stack(栈）中执行，执行完成后，查看微任务队列是否有任务，有的话，清空微任务队列。重复4，继续从宏任务中取任务执行，执行完成之后，继续清空微任务，如此反复循环，直至清空所有的任务。</li>
+</ul>
+<p><strong>node环境的事件环</strong><br>执行顺序如下：  </p>
+<ul>
+<li>timers: 计时器，执行setTimeout和setInterval的回调</li>
+<li>pending callbacks: 执行延迟到下一个循环迭代的 I/O 回调</li>
+<li>idle, prepare: 队列的移动，仅系统内部使用</li>
+<li>poll轮询: 检索新的 I/O 事件;执行与 I/O 相关的回调。事实上除了其他几个阶段处理的事情，其他几乎所有的异步都在这个阶段处理。</li>
+<li>check: 执行setImmediate回调，setImmediate在这里执行</li>
+<li>close callbacks: 执行close事件的callback，一些关闭的回调函数，如：socket.on(‘close’, …)</li>
+</ul>
+<h3 id="二二、setTimeout、Promise、Async-Await-的区别"><a href="#二二、setTimeout、Promise、Async-Await-的区别" class="headerlink" title="二二、setTimeout、Promise、Async/Await 的区别"></a>二二、setTimeout、Promise、Async/Await 的区别</h3><ul>
+<li>setTimeout的回调函数放到宏任务队列里，等到执行栈清空以后执行</li>
+<li>Promise本身是同步的立即执行函数， 当在executor中执行resolve或者reject的时候, 此时是异步操作， 会先执行then/catch等，当主栈完成后，才会去调用resolve/reject中存放的方法执行。</li>
+<li>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。</li>
+</ul>
+<h3 id="二三、介绍节流防抖原理、区别以及应用"><a href="#二三、介绍节流防抖原理、区别以及应用" class="headerlink" title="二三、介绍节流防抖原理、区别以及应用"></a>二三、介绍节流防抖原理、区别以及应用</h3><p>节流： 事件触发后，在一段时间内只会触发一次,包括时间戳版和定时器版</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//时间戳版</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> prev = <span class="hljs-number">0</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()<br>    <span class="hljs-keyword">if</span> (now - prev &gt; wait) &#123;<br>      fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>      prev = now<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//定时器版</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">throttle</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (!timer) &#123;<br>      timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>        timer = <span class="hljs-literal">null</span><br>      &#125;, wait)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>防抖：事件触发后，在一段时间后才会执行函数，如果在这段时间内再次触发，会重新计算函数的执行时间，分为非立即执行和立即执行两个版本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 非立即执行版</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    timer &amp;&amp; clearTimeout(timer)<br>    timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>      fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>    &#125;, wait)<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 立即执行版</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">debounce</span>(<span class="hljs-params">fn, wait</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> now = !timer<br>    timer &amp;&amp; clearTimeout(timer)<br>    timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>      timer = <span class="hljs-literal">null</span><br>    &#125;, wait)<br>    <span class="hljs-keyword">if</span> (now) &#123;<br>      fn.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用场景： </p>
+<ul>
+<li>节流：滚动加载更多、搜索框搜的索联想功能、高频点击、表单重复提交……</li>
+<li>索框搜索输入，并在输入完以后自动搜索、手机号，邮箱验证输入检测、窗口大小 resize 变化后，再重新渲染</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/javaScript/">javaScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/web%E7%AB%AF%E7%9A%84%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%8F%AF%E5%88%86%E4%B8%BAJSAPI%E4%B8%8EH5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">web端的微信支付可分为JSAPI与H5</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2020/06/09/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%96%B9%E6%B3%95/">
+                        <span class="hidden-mobile">前端日常开发常用技巧与方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>

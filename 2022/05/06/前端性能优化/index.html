@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/myblog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>前端性能优化 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端性能优化">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-06 19:21" pubdate>
+        2022年5月6日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      976 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端性能优化</h1>
+            
+            <div class="markdown-body">
+              <h3 id="加载优化"><a href="#加载优化" class="headerlink" title="加载优化"></a>加载优化</h3><ul>
+<li><p><strong>减少HTTP请求</strong>：尽量减少页面的请求数（<strong>首次加载同时请求数不能超过4个</strong>）</p>
+<ul>
+<li><p>合并CSS和JS</p>
+</li>
+<li><p>使用CSS精灵图</p>
+</li>
+</ul>
+</li>
+<li><p><strong>缓存资源</strong></p>
+<p>使用缓存可减少向服务器的请求数，节省加载时间，所有静态资源都要在服务器端设置缓存</p>
+<ul>
+<li>缓存一切可缓存的资源</li>
+<li>使用长缓存</li>
+<li>使用外联的样式和脚本</li>
+</ul>
+</li>
+<li><p><strong>压缩代码</strong></p>
+<p>减少资源大小可加快网页显示速度，对代码进行压缩，并在服务器端设置<code>GZip</code></p>
+<ul>
+<li>压缩代码(多余的缩进、空格和换行符)</li>
+<li>启用Gzip</li>
+</ul>
+</li>
+<li><p><strong>无阻塞</strong>：头部内联的样式和脚本会阻塞页面的渲染，样式放在头部并使用<code>link</code>方式引入，脚本放在尾部并使用异步方式加载</p>
+</li>
+<li><p><strong>首屏加载</strong> </p>
+<p>针对首屏的快速显示做优化</p>
+</li>
+<li><p><strong>按需加载</strong></p>
+<p>将不影响首屏的资源和当前屏幕不用的资源放到用户需要时才加载，可大大提升显示速度和降低总体流量(<strong>按需加载会导致大量重绘，影响渲染性能</strong>)</p>
+<ul>
+<li>懒加载</li>
+<li>滚屏加载</li>
+<li>Media Query加载</li>
+</ul>
+</li>
+<li><p><strong>预加载</strong></p>
+<p>大型资源页面可使用<code>Loading</code>，资源加载完成后再显示页面，但加载时间过长，会造成用户流失</p>
+</li>
+<li><p><strong>压缩图像</strong></p>
+<ul>
+<li>使用<a href="https://tinyjpg.com/" target="_blank" rel="noopener">TinyJpg</a>和<a href="https://tinypng.com/" target="_blank" rel="noopener">TinyPng</a>压缩图像</li>
+<li>使用CSS3、SVG、IconFont代替图像</li>
+<li>使用img的srcset按需加载图像</li>
+</ul>
+</li>
+<li><p><strong>减少Cookie</strong></p>
+<p>Cookie会影响加载速度，静态资源域名不使用Cookie</p>
+</li>
+<li><p><strong>避免重定向</strong></p>
+</li>
+<li><p><strong>异步加载第三方资源</strong></p>
+</li>
+</ul>
+<h3 id="执行优化"><a href="#执行优化" class="headerlink" title="执行优化"></a>执行优化</h3><ul>
+<li><p><strong>CSS写在头部，JS写在尾部并异步</strong></p>
+</li>
+<li><p><strong>避免img、iframe等的src为空</strong>：空<code>src</code>会重新加载当前页面，影响速度和效率</p>
+</li>
+<li><p><strong>尽量避免重置图像大小</strong>：多次重置图像大小会引发图像的多次重绘，影响性能</p>
+</li>
+<li><p><strong>图像尽量避免使用DataURL</strong>：<code>DataURL</code>图像没有使用图像的压缩算法，文件会变大，并且要解码后再渲染，加载慢耗时长</p>
+</li>
+</ul>
+<h3 id="渲染优化"><a href="#渲染优化" class="headerlink" title="渲染优化"></a><strong>渲染优化</strong></h3><ul>
+<li><p><strong>设置viewport</strong>：HTML的<code>viewport</code>可加速页面的渲染</p>
+</li>
+<li><p><strong>减少DOM节点</strong></p>
+</li>
+<li><p><strong>优化动画</strong></p>
+<ul>
+<li>尽量使用CSS3动画</li>
+<li>合理使用requestAnimationFrame动画代替setTimeout</li>
+<li>适当使用Canvas动画：5个元素以内使用<code>CSS动画</code>，5个元素以上使用<code>Canvas动画</code>，<code>iOS8+</code>可使用<code>WebGL动画</code></li>
+</ul>
+</li>
+<li><p><strong>优化高频事件</strong>：<code>scroll</code>、<code>touchmove</code>等事件可导致多次渲染</p>
+<p>（1）函数节流</p>
+<p>（2）函数防抖</p>
+<p>（3）使用requestAnimationFrame监听帧变化：使得在正确的时间进行渲染</p>
+<p>（4）增加响应变化的时间间隔：减少重绘次数</p>
+</li>
+<li><p><strong>GPU加速</strong></p>
+<p>使用某些HTML5标签和CSS3属性会触发<code>GPU渲染</code>，请合理使用(<strong>过渡使用会引发手机耗电量增加</strong>)</p>
+<ul>
+<li>HTML标签：<code>video</code>、<code>canvas</code>、<code>webgl</code></li>
+<li>CSS属性：<code>opacity</code>、<code>transform</code>、<code>transition</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="样式优化"><a href="#样式优化" class="headerlink" title="样式优化"></a><strong>样式优化</strong></h3><ul>
+<li><strong>避免在HTML中书写style</strong></li>
+<li><strong>避免CSS表达式</strong></li>
+</ul>
+<ul>
+<li><p><strong>移除CSS空规则</strong></p>
+</li>
+<li><p><strong>正确使用display</strong></p>
+</li>
+<li><p><strong>不滥用float</strong></p>
+</li>
+<li><p><strong>不滥用Web字体</strong></p>
+</li>
+<li><p><strong>不声明过多的font-size</strong>： 过多的<code>font-size</code>影响CSS树的效率</p>
+</li>
+<li><p><strong>值为0时不需要任何单位</strong></p>
+</li>
+<li><p><strong>标准化各种浏览器前缀</strong></p>
+<p>无前缀属性应放在最后</p>
+<p>CSS动画属性只用-webkit-、无前缀两种</p>
+<p>其它前缀为-webkit-、-moz-、-ms-、无前缀四种：<code>Opera</code>改用<code>blink</code>内核，<code>-o-</code>已淘汰</p>
+</li>
+<li><p><strong>避免让选择符看起来像正则表达式</strong>：高级选择符执行耗时长且不易读懂，避免使用</p>
+</li>
+</ul>
+<h3 id="脚本优化"><a href="#脚本优化" class="headerlink" title="脚本优化"></a><strong>脚本优化</strong></h3><ul>
+<li><p><strong>减少重绘和回流</strong></p>
+<p>避免不必要的DOM操作</p>
+<p>避免使用document.write</p>
+<p>减少drawImage</p>
+<p>尽量改变class而不是style，使用classList代替className</p>
+</li>
+<li><p><strong>缓存DOM选择与计算</strong></p>
+</li>
+<li><p><strong>缓存.length的值</strong></p>
+</li>
+<li><p><strong>尽量使用事件代理</strong></p>
+</li>
+<li><p><strong>尽量使用id选择器</strong></p>
+</li>
+</ul>
+<ul>
+<li><strong>touch事件优化</strong>：使用<code>tap</code>(<code>touchstart</code>和<code>touchend</code>)代替<code>click</code>(<strong>注意<code>touch</code>响应过快，易引发误操作</strong>)</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/">页面加载优化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myblog/2022/05/10/setup%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BB%A5%E5%8F%8Apinia%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">setup语法糖以及pinia的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2022/04/08/HTTP%E7%9B%B8%E5%85%B3/">
+                        <span class="hidden-mobile">HTTP相关</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>
