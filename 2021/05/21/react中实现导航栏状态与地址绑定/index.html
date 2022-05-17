@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/myblog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/myblog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>react中实现导航栏状态与地址绑定 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/myblog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.gitee.io","root":"/myblog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/myblog/js/utils.js" ></script>
+  <script  src="/myblog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/myblog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/myblog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/myblog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="react中实现导航栏状态与地址绑定">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-21 15:39" pubdate>
+        2021年5月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">react中实现导航栏状态与地址绑定</h1>
+            
+            <div class="markdown-body">
+              <h3 id="一、项目初始化"><a href="#一、项目初始化" class="headerlink" title="一、项目初始化"></a>一、项目初始化</h3><h4 id="1-安装与运行"><a href="#1-安装与运行" class="headerlink" title="1. 安装与运行"></a>1. 安装与运行</h4><p>构建项目：<code>yarn create react-app my-app</code><br>启动：<code>yarn start</code><br>当然也可以使用npm：</p>
+<ul>
+<li>全局安装：<code>npm install -g create-react-app</code></li>
+<li>构建项目：<code>npx create-react-app my-app</code></li>
+<li>启动：<code>npm start</code></li>
+</ul>
+<h3 id="2-安装路由依赖"><a href="#2-安装路由依赖" class="headerlink" title="2.安装路由依赖"></a>2.安装路由依赖</h3><p>在项目中执行：<code>npm install react-router-dom --save</code></p>
+<h3 id="3-在App-js中引入router"><a href="#3-在App-js中引入router" class="headerlink" title="3.在App.js中引入router"></a>3.在App.js中引入router</h3><p>由于简单演示，就不单独对router进行封装了。<br>安装完成后，我们在App.js中引入路由相关组件<code>BrowserRouter</code>、<code>Route</code>、<code>Switch</code>、<code>Redirect</code><br>在顶部引入：<code>import { BrowserRouter as Router, Route, Switch, Redirect } from &#39;react-router-dom&#39;</code><br>详细代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> React, &#123; Component &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;<br><span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">'@/views/home'</span><br><span class="hljs-keyword">import</span> Study <span class="hljs-keyword">from</span> <span class="hljs-string">'@/views/study'</span><br><span class="hljs-keyword">import</span> Type <span class="hljs-keyword">from</span> <span class="hljs-string">'@/views/type'</span><br><span class="hljs-keyword">import</span> Label <span class="hljs-keyword">from</span> <span class="hljs-string">'@/views/label'</span><br><span class="hljs-keyword">import</span> About <span class="hljs-keyword">from</span> <span class="hljs-string">'@/views/about'</span><br><span class="hljs-keyword">import</span> &#123; Layout &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'antd'</span><br><span class="hljs-keyword">import</span> Header <span class="hljs-keyword">from</span> <span class="hljs-string">'@/components/Header'</span><br><span class="hljs-keyword">import</span> Persional <span class="hljs-keyword">from</span> <span class="hljs-string">'@/components/Persional'</span><br><span class="hljs-keyword">import</span> &#123; BrowserRouter <span class="hljs-keyword">as</span> Router, Route, Switch, Redirect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router-dom'</span><br><span class="hljs-keyword">const</span> &#123; Footer, Content, Sider&#125; = Layout;<br><span class="hljs-comment">// 导入子组件</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;<br>  render() &#123;<br>    <span class="hljs-keyword">return</span> (<br>      &lt;div className=<span class="hljs-string">"App"</span> &gt;<br>        &lt;Layout&gt;<br>          &lt;Sider&gt;<br>            &lt;Persional /&gt;<br>          &lt;<span class="hljs-regexp">/Sider&gt;</span><br><span class="hljs-regexp">          &lt;Content&gt;</span><br><span class="hljs-regexp">            &lt;Router&gt;</span><br><span class="hljs-regexp">              &lt;Header /</span>&gt;<br>              &lt;Switch&gt;<br>                &lt;Route path=<span class="hljs-string">"/home"</span> exact component=&#123;Home&#125;&gt;&lt;<span class="hljs-regexp">/Route&gt;</span><br><span class="hljs-regexp">                &lt;Route path="/</span>study<span class="hljs-string">" component=&#123;Study&#125;&gt;&lt;/Route&gt;</span><br><span class="hljs-string">                &lt;Route path="</span>/type<span class="hljs-string">" component=&#123;Type&#125;&gt;&lt;/Route&gt;</span><br><span class="hljs-string">                &lt;Route path="</span>/label<span class="hljs-string">" component=&#123;Label&#125;&gt;&lt;/Route&gt;</span><br><span class="hljs-string">                &lt;Route path="</span>/about<span class="hljs-string">" component=&#123;About&#125;&gt;&lt;/Route&gt;</span><br><span class="hljs-string">                &lt;Redirect from="</span><span class="hljs-comment">/*" to="/home"&gt;&lt;/Redirect&gt;</span><br><span class="hljs-comment">              &lt;/Switch&gt;</span><br><span class="hljs-comment">              &lt;Footer&gt;Footer&lt;/Footer&gt;</span><br><span class="hljs-comment">            &lt;/Router&gt;</span><br><span class="hljs-comment">          &lt;/Content&gt; </span><br><span class="hljs-comment">        &lt;/Layout&gt;</span><br><span class="hljs-comment">      &lt;/div&gt;</span><br><span class="hljs-comment">    );</span><br><span class="hljs-comment">  &#125;</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">export default App;</span><br></code></pre></td></tr></table></figure>
+<p>这里用到了antd的<code>Layout</code>布局组件进行布局<br>首先我们将我们的视图组件引入进来（<code>import Home from &#39;@/views/home&#39;</code>），并在Route标签中配置：（以home为例）<code>&lt;Route path=&quot;/home&quot; exact component={Home}&gt;&lt;/Route&gt;</code></p>
+<h3 id="4-编写Header头部导航组件"><a href="#4-编写Header头部导航组件" class="headerlink" title="4.编写Header头部导航组件"></a>4.编写Header头部导航组件</h3><p>在components目录下新建Header目录，并在其目录下新建index.js及index.scss文件，这里使用scss进行编写。<br>安装命令：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">npm install <span class="hljs-keyword">node</span><span class="hljs-title">-sass</span> --save-dev <br>npm install sass-loader --save-dev<br></code></pre></td></tr></table></figure>
+
+<p>为了实现导航栏状态与地址联动，关键是要实现组件初始化时的处理逻辑，也就是组件挂载的时候，即在生命周期函数<code>componentDidMount</code>中实现。<br>要实现以下两点：</p>
+<ul>
+<li>修改当前地址对应导航栏状态</li>
+<li>监听浏览器前进后退，即监听history对象<br>关键代码如下：<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mel">componentDidMount = () =&gt; &#123;<br>    let moren = this.props.location.pathname<br>    let <span class="hljs-keyword">text</span> = moren.<span class="hljs-keyword">substring</span>(moren.lastIndexOf(<span class="hljs-string">'/'</span>) + <span class="hljs-number">1</span>, moren.length)<br>    <span class="hljs-comment">// 当访问的目录不在这个数组里时候，当前状态是home，即重定向到home页面</span><br>    ![<span class="hljs-string">'home'</span>, <span class="hljs-string">'study'</span>, <span class="hljs-string">'type'</span>, <span class="hljs-string">'label'</span>, <span class="hljs-string">'about'</span>, <span class="hljs-string">'search'</span>].includes(<span class="hljs-keyword">text</span>) &amp;&amp; (<span class="hljs-keyword">text</span> = <span class="hljs-string">'home'</span>)<br>    this.<span class="hljs-keyword">setState</span>(&#123;<br>      current: <span class="hljs-keyword">text</span><br>    &#125;)<br>    <span class="hljs-comment">// 监听history变化</span><br>    history.listen((<span class="hljs-keyword">event</span>) =&gt; &#123;<br>      let test = <span class="hljs-keyword">event</span>.pathname<br>      let <span class="hljs-keyword">text</span> = test.<span class="hljs-keyword">substring</span>(test.lastIndexOf(<span class="hljs-string">'/'</span>) + <span class="hljs-number">1</span>, test.length)<br>      this.<span class="hljs-keyword">setState</span>(&#123;<br>        current: <span class="hljs-keyword">text</span><br>      &#125;)<br>    &#125;)<br>  &#125;<br></code></pre></td></tr></table></figure>
+组件完整代码如下：<br>index.js:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> React, &#123; Component &#125;  <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;<br><span class="hljs-keyword">import</span> &#123; Row, Col, Menu  &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'antd'</span>;<br><span class="hljs-keyword">import</span> &#123; Link, withRouter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router-dom'</span><br><span class="hljs-keyword">import</span> &#123; HomeOutlined, FolderOpenOutlined, AppstoreOutlined, PushpinOutlined, UserOutlined, SearchOutlined &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@ant-design/icons'</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">'./index.scss'</span><br><span class="hljs-keyword">import</span> &#123; createBrowserHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'history'</span>;<br><span class="hljs-keyword">const</span> history = createBrowserHistory() <span class="hljs-comment">// history模式</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Header</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span>(props) &#123;<br>    <span class="hljs-keyword">super</span>(props);<br>    <span class="hljs-keyword">this</span>.state = &#123;<br>      logo: <span class="hljs-string">''</span>,<br>      current: <span class="hljs-string">'home'</span><br>    &#125;<br>  &#125;<br>  handleClick = <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">this</span>.setState(&#123; <span class="hljs-attr">current</span>: e.key &#125;);<br>  &#125;<br>  componentDidMount = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> moren = <span class="hljs-keyword">this</span>.props.location.pathname<br>    <span class="hljs-keyword">let</span> text = moren.substring(moren.lastIndexOf(<span class="hljs-string">'/'</span>) + <span class="hljs-number">1</span>, moren.length)<br>    ![<span class="hljs-string">'home'</span>, <span class="hljs-string">'study'</span>, <span class="hljs-string">'type'</span>, <span class="hljs-string">'label'</span>, <span class="hljs-string">'about'</span>, <span class="hljs-string">'search'</span>].includes(text) &amp;&amp; (text = <span class="hljs-string">'home'</span>)<br>    <span class="hljs-keyword">this</span>.setState(&#123;<br>      current: text<br>    &#125;)<br>    history.listen(<span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">let</span> test = event.pathname<br>      <span class="hljs-keyword">let</span> text = test.substring(test.lastIndexOf(<span class="hljs-string">'/'</span>) + <span class="hljs-number">1</span>, test.length)<br>      <span class="hljs-keyword">this</span>.setState(&#123;<br>        current: text<br>      &#125;)<br>    &#125;)<br>  &#125;<br>  render() &#123;<br>    <span class="hljs-keyword">const</span> &#123; current &#125; = <span class="hljs-keyword">this</span>.state;<br>    <span class="hljs-keyword">return</span>(<br>      &lt;div className=<span class="hljs-string">"header-wrapper"</span>&gt;<br>         &lt;Row&gt;<br>          &lt;Col span=&#123;<span class="hljs-number">18</span>&#125; push=&#123;<span class="hljs-number">6</span>&#125; className=<span class="hljs-string">"right-box"</span>&gt;<br>            &lt;Menu onClick=&#123;<span class="hljs-keyword">this</span>.handleClick&#125; selectedKeys=&#123;[current]&#125; mode=<span class="hljs-string">"horizontal"</span>&gt;<br>              &lt;Menu.Item key=<span class="hljs-string">"home"</span> icon=&#123;&lt;HomeOutlined /&gt;&#125;&gt;<br>                &lt;Link to=<span class="hljs-string">"/home"</span>&gt;首页&lt;<span class="hljs-regexp">/Link&gt;</span><br><span class="hljs-regexp">              &lt;/</span>Menu.Item&gt;<br>              &lt;Menu.Item key=<span class="hljs-string">"study"</span> icon=&#123;&lt;FolderOpenOutlined /&gt;&#125;&gt;<br>                &lt;Link to=<span class="hljs-string">"/study"</span>&gt;学习&lt;<span class="hljs-regexp">/Link&gt;</span><br><span class="hljs-regexp">              &lt;/</span>Menu.Item&gt;<br>              &lt;Menu.Item key=<span class="hljs-string">"type"</span> icon=&#123;&lt;AppstoreOutlined /&gt;&#125;&gt;<br>                &lt;Link to=<span class="hljs-string">"/type"</span>&gt;分类&lt;<span class="hljs-regexp">/Link&gt;</span><br><span class="hljs-regexp">              &lt;/</span>Menu.Item&gt;<br>              &lt;Menu.Item key=<span class="hljs-string">"label"</span> icon=&#123;&lt;PushpinOutlined /&gt;&#125;&gt;<br>                &lt;Link to=<span class="hljs-string">"/label"</span>&gt;标签&lt;<span class="hljs-regexp">/Link&gt;</span><br><span class="hljs-regexp">              &lt;/</span>Menu.Item&gt;<br>              &lt;Menu.Item key=<span class="hljs-string">"about"</span> icon=&#123;&lt;UserOutlined /&gt;&#125;&gt;<br>                &lt;Link to=<span class="hljs-string">"/about"</span>&gt;关于&lt;<span class="hljs-regexp">/Link&gt;</span><br><span class="hljs-regexp">              &lt;/</span>Menu.Item&gt;<br>              &lt;Menu.Item key=<span class="hljs-string">"search"</span> icon=&#123;&lt;SearchOutlined /&gt;&#125;&gt;<br>                搜索<br>              &lt;<span class="hljs-regexp">/Menu.Item&gt;</span><br><span class="hljs-regexp">            &lt;/</span>Menu&gt;<br>          &lt;<span class="hljs-regexp">/Col&gt;</span><br><span class="hljs-regexp">          &lt;Col span=&#123;6&#125; pull=&#123;18&#125; className="left-box"&gt;</span><br><span class="hljs-regexp">            &lt;strong className="logo-name"&gt;Deng&lt;/</span>strong&gt;<br>          &lt;<span class="hljs-regexp">/Col&gt;</span><br><span class="hljs-regexp">        &lt;/</span>Row&gt;<br>      &lt;<span class="hljs-regexp">/div&gt;</span><br><span class="hljs-regexp">    )</span><br><span class="hljs-regexp">  &#125;</span><br><span class="hljs-regexp">&#125;</span><br><span class="hljs-regexp">export default withRouter(Header)</span><br></code></pre></td></tr></table></figure>
+注意：为了能够拿到<code>this.props.location.pathname</code>,需要使用<code>withRouter</code>处理组件，并把Header组件放在<code>BrowserRouter</code>标签中。<br>这样就能够实现导航栏状态与地址绑定了</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/myblog/tags/react/">react</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/%E6%89%8B%E5%86%99%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">手写防抖与节流函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/myblog/2021/05/21/sass%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+                        <span class="hidden-mobile">sass常用方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/myblog/js/debouncer.js" ></script>
+<script  src="/myblog/js/events.js" ></script>
+<script  src="/myblog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/myblog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/myblog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/myblog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/myblog/js/boot.js" ></script>
+
+
+
+</body>
+</html>
