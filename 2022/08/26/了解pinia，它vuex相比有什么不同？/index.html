@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-hexo-blog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/my-hexo-blog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>了解pinia，它vuex相比有什么不同？ - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my-hexo-blog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my-hexo-blog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.github.io","root":"/my-hexo-blog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/my-hexo-blog/js/utils.js" ></script>
+  <script  src="/my-hexo-blog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my-hexo-blog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/my-hexo-blog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="了解pinia，它vuex相比有什么不同？">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-08-26 13:33" pubdate>
+        2022年8月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">了解pinia，它vuex相比有什么不同？</h1>
+            
+            <div class="markdown-body">
+              <p>Pinia 与vuex都是vue的全局状态管理器，可以说pinia就是vuex5，接下来本文通过vue3的形式来对比一下这两个全局状态管理器有何不同点。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-comment">// vuex</span><br>npm <span class="hljs-selector-tag">i</span> vuex -S<br><br><span class="hljs-comment">// pinia </span><br>npm <span class="hljs-selector-tag">i</span> pinia -S<br></code></pre></td></tr></table></figure>
+
+<h3 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h3><p>两个状态管理器都需要在main.js中挂载到vue实例上</p>
+<h4 id="vuex的挂载过程"><a href="#vuex的挂载过程" class="headerlink" title="vuex的挂载过程"></a>vuex的挂载过程</h4><p>在src下新建store/index.js目录</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(&#123;<br>    state() &#123;<br>      <span class="hljs-keyword">return</span> &#123;<br>        name: <span class="hljs-string">'YoLin'</span><br>      &#125;;<br>    &#125;,<br>    mutations: &#123;<br>    &#125;,<br>    actions: &#123;<br>    &#125;,<br>    getters: &#123;<br>    &#125;,<br>    modules: &#123;<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>state：全局state，类似于vue种的data，用于声明全局的状态变量。</li>
+<li>mutations：通过commit 触发mutation来修改state，即修改state的函数，可记录追踪数据state变化。</li>
+<li>actions：用于执行一些异步操作，并提交mutation更新state。</li>
+<li>getters：可以看作和vue中的计算属性一样的能力。</li>
+<li>modules： 将store分割成模块，当应用较大时使用。</li>
+</ul>
+<p>在main.js上进行挂载</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App.vue'</span><br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'@/store'</span><br>createApp(App).use(store).mount(<span class="hljs-string">'#app'</span>)<br></code></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span><br><span class="hljs-keyword">let</span> store = useStore()<br><span class="hljs-built_in">console</span>.log(store.state.name)<br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="pinia的挂载过程"><a href="#pinia的挂载过程" class="headerlink" title="pinia的挂载过程"></a>pinia的挂载过程</h4><p>mian.js中引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"vue"</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">"./App.vue"</span><br><span class="hljs-keyword">import</span> &#123;createPinia&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'pinia'</span><br><span class="hljs-keyword">const</span> pinia = createPinia()<br>createApp(App).use(pinia).mount(<span class="hljs-string">"#app"</span>)<br></code></pre></td></tr></table></figure>
+
+<p>创建store目录，目录一下每一个文件相当于一个模块，无需嵌套（通过modules引入）的方式引入模块。</p>
+<p>store/storeA.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"pinia"</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> storeA = defineStore(<span class="hljs-string">"storeA"</span>, &#123;<br>  state: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      name: <span class="hljs-string">"YoLin"</span>,<br>    &#125;;<br>  &#125;,<br>  getters: &#123;&#125;,<br>  actions: &#123;&#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; storeA &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@/store/storeA'</span><br><span class="hljs-keyword">let</span> storeA = storeA()<br><span class="hljs-built_in">console</span>.log(storeA.name)<br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以对比看出pinia中没有mutations和mudules，在vuex中修改state需要调用mutations里的函数，才能达到追踪数据变化的目的，而pinia不需要，同步和异步都定义在actions中进行操作。pinia不需要嵌套的方式引入，一个store文件就是一个模块。</p>
+<h3 id="修改状态"><a href="#修改状态" class="headerlink" title="修改状态"></a>修改状态</h3><ul>
+<li><p>vuex</p>
+<p>非严格模式下，可以直接修改,但这样vuex不能够记录每一次state的变化记录，影响我们的调试</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span><br><span class="hljs-keyword">let</span> store = useStore()<br>vuexStore.state.name = <span class="hljs-string">'hello YoLin'</span><br><span class="hljs-built_in">console</span>.log(store.state.name)<br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>严格模式下，则必须通过mutations进行修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// store/index.js</span><br><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"vuex"</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(&#123;<br>  strict: <span class="hljs-literal">true</span>,<br>  state: &#123;<br>    name: <span class="hljs-string">"YoLin"</span>,<br>  &#125;,<br>  mutations: &#123;<br>    setName(state, data) &#123;<br>      state.name = data;<br>    &#125;,<br>  &#125;,<br>	...<br>&#125;);<br>  <br><span class="hljs-comment">// App.vue</span><br>&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span><br><span class="hljs-keyword">let</span> store = useStore()<br>store.commit(<span class="hljs-string">'setName'</span>, <span class="hljs-string">'hello YoLin'</span>)<br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>或者在组件中通过dispatch调用actions来提交mutations进而修改state,</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// store/index.js</span><br><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"vuex"</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(&#123;<br>  strict: <span class="hljs-literal">true</span>,<br>  state: &#123;<br>    name: <span class="hljs-string">"YoLin"</span>,<br>  &#125;,<br>  mutations: &#123;<br>    setName(state, data) &#123;<br>      state.name = data;<br>    &#125;<br>  &#125;,<br>  actions: &#123;<br>    changeName(&#123; commit &#125;, value) &#123;<br>      commit(<span class="hljs-string">'setName'</span>, value)<br>    &#125;<br>  &#125;<br>	...<br>&#125;);<br><br><span class="hljs-comment">// App.vue</span><br>&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vuex'</span><br><span class="hljs-keyword">let</span> store = useStore()<br>store.dispatch(<span class="hljs-string">'changeName'</span>, <span class="hljs-string">'hello YoLin'</span>)<br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在vuex的使用中，actions中一般是先执行异步请求，当获取到后端返回的内容后，通过提交mutation的形式更新数据。</p>
+</li>
+</ul>
+<ul>
+<li><p>pinia</p>
+<p>相比vuex，pinia是可以直接修改状态的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; storeA &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@/store/storeA'</span><br><span class="hljs-keyword">let</span> storeA = storeA()<br>storeA.piniaMsg = <span class="hljs-string">'hello YoLin'</span><br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>也可以通过$patch更新一个或多个数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">storeA.$patch(&#123;<br>	name: <span class="hljs-string">'hello YoLin'</span>,<br>	...<br>&#125;)<br> <span class="hljs-comment">// or function</span><br>storeA.$patch(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;<br>  state.name = <span class="hljs-string">'hello YoLin'</span><br>  ...<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>或者通过actions进行修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"pinia"</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> storeA = defineStore(<span class="hljs-string">"storeA"</span>, &#123;<br>  state: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      name: <span class="hljs-string">"YoLin"</span>,<br>    &#125;;<br>  &#125;,<br>  actions: &#123;<br>    setName(data) &#123;<br>      <span class="hljs-keyword">this</span>.name = data<br>    &#125;<br>  &#125;<br>&#125;)<br><br><span class="hljs-comment">// App.vue</span><br><span class="hljs-keyword">import</span> &#123; storeA &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@/store/storeA'</span><br><span class="hljs-keyword">let</span> storeA = storeA()<br>storeA.setName(<span class="hljs-string">'YoLinDeng'</span>)<br></code></pre></td></tr></table></figure>
+
+<p>重置state可以通过$reset </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">storeA.$reset()<br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="pinia解构"><a href="#pinia解构" class="headerlink" title="pinia解构"></a>pinia解构</h3><p>当使用es6的解构赋值对state进行解构的时候，state会失去响应式，这个时候可以使用<code>storeToRefs</code>来避免state失去响应式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; storeA &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'@/store/storeA'</span><br><span class="hljs-keyword">import</span> &#123; storeToRefs &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'pinia'</span><br><span class="hljs-keyword">let</span> storeA = storeA()<br><span class="hljs-keyword">let</span> &#123; name &#125; = storeToRefs(storeA)<br></code></pre></td></tr></table></figure>
+
+<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><p>对于getters来说vuex和pinia是一致的，它可以监听对应state的变化，动态计算返回值，getters的值也具有缓存特性，也就是只有在首次和依赖方式改变的时候才会触发getters函数执行。</p>
+<h3 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h3><p>如果项目比较大的情况，如果只使用单一模块，会显得十分的臃肿难维护，vuex允许将其分割成模块（modules），每个模块单独维护自己的state、getters、mutations、actions，而pinia每个状态库本身就是一个模块。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/tags/javaScript/">javaScript</a>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/tags/vuex/">vuex</a>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/tags/pinia/">pinia</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my-hexo-blog/2022/09/01/%E9%95%BF%E5%88%97%E8%A1%A8%E4%BC%98%E5%8C%96%E4%B9%8B%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">长列表优化之虚拟列表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my-hexo-blog/2022/08/19/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E5%8C%96%E5%AE%9E%E8%B7%B5/">
+                        <span class="hidden-mobile">前端项目代码提交规范化实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/my-hexo-blog/js/debouncer.js" ></script>
+<script  src="/my-hexo-blog/js/events.js" ></script>
+<script  src="/my-hexo-blog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my-hexo-blog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/my-hexo-blog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/my-hexo-blog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my-hexo-blog/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -181,6 +181,165 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/my-hexo-blog/2022/09/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8CH5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%AE%8C%E6%88%90%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E9%97%AD%E7%8E%AF/">微信小程序内嵌H5页面，完成微信支付闭环</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2022/09/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8CH5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%AE%8C%E6%88%90%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E9%97%AD%E7%8E%AF/">
+          
+          
+            
+          
+          前言本文介绍如何在小程序中内嵌H5，并完成微信支付的整个流程闭环。我们知道微信H5支付是通过生成特定的支付链接，并跳转到这个链接去完成支付操作的。但在微信小程序中对于内嵌的页面域名具有白名单限制，如果支付链接是第三方的无法做加白处理。
+这个时候我们就得换个思路了，该怎么解决呢？咱们往下看。
+实现过程小程序入口在微信小程序中新建一个页面，使用web-view组件作为内嵌H5的入口，由于后续支付需要用
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-06 13:36" pubdate>
+              2022-09-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/my-hexo-blog/2022/09/01/%E9%95%BF%E5%88%97%E8%A1%A8%E4%BC%98%E5%8C%96%E4%B9%8B%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">长列表优化之虚拟列表</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2022/09/01/%E9%95%BF%E5%88%97%E8%A1%A8%E4%BC%98%E5%8C%96%E4%B9%8B%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
+          
+          
+            
+          
+          前言虚拟列表是前端长列表优化的一个解决方案，就是将一个需要渲染所以列表项的长列表，改为只渲染可视区域内的列表项，但滚动效果还是要和渲染所有列表项的长列表一样。
+使用场景： 在移动端使用下拉加载数据的时候，随着不断从服务端拉取数据，数据列表内容越来越多，导致创建了很多的节点，这个时候vue的diff就需要对比很多次，造成性能消耗和内存占用。
+长列表渲染大量节点导致的问题：
+
+占用大量 GPU 资源，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-01 17:35" pubdate>
+              2022-09-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/my-hexo-blog/2022/08/26/%E4%BA%86%E8%A7%A3pinia%EF%BC%8C%E5%AE%83vuex%E7%9B%B8%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">了解pinia，它vuex相比有什么不同？</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2022/08/26/%E4%BA%86%E8%A7%A3pinia%EF%BC%8C%E5%AE%83vuex%E7%9B%B8%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">
+          
+          
+            
+          
+          Pinia 与vuex都是vue的全局状态管理器，可以说pinia就是vuex5，接下来本文通过vue3的形式来对比一下这两个全局状态管理器有何不同点。
+安装12345// vuexnpm i vuex -S// pinia npm i pinia -S
+
+挂载两个状态管理器都需要在main.js中挂载到vue实例上
+vuex的挂载过程在src下新建store/index.js目录
+1234567
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-26 13:33" pubdate>
+              2022-08-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
+            
+              <a href="/my-hexo-blog/tags/vuex/">vuex</a>
+            
+              <a href="/my-hexo-blog/tags/pinia/">pinia</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/my-hexo-blog/2022/08/19/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83%E5%8C%96%E5%AE%9E%E8%B7%B5/">前端项目代码提交规范化实践</a>
       </h1>
 
@@ -552,179 +711,11 @@ HTTPS需要SSL，SSL 证书需要钱，功能越强大的证书费用越高
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2022/02/17/webpack%E7%9B%B8%E5%85%B3/">webpack相关</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2022/02/17/webpack%E7%9B%B8%E5%85%B3/">
-          
-          
-            
-          
-          webpack的理解，解决了什么问题？webpack 是一个用于现代JavaScript应用程序的静态模块打包工具
-webpack可以解决一下几个问题：
-
-需要通过模块化的方式来开发
-使用一些高级特性来提高开发效率，比如通过ES6+、TS开发脚本逻辑，scss、less等CSS扩展语言来编写css
-监听文件的变化来并且反映到浏览器上，提高开发的效率（热更新）
-开发完毕后需要对代码进行压缩、合并以及
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-17 20:08" pubdate>
-              2022-02-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/">前端工程化</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/webpack/">webpack</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2022/02/16/%E6%89%8B%E5%86%99Promise%E5%8F%8A%E5%85%B6%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/">手写Promise及其静态方法</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2022/02/16/%E6%89%8B%E5%86%99Promise%E5%8F%8A%E5%85%B6%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/">
-          
-          
-            
-          
-          Promise.resolve
-1、Promise.resolve最终结果还是一个Promise，并且与Promise.resolve(该值)传入的值息息相关
-2、传入的参数可以是一个Promise实例，那么该函数执行的结果是直接将实例返回
-3、这里最主要需要理解跟随，可以理解成Promise最终状态就是这个thenable对象输出的值
-
-源码实现
-12345678910Promise.myRes
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-16 22:41" pubdate>
-              2022-02-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
-            
-              <a href="/my-hexo-blog/tags/Promise/">Promise</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2021/11/02/commonJs%E4%B8%8EESModule%E7%9A%84%E5%8C%BA%E5%88%AB/">commonJs与ESModule的区别</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2021/11/02/commonJs%E4%B8%8EESModule%E7%9A%84%E5%8C%BA%E5%88%AB/">
-          
-          
-            
-          
-          开篇学习之前引出几个问题：
-
-Commonjs 和 Es Module 有什么区别 ？
-Commonjs 如何解决的循环引用问题 ？
-Es Module 如何解决循环引用问题 ？
-exports 和 module.exports 有何不同？
-require 模块查找机制 ？
-import() 的动态引入？
-Es Module 如何改变模块下的私有变量 ？
-
-模块化开发很容易存在全局污染和依赖管理混
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-02 15:48" pubdate>
-              2021-11-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/my-hexo-blog/page/2/">2</a><a class="page-number" href="/my-hexo-blog/page/3/">3</a><a class="page-number" href="/my-hexo-blog/page/4/">4</a><a class="extend next" rel="next" href="/my-hexo-blog/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/my-hexo-blog/page/2/">2</a><a class="page-number" href="/my-hexo-blog/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/my-hexo-blog/page/5/">5</a><a class="extend next" rel="next" href="/my-hexo-blog/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

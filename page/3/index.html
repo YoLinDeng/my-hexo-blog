@@ -181,6 +181,161 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/my-hexo-blog/2021/06/23/v8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">v8垃圾回收机制</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2021/06/23/v8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
+          
+          
+            
+          
+          1、为何需要垃圾回收在v8引擎执行js代码的过程中，当遇到函数的情况时，会为其创建一个函数执行的上下文，并添加到调用堆栈的栈顶，函数的作用域中包含了该函数中声明的所以变量，当函数执行完毕后，对面的执行上下文会从栈顶弹出，函数的作用域随之销毁，其包括的所以变量也会统一释放并自动回收。如果不回收，必然导致内存暴增，引发内存泄漏。
+2、v8引擎的内存限制由于js的单线程机制和垃圾回收机制，V8引擎为了减
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-23 11:11" pubdate>
+              2021-06-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/my-hexo-blog/2021/06/17/this%E3%80%81call%E3%80%81apply%E3%80%81bind/">this、call、apply、bind</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2021/06/17/this%E3%80%81call%E3%80%81apply%E3%80%81bind/">
+          
+          
+            
+          
+          this在JavaScript中，this的指向是调用时决定的，而不是创建时决定的，this永远指向最后调用它的那个对象。
+全局上下文在全局上下文中，this指全局对象
+
+this等价于window对象
+var === this. === window.在浏览器里面this等价于window对象，如果你声明一些全局变量，这些变量都会作为this的属性。
+
+函数上下文在函数内部，this的值取决于函
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-17 18:05" pubdate>
+              2021-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/my-hexo-blog/2021/06/17/instanceof%E3%80%81typeof/">instanceof、typeof</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2021/06/17/instanceof%E3%80%81typeof/">
+          
+          
+            
+          
+          typeof实现原理typeof用于判断变量的类型，可以判断number、string、object、undefined、function、boolean、symbol 这7种类型，判断不是object类型的时候可以比较清楚的告诉我们具体是哪一类，但不能明确告诉我们object是哪一种。由于js底层存储变量的时候，会在变量的机器码的低位1-3位存储其类型信息。
+
+000：对象
+010：浮点数
+10
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-17 18:00" pubdate>
+              2021-06-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/my-hexo-blog/2021/06/17/%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/">原型、继承</a>
       </h1>
 
@@ -547,163 +702,11 @@ target被 Proxy 代理虚拟化的对象。语法const p = new Proxy(tar
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2021/05/21/vue-cli%E4%B8%AD%E4%BD%BF%E7%94%A8svgIcon/">vue-cli中使用svgIcon</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2021/05/21/vue-cli%E4%B8%AD%E4%BD%BF%E7%94%A8svgIcon/">
-          
-          
-            
-          
-          一、安装依赖包123npm install svg-sprite-loader -D或者yarn add svg-sprite-loader -D
-二、配置vue.config.js文件在顶部写入
-1234const path = require('path')function resolve (dir) &#123;  return path.join(__dirname, dir)&#125;
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:28" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a>
-            
-              <a href="/my-hexo-blog/tags/vue/">vue</a>
-            
-              <a href="/my-hexo-blog/tags/%E7%BB%84%E4%BB%B6%E5%8C%96/">组件化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2021/05/21/vue%E4%B8%AD%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E4%B9%8BfindComponents/">vue中组件通信之findComponents</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2021/05/21/vue%E4%B8%AD%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E4%B9%8BfindComponents/">
-          
-          
-            
-          
-          123456789101112131415161718192021222324252627282930313233343536373839// 向上查找组件 context为当前组件上下文对象，componentName为组件名const findUpwardComponent = (context, componentName) =&gt; &#123;    let parent = cont
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:27" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
-            
-              <a href="/my-hexo-blog/tags/vue/">vue</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2021/05/21/scss%E5%AE%9E%E7%8E%B0retina%E5%B1%8F1px%E8%BE%B9%E6%A1%86/">scss实现retina屏1px边框</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2021/05/21/scss%E5%AE%9E%E7%8E%B0retina%E5%B1%8F1px%E8%BE%B9%E6%A1%86/">
-          
-          
-            
-          
-          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455// =======================//  用法：  //  @include retina-border(1,1,1,1);//  数值 代表 各 边框的宽度  上右下左// ==
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-21 11:25" pubdate>
-              2021-05-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/scss/">scss</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/my-hexo-blog/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/my-hexo-blog/">1</a><a class="page-number" href="/my-hexo-blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/my-hexo-blog/page/4/">4</a><a class="extend next" rel="next" href="/my-hexo-blog/page/4/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/my-hexo-blog/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/my-hexo-blog/">1</a><a class="page-number" href="/my-hexo-blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/my-hexo-blog/page/4/">4</a><a class="page-number" href="/my-hexo-blog/page/5/">5</a><a class="extend next" rel="next" href="/my-hexo-blog/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

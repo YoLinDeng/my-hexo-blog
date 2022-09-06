@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-hexo-blog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/my-hexo-blog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>长列表优化之虚拟列表 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my-hexo-blog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my-hexo-blog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.github.io","root":"/my-hexo-blog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/my-hexo-blog/js/utils.js" ></script>
+  <script  src="/my-hexo-blog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my-hexo-blog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/my-hexo-blog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="长列表优化之虚拟列表">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-01 17:35" pubdate>
+        2022年9月1日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      643 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">长列表优化之虚拟列表</h1>
+            
+            <div class="markdown-body">
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>虚拟列表是前端长列表优化的一个解决方案，就是将一个需要渲染所以列表项的长列表，改为只渲染可视区域内的列表项，但滚动效果还是要和渲染所有列表项的长列表一样。</p>
+<p>使用场景： 在移动端使用下拉加载数据的时候，随着不断从服务端拉取数据，数据列表内容越来越多，导致创建了很多的节点，这个时候vue的diff就需要对比很多次，造成性能消耗和内存占用。</p>
+<p>长列表渲染大量节点导致的问题：</p>
+<ul>
+<li>占用大量 GPU 资源，导致卡顿</li>
+<li>节点越多，就越耗费性能</li>
+</ul>
+<p>虚拟列表的实现分两种：</p>
+<ul>
+<li>列表项高度固定</li>
+<li>列表项高度动态</li>
+</ul>
+<p>下面以列表项高度固定为例子</p>
+<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><p>在编码之前需要了解的信息：</p>
+<ul>
+<li>容器高度（可视区高度）：viewport</li>
+<li>列表项高度：itemSize</li>
+<li>可视区域展示列表个数： viewCount</li>
+<li>列表长度：phantomHeight （itemSize * 列表个数）</li>
+<li>第一个元素顶部的距离：startOffset</li>
+<li>开始元素的下标： startIndex</li>
+<li>结尾元素的下标： endIndex</li>
+</ul>
+<p>关键点就是确定需要渲染个列表个数，然后根据滚动时动态改变startIndex、endIndex、startOffset值，然后对列表项数据进行过滤切割，获取需要渲染的数据列表。</p>
+<p>实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup lang&#x3D;&#39;ts&#39;&gt;<br>import &#123; PropType, ref, computed &#125; from &#39;vue&#39;<br>interface listItem &#123;<br>  index: number,<br>  num: number<br>&#125;<br>const props &#x3D; defineProps(&#123;<br>  data: &#123;<br>    type: Array as PropType&lt;listItem[]&gt;,<br>    default: () &#x3D;&gt; &#123;&#125;<br>  &#125;<br>&#125;)<br>const viewport &#x3D; ref&lt;HTMLElement&gt;()<br>let startIndex &#x3D; ref&lt;number&gt;(0)<br>let itemSize &#x3D; 100<br>let viewCount &#x3D; 10<br>let phantomHeight &#x3D; itemSize * props.data.length<br><br>let startOffset &#x3D; computed(() &#x3D;&gt; &#123;<br>  return startIndex.value * itemSize<br>&#125;)<br><br>let endIndex &#x3D; computed(() &#x3D;&gt; &#123;<br>  return startIndex.value + viewCount<br>&#125;)<br>let filterData &#x3D; computed(() &#x3D;&gt; &#123;<br>  return props.data.slice(startIndex.value, endIndex.value)<br>&#125;)<br>const scrollListBox &#x3D; () &#x3D;&gt; &#123;<br>  startIndex.value &#x3D; Math.floor((viewport.value?.scrollTop || 0) &#x2F; itemSize)<br>&#125;<br>&lt;&#x2F;script&gt;<br><br>&lt;template&gt;<br>&#123;&#123;startIndex&#125;&#125;<br>&#123;&#123;endIndex&#125;&#125;<br>  &lt;div class&#x3D;&quot;viewport&quot; @scroll&#x3D;&quot;scrollListBox&quot; ref&#x3D;&quot;viewport&quot;&gt;<br>    &lt;div class&#x3D;&quot;v-list&quot; :style&#x3D;&quot;&#123; height: phantomHeight + &#39;px&#39;, paddingTop: startOffset + &#39;px&#39;&#125;&quot;&gt;<br>      &lt;div class&#x3D;&quot;v-list-item&quot; v-for&#x3D;&quot;item in filterData&quot; :key&#x3D;&quot;item.num&quot;&gt;<br>        &#123;&#123;item.num&#125;&#125;<br>      &lt;&#x2F;div&gt;<br>    &lt;&#x2F;div&gt;<br>  &lt;&#x2F;div&gt;<br>&lt;&#x2F;template&gt;<br><br>&lt;style scoped&gt;<br>.viewport &#123;<br>  width: 500px;<br>  height: 500px;<br>  overflow: scroll;<br>&#125;<br>.v-list-item &#123;<br>  height: 100px;<br>  width: 100%;<br>  background: #fff;<br>  color: #000;<br>  line-height: 100px;<br>  border-bottom: 1px solid #ccc;<br>&#125;<br>&lt;&#x2F;style&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my-hexo-blog/2022/09/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8CH5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%AE%8C%E6%88%90%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E9%97%AD%E7%8E%AF/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">微信小程序内嵌H5页面，完成微信支付闭环</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my-hexo-blog/2022/08/26/%E4%BA%86%E8%A7%A3pinia%EF%BC%8C%E5%AE%83vuex%E7%9B%B8%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">
+                        <span class="hidden-mobile">了解pinia，它vuex相比有什么不同？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/my-hexo-blog/js/debouncer.js" ></script>
+<script  src="/my-hexo-blog/js/events.js" ></script>
+<script  src="/my-hexo-blog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my-hexo-blog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/my-hexo-blog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/my-hexo-blog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my-hexo-blog/js/boot.js" ></script>
+
+
+
+</body>
+</html>
