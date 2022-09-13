@@ -17,7 +17,7 @@
   <meta name="description" content="YoLinDeng blog">
   <meta name="author" content="YoLin Deng">
   <meta name="keywords" content="">
-  <title>微信小程序内嵌H5页面，完成微信支付闭环 - YoLinDeng&#39;s blog</title>
+  <title>ES6的代理模式 - YoLinDeng&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="微信小程序内嵌H5页面，完成微信支付闭环">
+            <span class="h2" id="subtitle" title="ES6的代理模式">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-09-06 13:36" pubdate>
-        2022年9月6日 下午
+      <time datetime="2022-09-13 18:09" pubdate>
+        2022年9月13日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      731 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      10
        分钟
     </span>
   
@@ -224,36 +224,61 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">微信小程序内嵌H5页面，完成微信支付闭环</h1>
+            <h1 style="display: none">ES6的代理模式</h1>
             
             <div class="markdown-body">
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文介绍如何在小程序中内嵌H5，并完成微信支付的整个流程闭环。我们知道微信H5支付是通过生成特定的支付链接，并跳转到这个链接去完成支付操作的。但在微信小程序中对于内嵌的页面域名具有白名单限制，如果支付链接是第三方的无法做加白处理。</p>
-<p>这个时候我们就得换个思路了，该怎么解决呢？咱们往下看。</p>
-<h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><h4 id="小程序入口"><a href="#小程序入口" class="headerlink" title="小程序入口"></a>小程序入口</h4><p>在微信小程序中新建一个页面，使用web-view组件作为内嵌H5的入口，由于后续支付需要用到<strong>appId</strong>以及<strong>openId</strong>信息，因此需要对url做带参做处理</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">// page.wxml<br><span class="hljs-tag">&lt;<span class="hljs-name">web-view</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"&#123;&#123;url&#125;&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">web-view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+              <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, handle)<br></code></pre></td></tr></table></figure>
 
-<p>url处理逻辑：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js">Page(&#123;<br>	data: &#123;<br>    url: <span class="hljs-string">''</span><br>  &#125;,<br>  onLoad: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>&#123;<br>    wx.showLoading()<br>    wx.login(&#123;<br>      success: <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>        <span class="hljs-keyword">const</span> code = res.code<br>        api.getUserOpenId(&#123;<br>          code<br>        &#125;, data =&gt; &#123;<br>          <span class="hljs-keyword">const</span> openId = data.bean<br>          <span class="hljs-keyword">const</span> params = &#123;<br>            wxAppletId: <span class="hljs-string">'your appId'</span>,<br>            wxAppletOpenId: openId,<br>            ...options <span class="hljs-comment">// 小程序启动路径的参数</span><br>          &#125;<br>          <span class="hljs-keyword">this</span>.setData(&#123;<br>            url: <span class="hljs-keyword">this</span>.stringifyUrlArgs(<span class="hljs-string">'your h5 url'</span>, params)<br>          &#125;)<br>          wx.hideLoading()<br>        &#125;)<br>      &#125;<br>    &#125;)<br>  &#125;,<br>  stringifyUrlArgs(url, params) =&gt; &#123;<br>    url += (<span class="hljs-regexp">/\?/</span>).test(url) ? <span class="hljs-string">'&amp;'</span> : <span class="hljs-string">'?'</span><br>    url += <span class="hljs-built_in">Object</span>.keys(params).map(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=<span class="hljs-subst">$&#123;params[key]&#125;</span>`</span>).join(<span class="hljs-string">'&amp;'</span>)<br>    <span class="hljs-keyword">return</span> url<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>在页面onload的时候，调用API<strong>wx.login</strong>获取code，传递给后端换取该用户的<strong>openId</strong>，然后将appId、openId、以及启动路径参数拼接到你的H5 url 后面。这个url可以是个短链，方便后续修改不需要重新提交小程序代码审核，缩短发版的时间。只需要去修改该短链对应的H5链接即可。</p>
-<h4 id="H5-页面处理"><a href="#H5-页面处理" class="headerlink" title="H5 页面处理"></a>H5 页面处理</h4><p>当我们在小程序入口处理好url后，会通过web-view组件进行访问H5链接，这个时候链接上携带了支付所必需的参数，我们上面提到如果这时候H5页面仍然还是调用生成H5支付链接的方式的话，会有页面白名单限制，导致第三方支付链接页面无法访问的情况。</p>
-<p>这个时候我们可以绕开这个点，竟然是在小程序内部，我们可不可以使用<strong>小程序支付</strong>呢？答案当然是可以！</p>
-<p><strong>处理的过程：</strong></p>
-<p>H5页面请求后端支付接口获取微信小程序支付所必须的参数，这个时候appId和openId都是必要的，其他的信息则根据具体需求而定。</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 微信小程序支付参数</span><br><span class="hljs-keyword">interface</span> appletPayParams &#123;<br>  	timeStamp: <span class="hljs-string">'string'</span>, <span class="hljs-comment">// 时间戳，从 1970 年 1 月 1 日 00:00:00 至今的秒数，即当前的时间</span><br>    nonceStr: <span class="hljs-string">'string'</span>, <span class="hljs-comment">// 随机字符串，长度为32个字符以下</span><br>    package: <span class="hljs-string">'string'</span>, <span class="hljs-comment">// 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***</span><br>    signType?: <span class="hljs-string">'string'</span>, <span class="hljs-comment">// 签名算法，应与后台下单时的值一致</span><br>    paySign: <span class="hljs-string">'string'</span> <span class="hljs-comment">// 签名，具体见微信支付文档</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>由于H5是内嵌在小程序的web-view里面，当成功从后端获取到支付所需的参数后，需要通过web-view 跳到内部小程序的方式，跳转到对应的小程序支付页面进行支付操作，这个时候得使用wx.miniProgram.redirectTo进行处理，将获取到的支付参数encodeURIComponent一下再拼接到链接上。注意url是一个相对路径，如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">wx.miniProgram.redirectTo(&#123; <span class="hljs-attr">url</span>: <span class="hljs-string">`../insure-pay/insure-pay?payData=<span class="hljs-subst">$&#123;<span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-built_in">JSON</span>.stringify(bean.applet))&#125;</span>`</span> &#125;)<br></code></pre></td></tr></table></figure>
-
-<h4 id="小程序支付页"><a href="#小程序支付页" class="headerlink" title="小程序支付页"></a>小程序支付页</h4><p>新建一个支付页面，当从web-view内嵌H5页面跳转到支付页的时候，处理支付的逻辑处理，如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js">Page(&#123;<br>  onLoad: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> payData = <span class="hljs-built_in">decodeURIComponent</span>(options.payData) <span class="hljs-comment">// 支付参数</span><br>    <span class="hljs-keyword">let</span> pageSuccessUrl = <span class="hljs-string">'../pay-success/pay-success'</span> <span class="hljs-comment">// 成功页</span><br>    <span class="hljs-keyword">let</span> pageFailUrl = <span class="hljs-string">'./insure-repay/insure-repay'</span> <span class="hljs-comment">// 失败页，重新支付</span><br>    wx.requestPayment(&#123;<br>      ...JSON.parse(payData),<br>      success(res) &#123;<br>        wx.redirectTo(&#123;<br>          url: pageSuccessUrl,<br>        &#125;)<br>      &#125;,<br>      fail(err) &#123;<br>        <span class="hljs-built_in">console</span>.log(err)<br>        wx.redirectTo(&#123;<br>          url: <span class="hljs-string">`<span class="hljs-subst">$&#123;pageFailUrl&#125;</span>?payData=<span class="hljs-subst">$&#123;options.payData&#125;</span>`</span>,<br>        &#125;)<br>      &#125;<br>    &#125;)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
-
-<p>进入到支付页，会通过<strong>wx.requestPayment</strong>调起支付，将链接上的参数decodeURIComponent出来，传入API中，可通过回调函数success和fail监听成功和失败，并跳转到不同的处理页面。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大致的流程可以总结为一下几点：</p>
 <ul>
-<li>在微信小程序建立一个入口页面，通过web-view内嵌H5，在这个页面onload的时候获取用户的openId以及appId并携带到H5链接上</li>
-<li>在H5中获取链接携带的appId和openId，请求后端获取小程序支付所需的参数，并通过wx.miniProgram.redirectTo，从web-view重定向到小程序支付页。</li>
-<li>在小程序支付页获取链接上携带的支付参数，通过wx.requestPaymen唤起支付，并处理成功和失败的逻辑。</li>
+<li>target: 使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理</li>
+<li>handle: 一个通常以函数作为属性的对象，用来定制拦截行为</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 例子</span><br><span class="hljs-keyword">let</span> obj = &#123;&#125;<br><span class="hljs-keyword">let</span> proxyObj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(obj, &#123;<br>	<span class="hljs-keyword">get</span>: function(target, propKey, receiver) &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">'6'</span><br>	&#125;<br>&#125;)<br>proxyObj.a <span class="hljs-comment">// '6'</span><br>obj.a <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure>
+
+<p>代理只会对<code>proxy</code>对象生效，原对象没有效果。</p>
+<h3 id="Handler-对象常用的方法"><a href="#Handler-对象常用的方法" class="headerlink" title="Handler 对象常用的方法"></a>Handler 对象常用的方法</h3><ul>
+<li>has： in 操作符的捕捉器。</li>
+<li>get： 属性读取操作的捕捉器</li>
+<li>set: 属性读取操作的捕捉器</li>
+<li>deleteProperty: delete 操作符的捕捉器</li>
+<li>ownKeys: Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器。</li>
+<li>apply: 函数调用操作的捕捉器。</li>
+<li>construct: new 操作符的捕捉器</li>
+</ul>
+<p><strong>hander.get</strong></p>
+<p>用于代理目标对象的属性读取操作, 授受三个参数 <code>get(target, propKey, ?receiver)</code></p>
+<ul>
+<li><p>target 目标对象</p>
+</li>
+<li><p>propkey 属性名</p>
+</li>
+<li><p>receiver Proxy 实例本身</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> person = &#123;<br>  like: <span class="hljs-string">"sing dance rap basketball"</span><br>&#125;<br><br><span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(person, &#123;<br>  <span class="hljs-keyword">get</span>: function(target, propKey) &#123;<br>    <span class="hljs-keyword">if</span> (propKey <span class="hljs-keyword">in</span> target) &#123;<br>      <span class="hljs-keyword">return</span> target[propKey];<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">ReferenceError</span>(<span class="hljs-string">"Prop name \""</span> + propKey + <span class="hljs-string">"\" does not exist."</span>);<br>    &#125;<br>  &#125;<br>&#125;)<br>obj.like <span class="hljs-comment">// sing dance rap basketball</span><br>obj.cxk <span class="hljs-comment">// Uncaught ReferenceError: Prop name "cxk" does not exist.</span><br><span class="hljs-comment">// 在读取代理目标的值时，如果有值则直接返回，没有值就抛出一个自定义的错误</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li>如果要访问的目标属性是不可写以及不可配置的，则返回的值必须与该目标属性的值相同</li>
+<li>如果要访问的目标属性没有配置访问方法，即get方法是undefined的，则返回值必须为undefined</li>
+</ul>
+</li>
+</ul>
+<h3 id="可撤消的Proxy"><a href="#可撤消的Proxy" class="headerlink" title="可撤消的Proxy"></a>可撤消的Proxy</h3><p>proxy 有一个唯一静态的方法，<code>Proxy.revocable(target, handler)</code>, 可以用来创建一个可撤销的代理对象</p>
+<p>该方法的返回值是一个对象，其结构为： <code>{&quot;proxy&quot;: proxy, &quot;revoke&quot;: revoke}</code></p>
+<ul>
+<li>proxy 表示新生成的代理对象本身，和用一般方式 new Proxy(target, handler) 创建的代理对象没什么不同，只是它可以被撤销掉。</li>
+<li>revoke 撤销方法，调用的时候不需要加任何参数，就可以撤销掉和它一起生成的那个代理对象。</li>
+</ul>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li><h3 id="校验器"><a href="#校验器" class="headerlink" title="校验器"></a><strong>校验器</strong></h3><p>使用<code>Proxy</code>实现一个逻辑分离的数据格式验证器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123;<br>  id: <span class="hljs-number">123</span>,<br> 	name: <span class="hljs-string">'alice'</span><br>&#125;<br><br><span class="hljs-keyword">const</span> validators = &#123;<br>  name(val) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> val === <span class="hljs-string">'string'</span><br>  &#125;,<br>  id(val) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> val === <span class="hljs-string">'number'</span><br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> createValidator = <span class="hljs-function">(<span class="hljs-params">target, validator</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, &#123;<br>    _validator: validator,<br>    <span class="hljs-keyword">set</span>(target, propkey, value, proxy) &#123;<br>      <span class="hljs-keyword">let</span> validator = <span class="hljs-keyword">this</span>._validator[propKey](value)<br>      <span class="hljs-keyword">if</span> (validator) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(target, propkey, value, proxy)<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Cannot set <span class="hljs-subst">$&#123;propkey&#125;</span> to <span class="hljs-subst">$&#123;value&#125;</span>. Invalid type.`</span>)<br>      &#125;<br>    &#125;<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h3><p>使用Proxy轻松实现私有属性拦截</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> target = &#123;<br>	_id: <span class="hljs-number">123</span><br>&#125;<br><br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, &#123;<br>  <span class="hljs-keyword">get</span>(target, propkey, proxy) &#123;<br>    <span class="hljs-keyword">if</span> (propkey[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>) &#123;<br>      <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;propkey&#125;</span> is restricted`</span>)<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.get(target, propkey, proxy)<br>  &#125;,<br>  <span class="hljs-keyword">set</span>(target, propkey, value, proxy) &#123;<br>    <span class="hljs-keyword">if</span>(propkey[<span class="hljs-number">0</span>] === <span class="hljs-string">'_'</span>)&#123;<br>      <span class="hljs-keyword">throw</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;propkey&#125;</span> is restricted`</span>)<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(target, propkey, value, proxy)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
 </ul>
 
             </div>
@@ -264,7 +289,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                      <a class="hover-with-bg" href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
                     
                   </div>
                 
@@ -272,7 +297,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/my-hexo-blog/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+                      <a class="hover-with-bg" href="/my-hexo-blog/tags/javaScript/">javaScript</a>
                     
                   </div>
                 
@@ -285,18 +310,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/my-hexo-blog/2022/09/11/vue%E7%BB%84%E5%90%88%E5%BC%8FAPI%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vue组合式API相关知识</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/my-hexo-blog/2022/09/01/%E9%95%BF%E5%88%97%E8%A1%A8%E4%BC%98%E5%8C%96%E4%B9%8B%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
-                        <span class="hidden-mobile">长列表优化之虚拟列表</span>
+                      <a href="/my-hexo-blog/2022/09/11/vue%E7%BB%84%E5%90%88%E5%BC%8FAPI%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+                        <span class="hidden-mobile">vue组合式API相关知识</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

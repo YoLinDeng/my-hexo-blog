@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-hexo-blog/img/lampbulb.png">
+  <link rel="icon" type="image/png" href="/my-hexo-blog/img/lampbulb.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="YoLinDeng blog">
+  <meta name="author" content="YoLin Deng">
+  <meta name="keywords" content="">
+  <title>vue组合式API相关知识 - YoLinDeng&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my-hexo-blog/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my-hexo-blog/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yolindeng.github.io","root":"/my-hexo-blog/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/my-hexo-blog/js/utils.js" ></script>
+  <script  src="/my-hexo-blog/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my-hexo-blog/">&nbsp;<strong>Deng</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-hexo-blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/my-hexo-blog/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="vue组合式API相关知识">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-11 15:07" pubdate>
+        2022年9月11日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue组合式API相关知识</h1>
+            
+            <div class="markdown-body">
+              <h3 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h3><p><code>setup</code> 函数是一个新的组件选项。作为在组件内使用 Composition API 的入口点</p>
+<ul>
+<li>它在创建组件实例，初始化props后调用，从生命周期的角度看，他会在<code>beforeCreate</code>钩子之前被调用</li>
+<li><code>setup</code>会返回一个对象，该对象属性会被合并到组件模板渲染的上下文中。（ref定义的数据会自动解开，无需.value引用）</li>
+<li><code>setup(props, context){}</code>,接收props作为一个参数，且是响应式的，如果对其解构则会失去响应。第二个参数是上下文对象，类似vue2中的this，可以对其进行解构获取内部的一些属性。</li>
+<li>this在setup中不可用</li>
+</ul>
+<h3 id="响应式系统API"><a href="#响应式系统API" class="headerlink" title="响应式系统API"></a>响应式系统API</h3><h4 id="reactive"><a href="#reactive" class="headerlink" title="reactive"></a>reactive</h4><p>接收一个普通对象然后返回该普通对象的响应式代理。返回的对象不等于原始的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = reactive(&#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;)<br></code></pre></td></tr></table></figure>
+
+<p>等同于 2.x 的 <code>Vue.observable()</code></p>
+<h4 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h4><p>接受一个参数值并返回一个响应式且可改变的 ref 对象。ref 对象拥有一个指向内部值的单一属性 <code>.value</code></p>
+<p>如果传入的是一个对象，则会调用reactive进行处理。</p>
+<ul>
+<li>当ref作为渲染上下文的属性（通过setup函数返回），在模板中使用会自动解套，不需要写<code>.value</code></li>
+<li>当ref作为reactive对象中的属性被访问的时候也会自动解套，从 <code>Array</code> 或者 <code>Map</code> 等原生集合类中访问 ref 时，则不会。</li>
+<li>可以通过传递范型参数来覆盖默认的推导</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> strOrNum = ref&lt;<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>&gt;(<span class="hljs-string">'123'</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h4><p>计算属性可有两种方式</p>
+<ul>
+<li><p>传入一个getter函数，返回一个不可修改的ref对象</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> count = ref&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-number">0</span>)<br><span class="hljs-keyword">const</span> comp = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count.value + <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>传入一个拥有get和set函数的对象，可手动修改</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> count = ref&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-number">0</span>)<br><span class="hljs-keyword">const</span> comp = computed(&#123;<br>  <span class="hljs-keyword">get</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count.value + <span class="hljs-number">1</span>,<br>  <span class="hljs-keyword">set</span>: <span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> &#123;<br>    count.value = val - <span class="hljs-number">1</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="readonly"><a href="#readonly" class="headerlink" title="readonly"></a>readonly</h4><p>传入一个对象（响应式、普通）或ref，返回一个只读的代理，只读代理是深层的，对象内部的任何嵌套属性都是只读的。</p>
+<h4 id="watchEffect"><a href="#watchEffect" class="headerlink" title="watchEffect"></a>watchEffect</h4><p>立即执行传入的一个函数，并响应式追踪其依赖，并在其依赖变更时重新运行该函数。</p>
+<p><strong>停止监听</strong>：</p>
+<p>当 <code>watchEffect</code> 在组件的 <code>setup()</code> 函数或生命周期钩子被调用时， 侦听器会被链接到该组件的生命周期，并在组件卸载时自动停止。</p>
+<p>也可以调用其返回值来停止监听：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> stop = watchEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>  <span class="hljs-comment">/* ... */</span><br>&#125;)<br><br><span class="hljs-comment">// 之后</span><br>stop()<br></code></pre></td></tr></table></figure>
+
+<p><strong>清理失效时的回调</strong>：</p>
+<p>副作用传入的函数可以接收一个 <code>onInvalidate</code> 函数作入参, 用来注册清理失效时的回调</p>
+<p><strong>失效回调</strong>会被触发的条件：</p>
+<ul>
+<li>副作用即将重新执行时</li>
+<li>侦听器被停止</li>
+</ul>
+<p><strong>副作用刷新时机</strong>：</p>
+<p>当一个用户定义的副作用函数进入队列时, 会在所有的组件更新后执行：</p>
+<p>可以传递一个拥有 <code>flush</code> 属性的对象作为选项，默认是‘post’，在组件更新后执行副作用，值也可以是同步‘sync’、之前‘pre’</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 同步运行</span><br>watchEffect(<br>  () =&gt; &#123;<br>    <span class="hljs-comment">/* ... */</span><br>  &#125;,<br>  &#123;<br>    flush: <span class="hljs-string">'sync'</span>,<br>  &#125;<br>)<br><br><span class="hljs-comment">// 组件更新前执行</span><br>watchEffect(<br>  () =&gt; &#123;<br>    <span class="hljs-comment">/* ... */</span><br>  &#125;,<br>  &#123;<br>    flush: <span class="hljs-string">'pre'</span>,<br>  &#125;<br>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h4><p>它类似于vue2.x的this.$watch，需要侦听特定的数据源，并在回调函数中执行副作用。默认情况是懒执行的，也就是说仅在侦听的源变更时才执行回调。</p>
+<p>与watchEffect对比，watch特点：</p>
+<ul>
+<li>懒执行副作用</li>
+<li>更明确哪些状态的改变会触发侦听器重新运行副作用</li>
+<li>访问侦听状态变化前后的值</li>
+</ul>
+<p><strong>监听单个数据源</strong></p>
+<p>监听器的数据源可以是一个getter函数也可以是ref</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> state = reactive(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">'YoLin'</span> &#125;)<br>watch(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> state.name, (curVal, prevVal) =&gt; &#123;...&#125;)<br><br><span class="hljs-keyword">const</span> name = ref(<span class="hljs-string">'YoLin'</span>)<br>watch(name, (curVal, prevVal) =&gt; &#123;<br> ... <br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>监听多个数据源</strong></p>
+<p>可以使用数组来同时侦听多个源</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">watch([ref1, ref2], ([curRef1, curRef2], [prevRef1, prevRef2]) =&gt; &#123;&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h3><p>只能在setup() 期间同步使用</p>
+<p><strong>与 2.x 版本生命周期相对应的组合式 API</strong></p>
+<ul>
+<li>beforeMount -&gt; onBeforeMount</li>
+<li>mounted -&gt; onMounted</li>
+<li>beforeUpdate -&gt; onBeforeUpdate</li>
+<li>update -&gt; onUpdated</li>
+<li>beforeDestroy -&gt; onBeforeUnmount</li>
+<li>destroy -&gt; onUnmounted</li>
+</ul>
+<p><strong>新增的钩子函数</strong> （用于调试）</p>
+<ul>
+<li><p><code>onRenderTracked</code></p>
+</li>
+<li><p><code>onRenderTriggered</code></p>
+</li>
+</ul>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>provide/inject提供依赖注入，只能在setup中调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">provide(key, <span class="hljs-string">'dark'</span>)<br>inject(key, <span class="hljs-string">'light'</span>)<br></code></pre></td></tr></table></figure>
+
+<p><code>inject</code> 接受一个可选的的默认值作为第二个参数。如果未提供默认值，并且在 provide 上下文中未找到该属性，则 <code>inject</code> 返回 <code>undefined</code>。</p>
+<h3 id="模板Refs"><a href="#模板Refs" class="headerlink" title="模板Refs"></a>模板Refs</h3><p>可以获得对模板内元素或组件实例的引用，我们可以像往常一样在 <code>setup()</code> 中声明一个 ref 并返回</p>
+<p>将root暴露在渲染上下文，通过ref=”root”,绑定到dom节点上作为其ref</p>
+<p> 在 Virtual DOM patch 算法中，如果一个 VNode 的 <code>ref</code> 对应一个渲染上下文中的 ref，则该 VNode 对应的元素或组件实例将被分配给该 ref。 这是在 Virtual DOM 的 mount / patch 过程中执行的，因此模板 ref 仅在渲染初始化后才能访问。</p>
+<ul>
+<li><strong>配合 render 函数 / JSX 的用法</strong></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  setup() &#123;<br>    <span class="hljs-keyword">const</span> root = ref(<span class="hljs-literal">null</span>)<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span><br>      h(<span class="hljs-string">'div'</span>, &#123;<br>        ref: root,<br>      &#125;)<br><br>    <span class="hljs-comment">// 使用 JSX</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;root&#125;</span> /&gt;</span></span><br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>在 <code>v-for</code> 中使用</strong></p>
+<p>使用<strong>函数型的 ref</strong>（3.0 提供的新功能）来自定义处理方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;div v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(item, i) in list"</span> :ref=<span class="hljs-string">"el =&gt; &#123; divs[i] = el &#125;"</span>&gt;<br>    &#123;&#123; item &#125;&#125;<br>  &lt;<span class="hljs-regexp">/div&gt;</span><br><span class="hljs-regexp">&lt;/</span>template&gt;<br><br>&lt;script&gt;<br>  <span class="hljs-keyword">import</span> &#123; ref, reactive, onBeforeUpdate &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span><br><br>  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    setup() &#123;<br>      <span class="hljs-keyword">const</span> list = reactive([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br>      <span class="hljs-keyword">const</span> divs = ref([])<br><br>      <span class="hljs-comment">// 确保在每次变更之前重置引用</span><br>      onBeforeUpdate(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>        divs.value = []<br>      &#125;)<br><br>      <span class="hljs-keyword">return</span> &#123;<br>        list,<br>        divs,<br>      &#125;<br>    &#125;,<br>  &#125;<br>&lt;<span class="hljs-regexp">/script&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="响应式系统工具集"><a href="#响应式系统工具集" class="headerlink" title="响应式系统工具集"></a>响应式系统工具集</h3><h4 id="unref"><a href="#unref" class="headerlink" title="unref"></a>unref</h4><p>如果参数是一个 ref 则返回它的 <code>value</code>，否则返回参数本身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> str = ref(<span class="hljs-string">'666'</span>)<br><span class="hljs-keyword">let</span> strVal = unref(str) <span class="hljs-comment">// '666'</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="toRef"><a href="#toRef" class="headerlink" title="toRef"></a>toRef</h4><p><code>toRef</code> 可以用来为一个 reactive 对象的属性创建一个 ref。这个 ref 可以被传递并且能够保持响应性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> state = reactive(&#123;<br>  foo: <span class="hljs-number">1</span>,<br>  bar: <span class="hljs-number">2</span><br>&#125;)<br><span class="hljs-keyword">let</span> fooRef = toRef(state, <span class="hljs-string">'foo'</span>)<br>fooRef.value++<br><span class="hljs-built_in">console</span>.log(state.foo) <span class="hljs-comment">// 2</span><br>state.foo++<br><span class="hljs-built_in">console</span>.log(fooRef.value) <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
+
+<p>当要将一个 prop 中的属性作为 ref 传给组合逻辑函数时，<code>toRef</code> 就派上了用场：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  setup(props) &#123;<br>    useSomeFeature(toRef(props, <span class="hljs-string">'foo'</span>))<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="toRefs"><a href="#toRefs" class="headerlink" title="toRefs"></a>toRefs</h4><p>把一个响应式对象转换成普通对象，该普通对象的每个 property 都是一个 ref ，和响应式对象 property 一一对应。</p>
+<p>当想要从一个组合逻辑函数中返回响应式对象时,用 <code>toRefs</code> 是很有效的，该 API 让消费组件可以 解构 / 扩展（使用 <code>...</code> 操作符）返回的对象，并不会丢失响应性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// hook.js</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useFeature = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>	<span class="hljs-keyword">const</span> state = reactive(&#123;<br>    a: <span class="hljs-number">1</span>,<br>    b: <span class="hljs-number">2</span><br>  &#125;)<br>  <span class="hljs-keyword">return</span> toRefs(state)<br>&#125;<br><br><span class="hljs-comment">// component or page</span><br><span class="hljs-keyword">import</span> &#123; useFeature &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./hook.js'</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  setup() &#123;<br>    <span class="hljs-comment">// 可以解构，不会丢失响应性</span><br>    <span class="hljs-keyword">const</span> &#123; a, b &#125; = useFeature()<br>    <span class="hljs-keyword">return</span> &#123;<br>      a,<br>      b,<br>    &#125;<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="isRef"><a href="#isRef" class="headerlink" title="isRef"></a>isRef</h4><p>检查一个值是否为一个 ref 对象</p>
+<h4 id="isProxy"><a href="#isProxy" class="headerlink" title="isProxy"></a>isProxy</h4><p>检查一个对象是否是由 <code>reactive</code> 或者 <code>readonly</code> 方法创建的代理</p>
+<h4 id="isReactive"><a href="#isReactive" class="headerlink" title="isReactive"></a>isReactive</h4><p>检查一个对象是否是由 <code>reactive</code> 创建的响应式代理。</p>
+<h4 id="isReadonly"><a href="#isReadonly" class="headerlink" title="isReadonly"></a>isReadonly</h4><p>检查一个对象是否是由 <code>readonly</code> 创建的只读代理。</p>
+<h3 id="高级响应式系统-API"><a href="#高级响应式系统-API" class="headerlink" title="高级响应式系统 API"></a>高级响应式系统 API</h3><h4 id="customRef"><a href="#customRef" class="headerlink" title="customRef"></a>customRef</h4><p><code>customRef</code> 用于自定义一个 <code>ref</code>，可以显式地控制依赖追踪和触发响应，接受一个工厂函数，两个参数分别是用于追踪的 <code>track</code> 与用于触发响应的 <code>trigger</code>，并返回一个一个带有 <code>get</code> 和 <code>set</code> 属性的对象</p>
+<ul>
+<li><p>使用customRef实现带防抖功能的v-model</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"text"</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useDebouncedRef</span>(<span class="hljs-params">value, delay = <span class="hljs-number">200</span></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> timer<br>  <span class="hljs-keyword">return</span> customRef(<span class="hljs-function">(<span class="hljs-params">track, trigger</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-keyword">get</span>() &#123;<br>        track()<br>        <span class="hljs-keyword">return</span> value<br>      &#125;,<br>      <span class="hljs-keyword">set</span>(newVal) &#123;<br>        clearTimeout(timer)<br>        timer = setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br>          value = newVal<br>          trigger()<br>        &#125;, delay)<br>      &#125;<br>    &#125;<br>  &#125;)<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  setup() &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      text: useDebouncedRef(<span class="hljs-string">'hello'</span>),<br>    &#125;<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="markRaw"><a href="#markRaw" class="headerlink" title="markRaw"></a>markRaw</h4><p>显式标记一个对象为“永远不会转为响应式代理”，函数返回这个对象本身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> foo = markRaw(&#123;&#125;)<br><span class="hljs-built_in">console</span>.log(isReactive(reactive(foo))) <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="shallowReactive"><a href="#shallowReactive" class="headerlink" title="shallowReactive"></a>shallowReactive</h4><p>只为某个对象的私有（第一层）属性创建浅层的响应式代理，不会对“属性的属性”做深层次、递归地响应式代理，而只是保留原样。</p>
+<h4 id="shallowReadonly"><a href="#shallowReadonly" class="headerlink" title="shallowReadonly"></a>shallowReadonly</h4><p>只为某个对象的自有（第一层）属性创建浅层的<strong>只读</strong>响应式代理，同样也不会做深层次、递归地代理，深层次的属性并不是只读的。</p>
+<h4 id="shallowRef"><a href="#shallowRef" class="headerlink" title="shallowRef"></a>shallowRef</h4><p>创建一个 ref ，将会追踪它的 <code>.value</code> 更改操作，但是并不会对变更后的 <code>.value</code> 做响应式代理转换（即变更不会调用 <code>reactive</code>）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> foo = shallowRef(&#123;&#125;)<br><span class="hljs-comment">// 更改对操作会触发响应</span><br>foo.value = &#123;&#125;<br><span class="hljs-comment">// 但上面新赋的这个对象并不会变为响应式对象</span><br>isReactive(foo.value) <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="toRaw"><a href="#toRaw" class="headerlink" title="toRaw"></a>toRaw</h4><p>返回由 <code>reactive</code> 或 <code>readonly</code> 方法转换成响应式代理的普通对象。这是一个还原方法，可用于临时读取，访问不会被代理/跟踪，写入时也不会触发更改。不建议一直持有原始对象的引用。请谨慎使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> foo = &#123;&#125;<br><span class="hljs-keyword">const</span> reactiveFoo = reactive(foo)<br><br><span class="hljs-built_in">console</span>.log(toRaw(reactiveFoo) === foo) <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my-hexo-blog/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my-hexo-blog/2022/09/13/ES6%E7%9A%84%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8FProxy/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ES6的代理模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my-hexo-blog/2022/09/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8CH5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%AE%8C%E6%88%90%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E9%97%AD%E7%8E%AF/">
+                        <span class="hidden-mobile">微信小程序内嵌H5页面，完成微信支付闭环</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "aM4FTi8OwV8tqiH5UYYBRzPC-gzGzoHsz",
+          app_key: "sl2Tj8M46WmXRF81AA6UO14j",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>YoLin</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Deng</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/my-hexo-blog/js/debouncer.js" ></script>
+<script  src="/my-hexo-blog/js/events.js" ></script>
+<script  src="/my-hexo-blog/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my-hexo-blog/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/my-hexo-blog/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/my-hexo-blog/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my-hexo-blog/js/boot.js" ></script>
+
+
+
+</body>
+</html>

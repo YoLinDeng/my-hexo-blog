@@ -181,6 +181,112 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/my-hexo-blog/2022/09/13/ES6%E7%9A%84%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8FProxy/">ES6的代理模式</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2022/09/13/ES6%E7%9A%84%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8FProxy/">
+          
+          
+            
+          
+          语法1const proxy = new Proxy(target, handle)
+
+
+target: 使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理
+handle: 一个通常以函数作为属性的对象，用来定制拦截行为
+
+123456789// 例子let obj = &#123;&#125;let proxyObj = new Proxy(obj, &#
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-13 18:09" pubdate>
+              2022-09-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/my-hexo-blog/2022/09/11/vue%E7%BB%84%E5%90%88%E5%BC%8FAPI%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">vue组合式API相关知识</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2022/09/11/vue%E7%BB%84%E5%90%88%E5%BC%8FAPI%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+          
+          
+            
+          
+          setupsetup 函数是一个新的组件选项。作为在组件内使用 Composition API 的入口点
+
+它在创建组件实例，初始化props后调用，从生命周期的角度看，他会在beforeCreate钩子之前被调用
+setup会返回一个对象，该对象属性会被合并到组件模板渲染的上下文中。（ref定义的数据会自动解开，无需.value引用）
+setup(props, context){},接收prop
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-11 15:07" pubdate>
+              2022-09-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E6%97%A5%E5%B8%B8%E5%BC%80%E5%8F%91/">日常开发</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/vue/">vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/my-hexo-blog/2022/09/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8CH5%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%AE%8C%E6%88%90%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E9%97%AD%E7%8E%AF/">微信小程序内嵌H5页面，完成微信支付闭环</a>
       </h1>
 
@@ -599,111 +705,6 @@ vuex的挂载过程在src下新建store/index.js目录
             <i class="iconfont icon-tags"></i>
             
               <a href="/my-hexo-blog/tags/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/">页面加载优化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2022/04/08/HTTP%E7%9B%B8%E5%85%B3/">HTTP相关</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2022/04/08/HTTP%E7%9B%B8%E5%85%B3/">
-          
-          
-            
-          
-          HTTP 与HTTPS的区别
-HTTPS是HTTP协议的安全版本，HTTP协议的数据传输是明文的，是不安全的，HTTPS使用了SSL/TLS协议进行了加密处理，相对更安全
-HTTP 和 HTTPS 使用连接方式不同，默认端口也不一样，HTTP是80，HTTPS是443
-HTTPS 由于需要加密以及多次握手，性能方面不如 HTTP
-HTTPS需要SSL，SSL 证书需要钱，功能越强大的证书费用越高
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-08 21:20" pubdate>
-              2022-04-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a>
-            
-              <a href="/my-hexo-blog/tags/HTTP/">HTTP</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/my-hexo-blog/2022/03/18/vue%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">vue相关问题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2022/03/18/vue%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
-          
-          
-            
-          
-          简述MVVM视图模型双向绑定，是Model-View-ViewModel的缩写，也就是把MVC中的Controller演变成ViewModel。Model层代表数据模型，View代表UI组件，ViewModel是View和Model层的桥梁，数据会绑定到viewModel层并自动将数据渲染到页面中，视图变化的时候会通知viewModel层更新数据。以前是操作DOM结构更新视图，现在是数据驱动视图。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-18 17:13" pubdate>
-              2022-03-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86/">框架原理</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/javaScript/">javaScript</a>
-            
-              <a href="/my-hexo-blog/tags/vue/">vue</a>
             
           </div>
         
