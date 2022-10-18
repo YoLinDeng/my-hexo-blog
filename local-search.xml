@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>个人面经</title>
+    <link href="/my-hexo-blog/2022/10/18/%E4%B8%AA%E4%BA%BA%E9%9D%A2%E7%BB%8F/"/>
+    <url>/my-hexo-blog/2022/10/18/%E4%B8%AA%E4%BA%BA%E9%9D%A2%E7%BB%8F/</url>
+    
+    <content type="html"><![CDATA[<p>以下记录个人面经，后续有新的持续更新</p><h3 id="论客："><a href="#论客：" class="headerlink" title="论客："></a>论客：</h3><p>笔试题</p><p>1、<form method="*"></form>,method的值可以是什么，它们区别是什么？</p><p>2、css预编译语言有哪些，它们各有什么优缺点？</p><p>3、列举前端上传文件的方法和思路以及它们的优缺点？</p><p>4、如果调试一段javascript代码的性能？</p><p>5、要求空间复杂度为O(1)，实现给定一个存放整数的数组，重新排列数组使得数组左边为奇数，右边为偶数。</p><p>面试题</p><p>1、自我介绍</p><p>2、说说最近做的一个项目，遇到的最难解决的问题是什么</p><p>3、如果发现页面白屏时间过久，你怎么排查问题，说说你的思路？如果没有源代码你怎么排查？</p><p>4、说说你写过的一个组件？</p><p>5、如果将一个字符串 转为字节流数组？</p><p>6、如何查询访问最多IP？</p><p>7、vue2和vue3 有什么不同点？</p><h3 id="inke"><a href="#inke" class="headerlink" title="inke"></a>inke</h3><p>1、vue2与vue3的区别有哪些？<br>2、vue2如果想要给响应式对象新增属性并也具有响应式，怎么做？<br>3、看你写用过axios，怎么封装的？<br>4、怎么实现原生的ajax？<br>5、说一下promise的原理？以及有哪些静态方法？说一下all、race、allsettled的区别？<br>6、promise为什么可以链式调用，原理？<br>7、async/await的原理<br>8、bfc的概念以及应用场景<br>9、原生拖拽的api有哪些？（drag）<br>10、Promise.resolve(1).then(2).then(Promise.resolve(3)).then(console.log),输出什么？<br>11、</p><pre><code>setTimeout(() =&gt; {    console.log(&apos;timer1&apos;)    Promise.resolve().then(() =&gt;{        console.log(&apos;promise&apos;)    })       }, 0)setTimeout(() =&gt; {    console.log(&apos;timer2&apos;)}, 0)console.log(&apos;start&apos;)</code></pre><p>输出顺序是什么？</p><p>12、如果让你写一个弹窗组件，你会注意哪些方面，比如有哪些属性 或者方法？<br>13、如何使用api的方式调用组件？<br>14、vue的响应式原理收集依赖的过程是怎么样的？</p><h3 id="中康："><a href="#中康：" class="headerlink" title="中康："></a>中康：</h3><p>一面：</p><p>1、简单介绍一下这个活动组件平台项目的内容？在项目中遇到的难点是什么？介绍一下你在项目中主要负责什么方面的工作？</p><p>2、你常用的git命令有哪些？</p><p>3、看你写过服务端，那你对操作系统应该比较熟悉吧，你比较常用的linux命令有哪些？</p><p>4、有使用过docker吗？原理是什么？</p><p>5、如果在开发中你要合并代码，你会怎么做？</p><p>6、举个小程序开发中的场景，在用户登陆后获取用户信息，你会怎么存储？</p><p>7、在项目的代码规范中你是怎么做的？eslint相关的内容？</p><p>8、提交代码的时候怎么做规范化校验？</p><p>9、你在平时是什么提升自己的技术的？有没有关注什么大牛？</p><p>10、有了vue-cli这些脚手架工具，为何还需要nuxt这种SSR的方案？</p><p>11、说一下vue响应式原理？</p><p>12、vue双向绑定是怎么做的？</p><p>13、提问</p><p>二面：</p><p>1、上一个面试官问你的问题，有哪些不会的吗？（我愣住了一下，一下想不起来，只说了docker不太了解）</p><p>2、说一下活动组件平台这个项目是怎么样的情况？简单描述一下？</p><p>3、如果需要介入第三方的组件库进入这个平台，你会怎么做？</p><p>4、这个组件平台，如果想要适配跨平台，例如打包小程序等，你会怎么做？</p><p>5、有没有了解过数据可视化的引擎框架？例如拖拽各种表格进来那种？</p><p>6、你做这个可视化平台，有了解过业内做的比较好的竞品吗？</p><p>7、说一下纯函数和副作用函数有什么区别？vue框架中，哪些属于纯函数，哪些属于副作用函数？</p><p>8、说一下vue组件通讯 有哪些？</p><p>9、说一下vuex如何使用，以及它的原理？</p><p>10、提问</p><p>hr面：</p><p>1、是否了解他们公司的业务？</p><p>2、现在想换一个环境，是基于哪些方面考虑？</p><p>3、说下过去三年的工作情况回顾？</p><p>4、你觉得过去的工作经验，哪些是可以复用的？</p><p>5、谈薪酬结构</p><p>6、提问</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>面经</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ES6的代理模式</title>
     <link href="/my-hexo-blog/2022/09/13/ES6%E7%9A%84%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8FProxy/"/>
     <url>/my-hexo-blog/2022/09/13/ES6%E7%9A%84%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8FProxy/</url>
