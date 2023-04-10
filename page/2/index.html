@@ -181,74 +181,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/my-hexo-blog/2022/05/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">前端性能优化</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/my-hexo-blog/2022/05/06/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
-          
-          
-            
-          
-          加载优化
-减少HTTP请求：尽量减少页面的请求数（首次加载同时请求数不能超过4个）
-
-合并CSS和JS
-
-使用CSS精灵图
-
-
-
-缓存资源
-使用缓存可减少向服务器的请求数，节省加载时间，所有静态资源都要在服务器端设置缓存
-
-缓存一切可缓存的资源
-使用长缓存
-使用外联的样式和脚本
-
-
-压缩代码
-减少资源大小可加快网页显示速度，对代码进行压缩，并在服务器端设置GZip
-
-压缩代码(多余的缩进、空格和换
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-06 19:21" pubdate>
-              2022-05-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/my-hexo-blog/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">性能优化</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/my-hexo-blog/tags/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/">页面加载优化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/my-hexo-blog/2022/04/08/HTTP%E7%9B%B8%E5%85%B3/">HTTP相关</a>
       </h1>
 
@@ -693,6 +625,60 @@ object变化侦测1.让Object数据变得“可观测”通过JS提供的Object.
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
             <time datetime="2021-06-23 11:27" pubdate>
+              2021-06-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/my-hexo-blog/categories/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/my-hexo-blog/tags/css/">css</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/my-hexo-blog/2021/06/23/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">css性能优化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/my-hexo-blog/2021/06/23/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+          
+          
+            
+          
+          
+合并css文件，如果页面加载10个css文件,每个文件1k，那么也要比只加载一个100k的css文件慢。
+减少css嵌套，最好不要嵌套三层以上。
+不要在ID选择器前面进行嵌套，ID本来就是唯一的而且权限值大，嵌套完全是浪费性能。
+建立公共样式类，把相同样式提取出来作为公共类使用。
+减少通配符*或者类似[hidden=”true”]这类选择器的使用，挨个查找所有…这性能能好吗？
+巧妙运用css的继
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-23 11:26" pubdate>
               2021-06-23
             </time>
           </div>
